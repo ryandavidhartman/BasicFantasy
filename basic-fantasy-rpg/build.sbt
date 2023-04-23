@@ -11,9 +11,10 @@ libraryDependencies ++= Seq(
   guice,
   "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test,
   // Enable reactive mongo for Play 2.8
-  "org.reactivemongo" %% "play2-reactivemongo" % "1.0.10-play28",
+  "org.reactivemongo" %% "play2-reactivemongo" % "1.1.0-play28-RC9",
   // Provide JSON serialization for reactive mongo
-  "org.reactivemongo" %% "reactivemongo-play-json-compat" % "1.0.10-play28",
+  "org.reactivemongo" %% "reactivemongo-play-json-compat" % "1.1.0-play28-RC9",
+  "ch.qos.logback" % "logback-classic" % "1.4.6",
 
 )
 
