@@ -3,7 +3,7 @@
     "name": "Animate Dead",
     "range": "touch",
     "cleric": 4,
-    "magic-user": 5,
+    "magicUser": 5,
     "duration": "special",
     "description": "This spell turns the bones or bodies of dead creatures into undead skeletons or zombies that follow the caster's spoken commands. They remain animated until they are destroyed. The caster may animate a number of hit dice of undead equal to twice his or her caster level, and no more. Animated skeletons have hit dice equal to the number the creature had in life; for skeletons of humans or demi-humans, this means one hit die, regardless of the character level of the deceased. Zombies have one more hit die than the creature had in life. An animated skeleton can be created only from a mostly intact skeleton; a zombie can be created only from a mostly intact corpse. The caster must touch the remains to be animated. No character may normally control more hit dice of undead than 4 times his or her level, regardless of how many times this spell is cast."
   },
@@ -17,7 +17,7 @@
   {
     "name": "Anti-Magic Shell",
     "range": "10' radius",
-    "magic-user": 6,
+    "magicUser": 6,
     "duration": "1 turn/level",
     "description": "Within a 10' radius around the caster, all magic is negated for the full duration of the spell. Magical attacks will not affect the caster, magic items and spells within the radius are suppressed, and the caster cannot perform further magic until the spell has expired."
   }

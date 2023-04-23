@@ -7,8 +7,15 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.13.10"
 
-libraryDependencies += guice
-libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test
+libraryDependencies ++= Seq(
+  guice,
+  "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test,
+  // Enable reactive mongo for Play 2.8
+  "org.reactivemongo" %% "play2-reactivemongo" % "1.0.10-play28",
+  // Provide JSON serialization for reactive mongo
+  "org.reactivemongo" %% "reactivemongo-play-json-compat" % "1.0.10-play28",
+
+)
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "org.bf.controllers._"
