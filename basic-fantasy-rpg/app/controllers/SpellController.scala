@@ -19,6 +19,12 @@ class SpellController @Inject()(
                                  val controllerComponents: ControllerComponents)
   extends BaseController {
 
+  // Spell UI Methods
+  def createPage() = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.create())
+  }
+
+  // CRUD API for Spells
   def findAll(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     spellRepository.findAll().map {
       spells => Ok(Json.toJson(spells))
@@ -43,8 +49,7 @@ class SpellController @Inject()(
   }
   }
 
-  def update(
-              id: String): Action[JsValue] = Action.async(controllerComponents.parsers.json) { implicit request => {
+  def update(id: String): Action[JsValue] = Action.async(controllerComponents.parsers.json) { implicit request => {
     request.body.validate[Spell].fold(
       _ => Future.successful(BadRequest("Cannot parse request body")),
       spell => {
