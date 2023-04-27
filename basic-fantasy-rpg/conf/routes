@@ -12,6 +12,7 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 # spell ui routing
 GET     /spells/create         controllers.SpellController.createPage()
+POST    /saveSpellButtonClicked controllers.SpellController.saveSpellButtonClicked
 
 # spell api routing
 GET     /spells                controllers.SpellController.findAll()

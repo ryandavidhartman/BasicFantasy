@@ -21,8 +21,15 @@ class SpellController @Inject()(
 
   // Spell UI Methods
   def createPage() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.create())
+    Ok(views.html.createSpell())
   }
+
+  def saveSpellButtonClicked(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    val textBoxValue = request.body.asFormUrlEncoded.get("spellNameTextbox").head
+    Ok // Return a simple response
+  }
+
+
 
   // CRUD API for Spells
   def findAll(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
