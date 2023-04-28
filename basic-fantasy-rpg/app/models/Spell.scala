@@ -1,4 +1,4 @@
-package rules
+package models
 
 import play.api.libs.json.{Json, OFormat}
 import reactivemongo.api.bson._
@@ -6,7 +6,7 @@ import reactivemongo.api.bson._
 import scala.util.Try
 
 case class Spell(
-                  _id:Option[BSONObjectID],
+                  _id: Option[String],
                   name:String,
                   range: String,
                   cleric: Option[Int],
@@ -36,7 +36,7 @@ object Spell {
   implicit object bsonReader extends BSONDocumentReader[Spell] {
     override def readDocument(doc: BSONDocument): Try[Spell] = Try {
       Spell(
-        _id         = doc.getAsOpt[BSONObjectID]("_id"),
+        _id         = doc.getAsOpt[String]("_id"),
         name        = doc.getAsOpt[String]("name").getOrElse("unknown"),
         range       = doc.getAsOpt[String]("range").getOrElse("unknown"),
         cleric      = doc.getAsOpt[Int]("cleric"),
@@ -48,5 +48,14 @@ object Spell {
   }
 
   implicit val jsonFormat: OFormat[Spell] = Json.format[Spell]
+  def getLevel(levelString: String): Option[Int] = levelString match {
+    case "1" => Some(1)
+    case "2" => Some(2)
+    case "3" => Some(3)
+    case "4" => Some(4)
+    case "5" => Some(5)
+    case "6" => Some(6)
+    case "None" => None
+  }
 }
 

@@ -6,7 +6,7 @@ import reactivemongo.api.bson.{BSONDocument, BSONDocumentReader, BSONObjectID, B
 import reactivemongo.api.bson.collection.BSONCollection
 import reactivemongo.api.Cursor
 import reactivemongo.api.commands.WriteResult
-import rules.Spell
+import models.Spell
 
 import scala.concurrent.{ExecutionContext, Future}
 import reactivemongo.api.commands.Command

@@ -1,0 +1,23 @@
+@(spells: Seq[Spell])(implicit request: MessagesRequestHeader)
+
+@main("Spells") {
+    <h1>Spells</h1>
+
+    @* Flash shows updates to a page *@
+    @request.flash.data.map{ case (name, value) =>
+        <div>@name: @value</div>
+    }
+
+    <table>
+        <thead>
+        <tr><th>Name</th><th>Range</th>
+        </thead>
+        <tbody>
+        @for(s <- spells) {
+        <tr><td>@s.name</td><td>@s.range</td></tr>
+        }
+        </tbody>
+    </table>
+
+    <hr/>
+}

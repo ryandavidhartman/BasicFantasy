@@ -4,10 +4,12 @@ package controllers
 import play.api.libs.json.{JsValue, Json, __}
 
 import javax.inject._
+import play.api.data._
+import play.api.i18n._
 import play.api.mvc._
-import reactivemongo.api.bson.{BSONObjectID, BSONString}
 import repositories.SpellRepository
-import rules.Spell
+import models.Spell
+import reactivemongo.api.bson.{BSONObjectID, BSONString}
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
@@ -16,16 +18,32 @@ import scala.util.{Failure, Success}
 class SpellController @Inject()(
                                  implicit executionContext: ExecutionContext,
                                  val spellRepository: SpellRepository,
-                                 val controllerComponents: ControllerComponents)
-  extends BaseController {
+                                 controllerComponents: MessagesControllerComponents)
+  extends MessagesAbstractController(controllerComponents) {
 
   // Spell UI Methods
+  def listSpells: Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    val spellsF: Future[Seq[Spell]] = spellRepository.findAll(100)
+    spellsF.map(spells => Ok(views.html.listSpells(spells)))
+  }
   def createPage() = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.createSpell())
   }
 
   def saveSpellButtonClicked(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val textBoxValue = request.body.asFormUrlEncoded.get("spellNameTextbox").head
+    println("ryan ryan ryan")
+    val name: String = request.body.asFormUrlEncoded.get("spellNameTextbox").head
+    val range: String = request.body.asFormUrlEncoded.get("spellRangeTextbox").head
+    val cleric: Option[Int] = Spell.getLevel(request.body.asFormUrlEncoded.get("clericSpellLevel").head)
+    val magicUser: Option[Int] = Spell.getLevel(request.body.asFormUrlEncoded.get("magicUserSpellLevel").head)
+    val duration: String = request.body.asFormUrlEncoded.get("spellDurationTextbox").head
+    val description: String = request.body.asFormUrlEncoded.get("spellDescription").mkString("\n")
+
+    val newSpell = Spell(None, name, range, cleric, magicUser, duration, description)
+
+    spellRepository.create(newSpell)
+
+
     Ok // Return a simple response
   }
 
