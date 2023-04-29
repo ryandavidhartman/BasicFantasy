@@ -1,6 +1,7 @@
 package controllers
 
 
+import controllers.SpellForm.spellForm
 import play.api.libs.json.{JsValue, Json, __}
 
 import javax.inject._
@@ -14,6 +15,7 @@ import reactivemongo.api.bson.{BSONObjectID, BSONString}
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
 
+
 @Singleton
 class SpellController @Inject()(
                                  implicit executionContext: ExecutionContext,
@@ -21,30 +23,36 @@ class SpellController @Inject()(
                                  controllerComponents: MessagesControllerComponents)
   extends MessagesAbstractController(controllerComponents) {
 
+  private val postUrl = routes.SpellController.createSpell()
+
   // Spell UI Methods
   def listSpells: Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     val spellsF: Future[Seq[Spell]] = spellRepository.findAll(100)
     spellsF.map(spells => Ok(views.html.listSpells(spells)))
   }
-  def createPage() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.createSpell())
+  def createPage() = Action { implicit request: MessagesRequest[AnyContent] =>
+    Ok(views.html.createSpell(spellForm, postUrl))
   }
 
-  def saveSpellButtonClicked(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    println("ryan ryan ryan")
-    val name: String = request.body.asFormUrlEncoded.get("spellNameTextbox").head
-    val range: String = request.body.asFormUrlEncoded.get("spellRangeTextbox").head
-    val cleric: Option[Int] = Spell.getLevel(request.body.asFormUrlEncoded.get("clericSpellLevel").head)
-    val magicUser: Option[Int] = Spell.getLevel(request.body.asFormUrlEncoded.get("magicUserSpellLevel").head)
-    val duration: String = request.body.asFormUrlEncoded.get("spellDurationTextbox").head
-    val description: String = request.body.asFormUrlEncoded.get("spellDescription").mkString("\n")
+  def createSpell(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
 
-    val newSpell = Spell(None, name, range, cleric, magicUser, duration, description)
+    val errorFunction = { formWithErrors: Form[Spell] =>
+      // This is the bad case, where the form had validation errors.
+      // Let's show the user the form again, with the errors highlighted.
+      // Note how we pass the form with errors to the template.
+      println(formWithErrors.errors.mkString(";"))
+      BadRequest(views.html.createSpell(formWithErrors, postUrl))
+    }
 
-    spellRepository.create(newSpell)
+    val successFunction = { spell: Spell =>
+      // This is the good case, where the form was successfully parsed as a Data object.
+      spellRepository.create(spell)
+      Redirect(routes.SpellController.listSpells())
+        .flashing("info" -> s"${spell.name} added!")
+    }
 
-
-    Ok // Return a simple response
+    val formValidationResult = spellForm.bindFromRequest()
+    formValidationResult.fold(errorFunction, successFunction)
   }
 
 

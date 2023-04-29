@@ -7,7 +7,7 @@ object SpellForm {
   import play.api.data.Forms._
   import play.api.data.Form
 
-  val form = Form(
+  val spellForm = Form(
     mapping(
       "_id" -> optional(text),
       "name" -> nonEmptyText,

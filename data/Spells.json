@@ -1,24 +1,38 @@
-[
-  {
-    "name": "Animate Dead",
-    "range": "touch",
-    "cleric": 4,
-    "magicUser": 5,
-    "duration": "special",
-    "description": "This spell turns the bones or bodies of dead creatures into undead skeletons or zombies that follow the caster's spoken commands. They remain animated until they are destroyed. The caster may animate a number of hit dice of undead equal to twice his or her caster level, and no more. Animated skeletons have hit dice equal to the number the creature had in life; for skeletons of humans or demi-humans, this means one hit die, regardless of the character level of the deceased. Zombies have one more hit die than the creature had in life. An animated skeleton can be created only from a mostly intact skeleton; a zombie can be created only from a mostly intact corpse. The caster must touch the remains to be animated. No character may normally control more hit dice of undead than 4 times his or her level, regardless of how many times this spell is cast."
+[{
+  "_id": {
+    "$oid": "644499a2b0d2ebddff43f65a"
   },
-  {
-    "name": "Animate Objects",
-    "range": "Range: 100'+10'/level",
-    "cleric": 6,
-    "duration": "1 round/level",
-    "description": "This spell imbues inanimate objects with mobility and a semblance of life. The animated objects then attack whomever or whatever the caster designates. This spell cannot animate objects carried or worn by a creature. An animated object can be of any non-magical material. The caster can animate one object per level, up to a maximum of 25 lbs. per caster level (i.e. 300 lbs. at 12th level, 325 lbs. at 13th level, and so on).\nThe GM must rule on the effectiveness of animated objects in combat. In general, animated objects attack using the same attack bonus as the caster. Small or lightweight objects do no more than 1d4 damage per hit, while larger and/or heavier objects do 1d6 or 1d8 (at the GM's discretion). As a special case, weapons which are animated do damage using the normal die roll for the type, but only up to a maximum 1d8. Animated objects have a movement rate of 10', and generally must move in contact with the ground (walking, hopping, slithering, or bouncing, however seems most appropriate to the GM)."
+  "name": "Animate Dead",
+  "range": "touch",
+  "cleric": 4,
+  "magicUser": 5,
+  "duration": "special",
+  "description": "This spell turns the bones or bodies of dead creatures into undead skeletons or zombies that follow the caster's spoken commands. They remain animated until they are destroyed. The caster may animate a number of hit dice of undead equal to twice his or her caster level, and no more. Animated skeletons have hit dice equal to the number the creature had in life; for skeletons of humans or demi-humans, this means one hit die, regardless of the character level of the deceased. Zombies have one more hit die than the creature had in life. An animated skeleton can be created only from a mostly intact skeleton; a zombie can be created only from a mostly intact corpse. The caster must touch the remains to be animated. No character may normally control more hit dice of undead than 4 times his or her level, regardless of how many times this spell is cast."
+},{
+  "_id": {
+    "$oid": "644499a2b0d2ebddff43f65b"
   },
-  {
-    "name": "Anti-Magic Shell",
-    "range": "10' radius",
-    "magicUser": 6,
-    "duration": "1 turn/level",
-    "description": "Within a 10' radius around the caster, all magic is negated for the full duration of the spell. Magical attacks will not affect the caster, magic items and spells within the radius are suppressed, and the caster cannot perform further magic until the spell has expired."
-  }
-]
+  "name": "Animate Objects",
+  "range": "Range: 100'+10'/level",
+  "cleric": 6,
+  "duration": "1 round/level",
+  "description": "This spell imbues inanimate objects with mobility and a semblance of life. The animated objects then attack whomever or whatever the caster designates. This spell cannot animate objects carried or worn by a creature. An animated object can be of any non-magical material. The caster can animate one object per level, up to a maximum of 25 lbs. per caster level (i.e. 300 lbs. at 12th level, 325 lbs. at 13th level, and so on).\nThe GM must rule on the effectiveness of animated objects in combat. In general, animated objects attack using the same attack bonus as the caster. Small or lightweight objects do no more than 1d4 damage per hit, while larger and/or heavier objects do 1d6 or 1d8 (at the GM's discretion). As a special case, weapons which are animated do damage using the normal die roll for the type, but only up to a maximum 1d8. Animated objects have a movement rate of 10', and generally must move in contact with the ground (walking, hopping, slithering, or bouncing, however seems most appropriate to the GM)."
+},{
+  "_id": {
+    "$oid": "644499a2b0d2ebddff43f65c"
+  },
+  "name": "Anti-Magic Shell",
+  "range": "10' radius",
+  "magicUser": 6,
+  "duration": "1 turn/level",
+  "description": "Within a 10' radius around the caster, all magic is negated for the full duration of the spell. Magical attacks will not affect the caster, magic items and spells within the radius are suppressed, and the caster cannot perform further magic until the spell has expired."
+},{
+  "_id": {
+    "$oid": "644cb301a120efee2f3c3456"
+  },
+  "name": "Blade Barrier",
+  "range": "90'",
+  "cleric": 6,
+  "duration": "1 round/level",
+  "description": "This spell creates a wall of whirling blades up to 20' long per caster level, or a ringed wall of whirling blades with a radius of up to 5' per two levels. Either form will be up to 20 ft. high (as allowed by available space). Any creature passing through the wall takes 1d6 points of damage per caster level (maximum 15d6), with a save vs. Death Ray reducing damage to half.\r\n\r\nIf the caster evokes the barrier so that it appears where creatures are, each creature takes damage as if passing through the wall. Each such creature can avoid the wall (ending up on the side of its choice) and thus take no damage by making a successful save vs. Death Ray.\r\n\r\nA blade barrier provides cover (+4 bonus to Armor Class) against attacks made through it."
+}]

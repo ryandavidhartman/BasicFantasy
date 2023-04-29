@@ -1,16 +1,3 @@
-Blade Barrier
-Range: 90'
-
-Cleric 6
-
-Duration: 1 round/level
-
-This spell creates a wall of whirling blades up to 20' long per caster level, or a ringed wall of whirling blades with a radius of up to 5' per two levels. Either form will be up to 20 ft. high (as allowed by available space). Any creature passing through the wall takes 1d6 points of damage per caster level (maximum 15d6), with a save vs. Death Ray reducing damage to half.
-
-If the caster evokes the barrier so that it appears where creatures are, each creature takes damage as if passing through the wall. Each such creature can avoid the wall (ending up on the side of its choice) and thus take no damage by making a successful save vs. Death Ray.
-
-A blade barrier provides cover (+4 bonus to Armor Class) against attacks made through it.
-
 Bless*
 Range: 50' radius
 

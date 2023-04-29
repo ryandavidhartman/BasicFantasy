@@ -1,46 +1,30 @@
-@()
+@(form: Form[Spell], postUrl: Call)(implicit request: MessagesRequestHeader)
 
 @main("Create a new Spell") {
 <h1>Make a new spell</h1>
 
-<p>
-    name: <input type="text" id="spellNameTextbox">
-</p>
-<p>
-    range: <input type="text" id="spellRangeTextbox">
-</p>
-<p>
-    cleric: <select name="clericSpellLevel" id="clericSpellLevel">
-               <option value="None">None</option>
-               <option value="1">1</option>
-               <option value="2">2</option>
-               <option value="3">3</option>
-               <option value="4">4</option>
-               <option value="5">5</option>
-               <option value="6">6</option>
-            </select>
-</p>
-<p>
-    magic user: <select name="magicUserSpellLevel" id="magicUserSpellLevel">
-    <option value="None">None</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-</select>
-</p>
-<p>
-    duration: <input type="text" id="spellDurationTextbox">
-</p>
-<p>
-    description: <textarea id="spellDescriptionTextbox" rows="4" cols="50"></textarea>
-</p>
+@* Global errors are not tied to any particular form field *@
+@if(form.hasGlobalErrors) {
+    @form.globalErrors.map { error: FormError =>
+    <div>
+        @error.key: @error.message
+    </div>
+    }
+}
 
-<p>
-    <button id="saveSpellButton" onclick="@routes.SpellController.saveSpellButtonClicked">Save Spell</button>
-</p>
+@helper.form(postUrl) {
+@helper.CSRF.formField
+
+@helper.inputText(form("name"))
+@helper.inputText(form("range"))
+@helper.inputText(form("cleric"))
+@helper.inputText(form("magicUser"))
+@helper.inputText(form("duration"))
+@helper.textarea(form("description"))
+
+<button>Create Spell</button>
+}
+
 
 
 }
