@@ -11,6 +11,8 @@ import models.Spell
 import scala.concurrent.{ExecutionContext, Future}
 import reactivemongo.api.commands.Command
 
+import scala.util.{Failure, Success}
+
 
 @Singleton
 class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
@@ -37,8 +39,11 @@ class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
   }
 
 
-  def findOne(id: BSONObjectID): Future[Option[Spell]] = {
-    collection.flatMap(_.find(BSONDocument("_id" -> id), Option.empty[Spell]).one[Spell])
+  def findOne(id: String): Future[Option[Spell]] = {
+    BSONObjectID.parse(id) match {
+      case Success(id) => collection.flatMap(_.find(BSONDocument("_id" -> id), Option.empty[Spell]).one[Spell])
+      case Failure(e) => throw e
+    }
   }
 
   def findOne(fieldName: String, fieldValue: BSONValue): Future[Option[Spell]] = {
