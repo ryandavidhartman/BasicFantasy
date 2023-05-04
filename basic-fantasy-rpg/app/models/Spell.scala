@@ -6,7 +6,7 @@ import reactivemongo.api.bson._
 import scala.util.Try
 
 case class Spell(
-                  _id: Option[String],
+                  id: Option[String],
                   name:String,
                   range: String,
                   cleric: Option[Int],
@@ -23,7 +23,7 @@ object Spell {
   implicit object bsonWriter extends BSONDocumentWriter[Spell] {
     override def writeTry(spell: Spell): Try[BSONDocument] = Try {
       BSONDocument(
-        "_id"         -> spell._id,
+        "id"         -> spell.id,
         "name"        -> spell.name,
         "range"       -> spell.range,
         "cleric"      -> spell.cleric,
@@ -36,7 +36,7 @@ object Spell {
   implicit object bsonReader extends BSONDocumentReader[Spell] {
     override def readDocument(doc: BSONDocument): Try[Spell] = Try {
       Spell(
-        _id         = doc.getAsOpt[String]("_id"),
+        id         =  doc.getAsOpt[String]("_id"),
         name        = doc.getAsOpt[String]("name").getOrElse("unknown"),
         range       = doc.getAsOpt[String]("range").getOrElse("unknown"),
         cleric      = doc.getAsOpt[Int]("cleric"),

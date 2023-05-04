@@ -1,33 +1,21 @@
 package repositories
 
-import javax.inject._
-import play.modules.reactivemongo.ReactiveMongoApi
-import reactivemongo.api.bson.{BSONDocument, BSONDocumentReader, BSONObjectID, BSONValue}
-import reactivemongo.api.bson.collection.BSONCollection
-import reactivemongo.api.Cursor
-import reactivemongo.api.commands.WriteResult
 import models.Spell
+import play.modules.reactivemongo.ReactiveMongoApi
+import reactivemongo.api.Cursor
+import reactivemongo.api.bson.collection.BSONCollection
+import reactivemongo.api.bson.{BSONDocument, BSONObjectID, BSONValue}
+import reactivemongo.api.commands.WriteResult
 
+import javax.inject._
 import scala.concurrent.{ExecutionContext, Future}
-import reactivemongo.api.commands.Command
-
 import scala.util.{Failure, Success}
 
 
 @Singleton
 class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
                                  implicit val ec: ExecutionContext)  {
-
   def collection: Future[BSONCollection] = reactiveMongoApi.database.map(db => db.collection("Spells"))
-
-
-  import reactivemongo.api.bson.collection.BSONCollection
-  import reactivemongo.api.bson.{BSONDocument, BSONDocumentReader}
-  import reactivemongo.api.Cursor
-  import reactivemongo.api.commands.AggregationFramework
-
-  import scala.concurrent.Future
-
   def findAll(limit: Int = 100): Future[Seq[Spell]] = {
     val query = BSONDocument.empty
     val projection = Some(BSONDocument.empty)
@@ -37,15 +25,12 @@ class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
         .collect[Seq](limit, Cursor.FailOnError[Seq[Spell]]())
     }
   }
-
-
   def findOne(id: String): Future[Option[Spell]] = {
     BSONObjectID.parse(id) match {
       case Success(id) => collection.flatMap(_.find(BSONDocument("_id" -> id), Option.empty[Spell]).one[Spell])
       case Failure(e) => throw e
     }
   }
-
   def findOne(fieldName: String, fieldValue: BSONValue): Future[Option[Spell]] = {
     collection.flatMap(_.find(BSONDocument(fieldName -> fieldValue), Option.empty[Spell]).one[Spell])
   }
@@ -65,7 +50,4 @@ class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
       _.delete().one(BSONDocument("_id" -> id), Some(1))
     )
   }
-
-
-
 }

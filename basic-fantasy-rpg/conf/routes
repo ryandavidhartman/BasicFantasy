@@ -15,7 +15,7 @@ GET     /spells                controllers.SpellController.listSpells()
 GET     /spells/create         controllers.SpellController.createPage()
 POST    /spells/create         controllers.SpellController.createSpell()
 GET     /spells/update/:id     controllers.SpellController.updatePage(id: String)
-# POST    /spells/update/:id     controllers.SpellController.updateSpell(id: String)
+POST    /spells/update         controllers.SpellController.updateSpell()
 
 # spell api routing
 GET     /spells                controllers.SpellController.findAll()

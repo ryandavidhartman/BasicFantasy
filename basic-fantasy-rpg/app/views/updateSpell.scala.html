@@ -1,4 +1,4 @@
-@(form: Form[Spell], postUrl: Call)(implicit request: MessagesRequestHeader)
+@(form: Form[SpellDto], postUrl: Call)(implicit request: MessagesRequestHeader)
 
 @main("Update a Spell") {
 <h1>Edit spell</h1>
@@ -15,6 +15,7 @@
 @helper.form(postUrl) {
 @helper.CSRF.formField
 
+@helper.inputText(form("_id"))
 @helper.inputText(form("name"))
 @helper.inputText(form("range"))
 @helper.inputText(form("cleric"))

@@ -2,6 +2,7 @@ package controllers
 
 
 import controllers.SpellForm.spellForm
+import controllers.SpellDtoForm.spellDtoForm
 import play.api.libs.json.{JsValue, Json, __}
 
 import javax.inject._
@@ -9,11 +10,11 @@ import play.api.data._
 import play.api.i18n._
 import play.api.mvc._
 import repositories.SpellRepository
-import models.Spell
+import models.{Spell, SpellConverters, SpellDto}
 import reactivemongo.api.bson.{BSONObjectID, BSONString}
 
 import scala.concurrent.{ExecutionContext, Future}
-import scala.util.{Failure, Success}
+import scala.util.{Failure, Success, Try}
 
 
 @Singleton
@@ -24,6 +25,7 @@ class SpellController @Inject()(
   extends MessagesAbstractController(controllerComponents) {
 
   private val createSpellUrl = routes.SpellController.createSpell()
+  private val updateSpellUrl = routes.SpellController.updateSpell()
 
   // Spell UI Methods
   def listSpells: Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
@@ -57,34 +59,31 @@ class SpellController @Inject()(
 
   def updatePage(id: String) = Action.async { implicit request: MessagesRequest[AnyContent] =>
     val spellF: Future[Option[Spell]] = spellRepository.findOne(id)
-    spellF.map(s => s match {
-      case Some(spell) => Ok(views.html.updateSpell(spellForm.fill(spell), createSpellUrl))
+    spellF.map(_ match {
+      case Some(spell) => Ok(views.html.updateSpell(spellDtoForm.fill(SpellConverters(spell)), updateSpellUrl))
       case None => Ok(views.html.createSpell(spellForm, createSpellUrl))
     })
   }
 
-  def updateSpell(id: String): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
+  def updateSpell(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
 
-    val errorFunction = { formWithErrors: Form[Spell] =>
+    val errorFunction = { formWithErrors: Form[SpellDto] =>
       // This is the bad case, where the form had validation errors.
       // Let's show the user the form again, with the errors highlighted.
       // Note how we pass the form with errors to the template.
       println(formWithErrors.errors.mkString(";"))
-      BadRequest(views.html.createSpell(formWithErrors, createSpellUrl))
+      BadRequest(views.html.updateSpell(formWithErrors, createSpellUrl))
     }
 
-    val successFunction = { spell: Spell =>
-      // This is the good case, where the form was successfully parsed as a Data object.
-      spellRepository.create(spell)
+    val successFunction = { spell: SpellDto =>
+      spellRepository.update(spell._id, SpellConverters(spell))
       Redirect(routes.SpellController.listSpells())
-        .flashing("info" -> s"${spell.name} added!")
+        .flashing("info" -> s"${spell.name} updated!")
     }
 
-    val formValidationResult = spellForm.bindFromRequest()
+    val formValidationResult = spellDtoForm.bindFromRequest()
     formValidationResult.fold(errorFunction, successFunction)
   }
-
-
 
   // CRUD API for Spells
   def findAll(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
