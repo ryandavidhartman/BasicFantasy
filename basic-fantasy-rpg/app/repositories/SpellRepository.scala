@@ -27,7 +27,10 @@ class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
   }
   def findOne(id: String): Future[Option[Spell]] = {
     BSONObjectID.parse(id) match {
-      case Success(id) => collection.flatMap(_.find(BSONDocument("_id" -> id), Option.empty[Spell]).one[Spell])
+      case Success(id) => {
+        val maybeSpellF = collection.flatMap(_.find(BSONDocument("_id" -> id), Option.empty[Spell]).one[Spell])
+        maybeSpellF.map(_.map(_.copy(id = Some(id.stringify))))
+      }
       case Failure(e) => throw e
     }
   }

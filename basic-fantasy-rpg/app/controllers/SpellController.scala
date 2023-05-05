@@ -30,7 +30,9 @@ class SpellController @Inject()(
   // Spell UI Methods
   def listSpells: Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     val spellsF: Future[Seq[Spell]] = spellRepository.findAll(100)
-    spellsF.map(spells => Ok(views.html.listSpells(spells)))
+    spellsF.map{spells =>
+      println(spells.map(_.id).mkString)
+      Ok(views.html.listSpells(spells))}
   }
   def createPage() = Action { implicit request: MessagesRequest[AnyContent] =>
     Ok(views.html.createSpell(spellForm, createSpellUrl))
