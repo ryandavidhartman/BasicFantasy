@@ -29,10 +29,8 @@ class SpellController @Inject()(
 
   // Spell UI Methods
   def listSpells: Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
-    val spellsF: Future[Seq[Spell]] = spellRepository.findAll(100)
-    spellsF.map{spells =>
-      println(spells.map(_.id).mkString)
-      Ok(views.html.listSpells(spells))}
+    val spellsF: Future[Seq[SpellDto]] = spellRepository.findAll_v2(100)
+    spellsF.map(spells => Ok(views.html.listSpells(spells)))
   }
   def createPage() = Action { implicit request: MessagesRequest[AnyContent] =>
     Ok(views.html.createSpell(spellForm, createSpellUrl))
@@ -60,31 +58,33 @@ class SpellController @Inject()(
   }
 
   def updatePage(id: String) = Action.async { implicit request: MessagesRequest[AnyContent] =>
-    val spellF: Future[Option[Spell]] = spellRepository.findOne(id)
-    spellF.map(_ match {
-      case Some(spell) => Ok(views.html.updateSpell(spellDtoForm.fill(SpellConverters(spell)), updateSpellUrl))
-      case None => Ok(views.html.createSpell(spellForm, createSpellUrl))
-    })
+//    val spellF: Future[Option[Spell]] = spellRepository.findOne(id)
+//    spellF.map(_ match {
+//      case Some(spell) => Ok(views.html.updateSpell(spellDtoForm.fill(SpellConverters(spell)), updateSpellUrl))
+//      case None => Ok(views.html.createSpell(spellForm, createSpellUrl))
+//    })
+    ???
   }
 
   def updateSpell(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
 
-    val errorFunction = { formWithErrors: Form[SpellDto] =>
-      // This is the bad case, where the form had validation errors.
-      // Let's show the user the form again, with the errors highlighted.
-      // Note how we pass the form with errors to the template.
-      println(formWithErrors.errors.mkString(";"))
-      BadRequest(views.html.updateSpell(formWithErrors, createSpellUrl))
-    }
-
-    val successFunction = { spell: SpellDto =>
-      spellRepository.update(spell._id, SpellConverters(spell))
-      Redirect(routes.SpellController.listSpells())
-        .flashing("info" -> s"${spell.name} updated!")
-    }
-
-    val formValidationResult = spellDtoForm.bindFromRequest()
-    formValidationResult.fold(errorFunction, successFunction)
+//    val errorFunction = { formWithErrors: Form[SpellDto] =>
+//      // This is the bad case, where the form had validation errors.
+//      // Let's show the user the form again, with the errors highlighted.
+//      // Note how we pass the form with errors to the template.
+//      println(formWithErrors.errors.mkString(";"))
+//      BadRequest(views.html.updateSpell(formWithErrors, createSpellUrl))
+//    }
+//
+//    val successFunction = { spell: SpellDto =>
+//      spellRepository.update(spell._id, SpellConverters(spell))
+//      Redirect(routes.SpellController.listSpells())
+//        .flashing("info" -> s"${spell.name} updated!")
+//    }
+//
+//    val formValidationResult = spellDtoForm.bindFromRequest()
+//    formValidationResult.fold(errorFunction, successFunction)
+    ???
   }
 
   // CRUD API for Spells

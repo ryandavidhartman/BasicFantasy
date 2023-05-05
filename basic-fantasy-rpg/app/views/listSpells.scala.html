@@ -1,4 +1,4 @@
-@(spells: Seq[Spell])(implicit request: MessagesRequestHeader)
+@(spells: Seq[SpellDto])(implicit request: MessagesRequestHeader)
 
 @main("Spells") {
     <h1>Spells</h1>
@@ -46,7 +46,7 @@
             @s.description
         </div>
         <div style="float: left; width: 100%; border: 1px solid #000000;">
-            <a href="http://localhost:9000/spells/create/">Edit Spell</a>
+            <a href="http://localhost:9000/spells/create/">@s._id</a>
         </div>
         <div style="float: left; width: 100%; border: 1px solid #000000;">
             <hr>

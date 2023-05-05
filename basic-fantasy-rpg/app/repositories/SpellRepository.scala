@@ -1,6 +1,6 @@
 package repositories
 
-import models.Spell
+import models.{Spell, SpellDto}
 import play.modules.reactivemongo.ReactiveMongoApi
 import reactivemongo.api.Cursor
 import reactivemongo.api.bson.collection.BSONCollection
@@ -23,6 +23,16 @@ class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
       col.find(query, projection)
         .cursor[Spell]()
         .collect[Seq](limit, Cursor.FailOnError[Seq[Spell]]())
+    }
+  }
+
+  def findAll_v2(limit: Int = 100): Future[Seq[SpellDto]] = {
+    val query = BSONDocument.empty
+    val projection = Some(BSONDocument.empty)
+    collection.flatMap { col =>
+      col.find(query, projection)
+        .cursor[SpellDto]()
+        .collect[Seq](limit, Cursor.FailOnError[Seq[SpellDto]]())
     }
   }
   def findOne(id: String): Future[Option[Spell]] = {
