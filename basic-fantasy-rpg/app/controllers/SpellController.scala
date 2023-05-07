@@ -1,20 +1,18 @@
 package controllers
 
 
-import controllers.SpellForm.spellForm
 import controllers.SpellDtoForm.spellDtoForm
-import play.api.libs.json.{JsValue, Json, __}
+import controllers.SpellForm.spellForm
+import models.{Spell, SpellDto}
+import play.api.data._
+import play.api.libs.json.{JsValue, Json}
+import play.api.mvc._
+import reactivemongo.api.bson.{BSONObjectID, BSONString}
+import repositories.SpellRepository
 
 import javax.inject._
-import play.api.data._
-import play.api.i18n._
-import play.api.mvc._
-import repositories.SpellRepository
-import models.{Spell, SpellConverters, SpellDto}
-import reactivemongo.api.bson.{BSONObjectID, BSONString}
-
 import scala.concurrent.{ExecutionContext, Future}
-import scala.util.{Failure, Success, Try}
+import scala.util.{Failure, Success}
 
 
 @Singleton
@@ -31,11 +29,42 @@ class SpellController @Inject()(
 
 
   // Spell UI Methods
-  def getSpells: Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+  def getSpellsPage(name: Option[String],
+                    range: Option[String],
+                    cleric: Option[Int],
+                    magicUser: Option[Int],
+                    duration: Option[String],
+                    description: Option[String]): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     val spellsF: Future[Seq[SpellDto]] = spellRepository.findAll(100)
-    spellsF.map(spells => Ok(views.html.getSpells(spells, updateSpellURL)))
+    spellsF.map { spells =>
+      val filteredSpells1 = name match {
+        case Some(n) => spells.filter(s => s.name == n)
+        case None => spells
+      }
+      val filteredSpells2 = range match {
+        case Some(n) => filteredSpells1.filter(s => s.range == n)
+        case None => filteredSpells1
+      }
+      val filteredSpells3 = cleric match {
+        case Some(n) => filteredSpells2.filter(s => s.cleric == Option(n))
+        case None => filteredSpells2
+      }
+      val filteredSpells4 = magicUser match {
+        case Some(n) => filteredSpells3.filter(s => s.magicUser == Option(n))
+        case None => filteredSpells3
+      }
+      val filteredSpells5 = duration match {
+        case Some(n) => filteredSpells4.filter(s => s.duration == n)
+        case None => filteredSpells4
+      }
+      val filteredSpells6 = description match {
+        case Some(n) => filteredSpells5.filter(s => s.description.contains(n))
+        case None => filteredSpells5
+      }
+      Ok(views.html.getSpells(filteredSpells6, updateSpellURL))
+    }
   }
-  def createPage() = Action { implicit request: MessagesRequest[AnyContent] =>
+  def createSpellPage() = Action { implicit request: MessagesRequest[AnyContent] =>
     Ok(views.html.createSpell(spellForm, createSpellCall))
   }
 
@@ -52,7 +81,7 @@ class SpellController @Inject()(
     val successFunction = { spell: Spell =>
       // This is the good case, where the form was successfully parsed as a Data object.
       spellRepository.create(spell)
-      Redirect(routes.SpellController.getSpells())
+      Redirect(routes.SpellController.getSpellsPage(None, None, None, None, None, None))
         .flashing("info" -> s"${spell.name} added!")
     }
 
@@ -60,7 +89,7 @@ class SpellController @Inject()(
     formValidationResult.fold(errorFunction, successFunction)
   }
 
-  def updatePage(id: String) = Action.async { implicit request: MessagesRequest[AnyContent] =>
+  def updateSpellPage(id: String) = Action.async { implicit request: MessagesRequest[AnyContent] =>
     val spellF: Future[Option[SpellDto]] = spellRepository.findOne(id)
     spellF.map(_ match {
       case Some(spell) => Ok(views.html.updateSpell(spellDtoForm.fill(spell), updateSpellCall))
@@ -80,7 +109,7 @@ class SpellController @Inject()(
 
     val successFunction = { spell: SpellDto =>
       spellRepository.update(spell)
-      Redirect(routes.SpellController.getSpells())
+      Redirect(routes.SpellController.getSpellsPage(None, None, None, None, None, None))
         .flashing("info" -> s"${spell.name} updated!")
     }
 

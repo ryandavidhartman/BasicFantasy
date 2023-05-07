@@ -11,10 +11,10 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 
 # spell ui routing
-GET     /spells                controllers.SpellController.getSpells()
-GET     /spells/create         controllers.SpellController.createPage()
+GET     /spells                controllers.SpellController.getSpellsPage(name: Option[String], range: Option[String], cleric: Option[Int], magicUser: Option[Int], duration: Option[String], description: Option[String])
+GET     /spells/create         controllers.SpellController.createSpellPage()
 POST    /spells/create         controllers.SpellController.createSpell()
-GET     /spells/update/:id     controllers.SpellController.updatePage(id: String)
+GET     /spells/update/:id     controllers.SpellController.updateSpellPage(id: String)
 POST    /spells/update         controllers.SpellController.updateSpell()
 
 # spell api routing
