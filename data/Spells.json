@@ -35,4 +35,22 @@
   "cleric": 6,
   "duration": "1 round/level",
   "description": "This spell creates a wall of whirling blades up to 20' long per caster level, or a ringed wall of whirling blades with a radius of up to 5' per two levels. Either form will be up to 20 ft. high (as allowed by available space). Any creature passing through the wall takes 1d6 points of damage per caster level (maximum 15d6), with a save vs. Death Ray reducing damage to half.\r\n\r\nIf the caster evokes the barrier so that it appears where creatures are, each creature takes damage as if passing through the wall. Each such creature can avoid the wall (ending up on the side of its choice) and thus take no damage by making a successful save vs. Death Ray.\r\n\r\nA blade barrier provides cover (+4 bonus to Armor Class) against attacks made through it."
+},{
+  "_id": {
+    "$oid": "6456fedce353523aa86d3aab"
+  },
+  "name": "Bless",
+  "range": "50' radius",
+  "cleric": 2,
+  "duration": "1 minute/level",
+  "description": "This spell gives the caster and his or her allies (within a 50' radius of the caster) a bonus of +1 on attack rolls, morale checks (for monsters or NPCs allied with the caster), and saving throws against magical fear.\r\n\r\nThe reverse of bless is called bane"
+},{
+  "_id": {
+    "$oid": "6456ff9de353523aa86f6479"
+  },
+  "name": "Bane",
+  "range": "50' radius",
+  "cleric": 2,
+  "duration": "1 minute/level",
+  "description": "It fills the caster's enemies (within a 50' radius) with fear and doubt, causing each affected creature to suffer a –1 penalty on attack rolls, morale checks, and saving throws against magical fear.\r\n\r\nThe reverse of blane is called bless."
 }]

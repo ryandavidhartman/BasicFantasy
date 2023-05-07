@@ -24,16 +24,19 @@ class SpellController @Inject()(
                                  controllerComponents: MessagesControllerComponents)
   extends MessagesAbstractController(controllerComponents) {
 
-  private val createSpellUrl = routes.SpellController.createSpell()
-  private val updateSpellUrl = routes.SpellController.updateSpell()
+  private val createSpellCall = routes.SpellController.createSpell()
+  private val updateSpellCall = routes.SpellController.updateSpell()
+
+  private val updateSpellURL = "http://localhost:9000/spells/update"
+
 
   // Spell UI Methods
-  def listSpells: Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
-    val spellsF: Future[Seq[SpellDto]] = spellRepository.findAll_v2(100)
-    spellsF.map(spells => Ok(views.html.listSpells(spells)))
+  def getSpells: Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    val spellsF: Future[Seq[SpellDto]] = spellRepository.findAll(100)
+    spellsF.map(spells => Ok(views.html.getSpells(spells, updateSpellURL)))
   }
   def createPage() = Action { implicit request: MessagesRequest[AnyContent] =>
-    Ok(views.html.createSpell(spellForm, createSpellUrl))
+    Ok(views.html.createSpell(spellForm, createSpellCall))
   }
 
   def createSpell(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
@@ -43,13 +46,13 @@ class SpellController @Inject()(
       // Let's show the user the form again, with the errors highlighted.
       // Note how we pass the form with errors to the template.
       println(formWithErrors.errors.mkString(";"))
-      BadRequest(views.html.createSpell(formWithErrors, createSpellUrl))
+      BadRequest(views.html.createSpell(formWithErrors, createSpellCall))
     }
 
     val successFunction = { spell: Spell =>
       // This is the good case, where the form was successfully parsed as a Data object.
       spellRepository.create(spell)
-      Redirect(routes.SpellController.listSpells())
+      Redirect(routes.SpellController.getSpells())
         .flashing("info" -> s"${spell.name} added!")
     }
 
@@ -58,33 +61,31 @@ class SpellController @Inject()(
   }
 
   def updatePage(id: String) = Action.async { implicit request: MessagesRequest[AnyContent] =>
-//    val spellF: Future[Option[Spell]] = spellRepository.findOne(id)
-//    spellF.map(_ match {
-//      case Some(spell) => Ok(views.html.updateSpell(spellDtoForm.fill(SpellConverters(spell)), updateSpellUrl))
-//      case None => Ok(views.html.createSpell(spellForm, createSpellUrl))
-//    })
-    ???
+    val spellF: Future[Option[SpellDto]] = spellRepository.findOne(id)
+    spellF.map(_ match {
+      case Some(spell) => Ok(views.html.updateSpell(spellDtoForm.fill(spell), updateSpellCall))
+      case None => Ok(views.html.createSpell(spellForm, createSpellCall))
+    })
   }
 
   def updateSpell(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
 
-//    val errorFunction = { formWithErrors: Form[SpellDto] =>
-//      // This is the bad case, where the form had validation errors.
-//      // Let's show the user the form again, with the errors highlighted.
-//      // Note how we pass the form with errors to the template.
-//      println(formWithErrors.errors.mkString(";"))
-//      BadRequest(views.html.updateSpell(formWithErrors, createSpellUrl))
-//    }
-//
-//    val successFunction = { spell: SpellDto =>
-//      spellRepository.update(spell._id, SpellConverters(spell))
-//      Redirect(routes.SpellController.listSpells())
-//        .flashing("info" -> s"${spell.name} updated!")
-//    }
-//
-//    val formValidationResult = spellDtoForm.bindFromRequest()
-//    formValidationResult.fold(errorFunction, successFunction)
-    ???
+    val errorFunction = { formWithErrors: Form[SpellDto] =>
+      // This is the bad case, where the form had validation errors.
+      // Let's show the user the form again, with the errors highlighted.
+      // Note how we pass the form with errors to the template.
+      println(formWithErrors.errors.mkString(";"))
+      BadRequest(views.html.updateSpell(formWithErrors, createSpellCall))
+    }
+
+    val successFunction = { spell: SpellDto =>
+      spellRepository.update(spell)
+      Redirect(routes.SpellController.getSpells())
+        .flashing("info" -> s"${spell.name} updated!")
+    }
+
+    val formValidationResult = spellDtoForm.bindFromRequest()
+    formValidationResult.fold(errorFunction, successFunction)
   }
 
   // CRUD API for Spells
@@ -112,31 +113,26 @@ class SpellController @Inject()(
   }
   }
 
-  def update(id: String): Action[JsValue] = Action.async(controllerComponents.parsers.json) { implicit request => {
-    request.body.validate[Spell].fold(
-      _ => Future.successful(BadRequest("Cannot parse request body")),
+  def update(id: String): Action[JsValue] = Action.async(controllerComponents.parsers.json) { implicit request =>
+    request.body.validate[Spell].fold(_ => Future.successful(BadRequest("Cannot parse request body")),
       spell => {
         val objectIdTryResult = BSONObjectID.parse(id)
         objectIdTryResult match {
-          case Success(objectId) => spellRepository.update(objectId, spell).map {
-            result => Ok(Json.toJson(result.n))
-          }
+          case Success(objectId) =>
+            val spellDto = SpellDto(objectId, spell.name, spell.range, spell.cleric, spell.magicUser, spell.duration, spell.description)
+            spellRepository.update(spellDto).map(result => Ok(Json.toJson(result.n)))
           case Failure(_) => Future.successful(BadRequest("Cannot parse the spell id"))
         }
       }
     )
   }
-  }
 
-  def delete(id: String): Action[AnyContent] = Action.async { implicit request => {
+  def delete(id: String): Action[AnyContent] = Action.async { implicit request =>
     val objectIdTryResult = BSONObjectID.parse(id)
     objectIdTryResult match {
-      case Success(objectId) => spellRepository.delete(objectId).map {
-        _ => NoContent
-      }
+      case Success(objectId) => spellRepository.delete(objectId).map(_ => NoContent)
       case Failure(_) => Future.successful(BadRequest("Cannot parse the spell id"))
     }
-  }
   }
 
 }

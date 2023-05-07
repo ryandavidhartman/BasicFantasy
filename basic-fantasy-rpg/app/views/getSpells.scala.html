@@ -1,4 +1,4 @@
-@(spells: Seq[SpellDto])(implicit request: MessagesRequestHeader)
+@(spells: Seq[SpellDto], updateUrl: String)(implicit request: MessagesRequestHeader)
 
 @main("Spells") {
     <h1>Spells</h1>
@@ -9,7 +9,7 @@
     }
 
     @for(s <- spells) {
-        <div style="float: left; width: 20%; border: 1px solid #000000;">
+        <div style="float: left; width: 20%; border: 1px solid #000000">
             Name:
         </div>
         <div style="float: left; width: 80%; border: 1px solid #000000;">
@@ -46,7 +46,7 @@
             @s.description
         </div>
         <div style="float: left; width: 100%; border: 1px solid #000000;">
-            <a href="http://localhost:9000/spells/create/">@s._id</a>
+            <a href="@updateUrl/@s._id.stringify">update</a>
         </div>
         <div style="float: left; width: 100%; border: 1px solid #000000;">
             <hr>
