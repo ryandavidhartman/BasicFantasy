@@ -61,7 +61,7 @@ class SpellController @Inject()(
         case Some(n) => filteredSpells5.filter(s => s.description.contains(n))
         case None => filteredSpells5
       }
-      Ok(views.html.getSpells(filteredSpells6, updateSpellURL))
+      Ok(views.html.getSpells(filteredSpells6.sortBy(_.name), updateSpellURL))
     }
   }
   def createSpellPage() = Action { implicit request: MessagesRequest[AnyContent] =>
