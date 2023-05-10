@@ -1,0 +1,9 @@
+[{
+  "_id": {
+    "$oid": "645afa66661a7088e45eddcc"
+  },
+  "name": "Komamash",
+  "firstName": true,
+  "gender": "male",
+  "race": "orc"
+}]

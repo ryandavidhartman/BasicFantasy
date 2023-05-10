@@ -53,4 +53,195 @@
   "cleric": 2,
   "duration": "1 minute/level",
   "description": "It fills the caster's enemies (within a 50' radius) with fear and doubt, causing each affected creature to suffer a –1 penalty on attack rolls, morale checks, and saving throws against magical fear.\r\n\r\nThe reverse of blane is called bless."
+},{
+  "_id": {
+    "$oid": "64571822e353523aa8b750f6"
+  },
+  "name": "Charm Animal",
+  "range": "60'",
+  "cleric": 2,
+  "duration": "level+1d4 rounds",
+  "description": "This spell allows the caster to charm one or more animals, in much the same fashion as charm person, at a rate of 1 hit die per caster level. The caster may decide which individual animals out of a mixed group are to be affected first; excess hit dice of effect are ignored. No saving throw is allowed, either for normal or giant-sized animals, but creatures of more fantastic nature (as determined by the GM) are allowed a save vs. Spells to resist. When the duration expires, the animals will resume normal activity immediately.\r\n\r\nThis spell does not grant the caster any special means of communication with the affected animals; if combined with speak with animals, this spell becomes significantly more useful.\r\n"
+},{
+  "_id": {
+    "$oid": "645718d2e353523aa8b93d8d"
+  },
+  "name": "Charm Monster",
+  "range": "30'",
+  "magicUser": 4,
+  "duration": "special",
+  "description": "This spell functions like charm person, except that the effect is not restricted by creature type or size. Undead monsters are unaffected. This spell can affect 3d6 hit dice of creatures of 3 or fewer hit dice, or one creature of more than 3 hit dice. Saving throws are made just as for charm person."
+},{
+  "_id": {
+    "$oid": "64571980e353523aa8bb2076"
+  },
+  "name": "Charm Person",
+  "range": "30'",
+  "magicUser": 1,
+  "duration": "special",
+  "description": "This spell makes a humanoid creature of 4 hit dice or less regard the caster as its trusted friend and ally. Humans and demi-humans may be affected, regardless of level of ability. A save vs. Spells will negate the effect. If the creature is currently being threatened or attacked by the caster or his or her allies, it receives a +5 bonus on its saving throw. The spell does not enable the caster to control the charmed person as if it were an automaton; rather, it perceives his or her words and actions in the most favorable way. The caster can try to give the subject orders, but it will not do anything it wouldn’t ordinarily do, and further may receive an additional saving throw to overcome the magic (at the GM's discretion). The caster must speak the target's language to communicate any commands, or else be good at pantomiming; of course, if the caster is attacked, the charmed creature will act to protect its “friend” (though that could mean attacking the caster's enemies, or attempting to carry off the caster to a “safe” place). The target receives a new saving throw each day if it has an Intelligence of 13 or greater, every week if its Intelligence is 9-12, or every month if its Intelligence is 8 or less."
+},{
+  "_id": {
+    "$oid": "645719fce353523aa8bc7983"
+  },
+  "name": "Clairvoyance",
+  "range": "60'",
+  "magicUser": 3,
+  "duration": "12 turns",
+  "description": "This spell enables the caster to see into another area through the eyes of a living creature in that area. The caster must specify the direction and approximate distance, up to a maximum of 60' away. If there is no appropriate creature in that area, the spell fails. No saving throw is allowed, and the target creature is unaware that it is being so used. The caster may choose another subject creature after at least a turn has passed, enabling multiple locations to be viewed. If the subject creature moves out of range, contact is lost, though the caster may be able to choose another target in this case."
+},{
+  "_id": {
+    "$oid": "645723bfe353523aa8d785c2"
+  },
+  "name": "Cloudkill",
+  "range": "100'+10'/level",
+  "magicUser": 5,
+  "duration": "6 rounds/level",
+  "description": "This spell creates a 20'x20'x20' cloud of poison gas which moves at a rate of 10' per round under the control of the caster (so long as he or she concentrates on it). The gas kills outright any creatures of 3 or fewer hit dice or levels it comes in contact with; creatures having 4 or more hit dice or levels must save vs. Poison or die. The cloud persists for the entire duration even if the caster ceases to concentrate upon it."
+},{
+  "_id": {
+    "$oid": "64572429e353523aa8d8abe0"
+  },
+  "name": "Commune",
+  "range": "self",
+  "cleric": 5,
+  "duration": "1 round/level",
+  "description": "This spell puts the caster in contact with his patron deity or an extraplanar servant thereof, who answers one yes-or-no question per caster level. The ritual to cast this spell takes 1 turn to complete. The being contacted may or may not be omniscient, and further, though the being is technically allied with the caster, it may still not answer questions clearly or completely. These details are left to the GM's discretion."
+},{
+  "_id": {
+    "$oid": "645724e2e353523aa8da9e70"
+  },
+  "name": "Confusion",
+  "range": "360'",
+  "magicUser": 4,
+  "duration": "2 rounds+1/level",
+  "description": "This spell causes up to 3d6 living creatures within a 30' radius circle around the target point to become confused,making them unable to independently determine what they will do. A saving throw vs. Spells is allowed to resist the effect. Roll on the following table on each subject’s Initiative number each round to see what the subject does.\r\n\r\nd20\tBehavior\r\n1–2\tAttack caster with melee or ranged weapons (or close with caster if attack is not possible).\r\n3–4\tAct normally.\r\n5–10\tDo nothing but babble incoherently.\r\n11–14\tFlee away from caster at top possible speed.\r\n15–20\tAttack nearest creature.\r\nA confused character who can’t carry out the indicated action does nothing but babble incoherently. Attackers are not at any special advantage when attacking a confused character. Any confused character who is attacked automatically retaliates on its next turn, as long as it is still confused when its turn comes."
+},{
+  "_id": {
+    "$oid": "645862b8e353523aa8de9e49"
+  },
+  "name": "Conjure Elemental",
+  "range": "240'",
+  "magicUser": 5,
+  "duration": "special",
+  "description": "A portal to one of the Elemental Planes of Air, Earth, Fire, or Water is opened, allowing the Magic-User to summon an elemental from that plane. At most one elemental of each type may be summoned by the caster in a given day. Once the elemental appears, it serves the conjurer indefinitely, provided the caster concentrates on nothing but controlling the creature; spell casting, combat, or movement over half the normal rate results in loss of concentration. The conjurer, while in control of an elemental, can dismiss it to its native plane at will (doing so on his or her Initiative if in combat). If the Magic-User loses concentration, control of the summoned Elemental is lost and cannot be regained. The creature then seeks to attack the conjurer and all others in its path. Only dispel magic or dispel evil will banish the elemental once control has been lost. An elemental may, of course, choose to return to its home plane on its own; such creatures will not choose to remain on the material plane for long."
+},{
+  "_id": {
+    "$oid": "6458636fe353523aa8e0cd13"
+  },
+  "name": "Continual Light",
+  "range": "360'",
+  "cleric": 3,
+  "magicUser": 2,
+  "duration": "1 year/level",
+  "description": "This spell creates a spherical region of light, as bright as full daylight up to a 30' radius, with light of lesser intensity to a radius of 60'. Continual light can be cast on an object, into the air, or at a creature, just as with the light spell, up to a maximum range of 360' from the caster. The spell remains in effect for one year per level of the caster.\r\n\r\nAs with light, this spell can be used to blind a creature if cast on its visual organs. Creatures targeted by this spell are allowed a save vs. Death Ray; if the save is made, the spell is cast into the air just behind the target creature. A penalty of -4 is applied to the blinded creature's attack rolls if the saving throw fails.\r\n\r\nThe reverse of this spell is continual darkness."
+},{
+  "_id": {
+    "$oid": "645864f9e353523aa8e5835f"
+  },
+  "name": "Continual Darkness",
+  "range": "360'",
+  "cleric": 3,
+  "magicUser": 2,
+  "duration": "1 year/level",
+  "description": "This spell creates a spherical region of darkness overpowering normal light sources, as dark as full night up to a 30' radius, with darkness of lesser intensity to a radius of 60'. Continual darkness can be cast on an object, into the air, or at a creature, just as with the light spell, up to a maximum range of 360' from the caster. The spell remains in effect for one year per level of the caster.\r\n\r\nAs with Dark, this spell can be used to blind a creature if cast on its visual organs. Creatures targeted by this spell are allowed a save vs. Death Ray; if the save is made, the spell is cast into the air just behind the target creature. A penalty of -4 is applied to the blinded creature's attack rolls if the saving throw fails.\r\n\r\nThe reversed spell is continual light.\r\n"
+},{
+  "_id": {
+    "$oid": "645ae74f830478173c7abe0a"
+  },
+  "name": "Create Food",
+  "range": "10'",
+  "cleric": 5,
+  "duration": "permanent",
+  "description": "The food that this spell creates is simple fare of the caster's choice, highly nourishing, but rather bland. Up to 3 men or one horse per caster level can be fed for one day with this spell. Food so created decays and becomes inedible within 24 hours, although it can be kept fresh for another 24 hours by casting purify food and water on it.\r\n"
+},{
+  "_id": {
+    "$oid": "645ae7e9830478173c7ceabf"
+  },
+  "name": "Create Water",
+  "range": "10'",
+  "cleric": 4,
+  "duration": "permanent",
+  "description": "This spell creates one gallon of water per caster level. Note that one or more vessels to contain the water must be available at the time of casting. The water created by this spell is just like clean rain water. Note: Water weighs about 8 pounds per gallon, and one cubic foot of water is roughly 8 gallons."
+},{
+  "_id": {
+    "$oid": "645ae83a830478173c7e028d"
+  },
+  "name": "Cure Blindness",
+  "range": "touch",
+  "cleric": 3,
+  "duration": "instantaneous",
+  "description": "With this spell the caster can cure a creature suffering blindness (whether caused by injury or by magic, including light or continual light). Blindness caused by a curse cannot be cured by this spell."
+},{
+  "_id": {
+    "$oid": "645ae8b6830478173c7fcfde"
+  },
+  "name": "Cure Disease",
+  "range": "touch",
+  "cleric": 3,
+  "duration": "instantaneous",
+  "description": "Cure disease cures all diseases that the subject is suffering from, such as lycanthropy and mummy rot. The spell also kills parasites afflicting the target creature. Certain special diseases may not be countered by this spell or may be countered only by a caster of a certain level or higher.\r\n\r\nNote: This spell does not prevent reinfection after a new exposure to the same disease."
+},{
+  "_id": {
+    "$oid": "645aeb86830478173c882665"
+  },
+  "name": "Cause Disease",
+  "range": "30'",
+  "cleric": 3,
+  "duration": "permanent",
+  "description": "This is the reverse of Cause Disease and infects the victim with a hideous wasting disease unless a save vs. Spell is made.  The victim is -2 on all \"to hit\" rolls.  In addition, their wounds cannot be magically cured and natural healing will take twice as long is usual.  The disease will be fatal in 2-24 days unless a cure disease spell is cast on the victim."
+},{
+  "_id": {
+    "$oid": "645aec5a830478173c8a8cbf"
+  },
+  "name": "Cure Light Wounds",
+  "range": "touch",
+  "cleric": 1,
+  "duration": "instantaneous",
+  "description": "With this spell the caster heals 1d6+1 hit points of damage by laying his or her hand upon the injured creature.\r\n\r\nUndead are affected by this spell and its reverse in opposite fashion; they are injured by cure light wounds and healed by cause light wounds."
+},{
+  "_id": {
+    "$oid": "645aed4a830478173c8d39de"
+  },
+  "name": "Cause Light Wounds",
+  "range": "touch",
+  "cleric": 1,
+  "duration": "instantaneous",
+  "description": " This is the reserve of Cure Light Wounds, this spell causes 1d6+1 damage to the creature affected by it. A successful attack roll is required in this case.\r\n\r\nUndead are affected by this spell and its reverse in opposite fashion; they are injured by cure light wounds and healed by cause light wounds."
+},{
+  "_id": {
+    "$oid": "645aedf7830478173c8f289b"
+  },
+  "name": "Cure Serious Woinds",
+  "range": "touch",
+  "cleric": 4,
+  "duration": "instantaneous",
+  "description": "This spell works exactly like cure light wounds, save that it heals 2d6 points of damage, plus 1 point per caster level.\r\n\r\nIt will cause 2d6 points of damage, plus 1 point per caster level to undead."
+},{
+  "_id": {
+    "$oid": "645aee89830478173c90ca7a"
+  },
+  "name": "Cause Serious Wounds",
+  "range": "touch",
+  "cleric": 4,
+  "duration": "instantaneous",
+  "description": "This spell is the reverse of cure serious wounds.  Cause serious wounds, also works exactly like cause light wounds, except that it inflicts 2d6 + caster level in damage.\r\n\r\nIt will also cure 2d6 + 1 point per caster level to undead."
+},{
+  "_id": {
+    "$oid": "645aefd9830478173c94592e"
+  },
+  "name": "Darkvision",
+  "range": "touch",
+  "magicUser": 3,
+  "duration": "1 hour/level",
+  "description": "The subject receives Darkvision with a range of 60' for the duration of the spell.\r\n\r\nDarkvision is an ability which allows them to see even in total darkness. Such vision is in black and white, but otherwise like normal sight. Magical darkness obstructs Darkvision just as it does normal\r\nvision. Darkvision is totally ineffective in any light greater than moonlight.\r\n"
+},{
+  "_id": {
+    "$oid": "645af0df830478173c974b7d"
+  },
+  "name": "Death Spell",
+  "range": "240'",
+  "magicUser": 6,
+  "duration": "instantaneous",
+  "description": "This spell will kill 3d12 hit dice or levels of creatures in a 30' radius sphere centered wherever the caster wishes (within the range limit). Excess levels of effectiveness are lost. Each creature affected is allowed to save vs. Death Ray; those that fail the save die immediately. Creatures of 8 or more hit dice or levels are immune to the spell, as are undead monsters, golems, and any other “creature” that is not truly alive."
 }]
