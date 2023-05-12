@@ -1,9 +1,8 @@
 package controllers
 
 
-import controllers.SpellDtoForm.spellDtoForm
 import controllers.SpellForm.spellForm
-import models.{Spell, SpellDto}
+import models.Spell
 import play.api.data._
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc._
@@ -35,7 +34,7 @@ class SpellController @Inject()(
                     magicUser: Option[Int],
                     duration: Option[String],
                     description: Option[String]): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
-    val spellsF: Future[Seq[SpellDto]] = spellRepository.findAll(100)
+    val spellsF: Future[Seq[Spell]] = spellRepository.findAll()
     spellsF.map { spells =>
       val filteredSpells1 = name match {
         case Some(n) => spells.filter(s => s.name == n)
@@ -61,11 +60,11 @@ class SpellController @Inject()(
         case Some(n) => filteredSpells5.filter(s => s.description.contains(n))
         case None => filteredSpells5
       }
-      Ok(views.html.getSpells(filteredSpells6.sortBy(_.name), updateSpellURL))
+      Ok(views.html.spellsGet(filteredSpells6.sortBy(_.name), updateSpellURL))
     }
   }
-  def createSpellPage() = Action { implicit request: MessagesRequest[AnyContent] =>
-    Ok(views.html.createSpell(spellForm, createSpellCall))
+  def createSpellPage(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
+    Ok(views.html.spellCreate(spellForm, createSpellCall))
   }
 
   def createSpell(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
@@ -75,7 +74,7 @@ class SpellController @Inject()(
       // Let's show the user the form again, with the errors highlighted.
       // Note how we pass the form with errors to the template.
       println(formWithErrors.errors.mkString(";"))
-      BadRequest(views.html.createSpell(formWithErrors, createSpellCall))
+      BadRequest(views.html.spellCreate(formWithErrors, createSpellCall))
     }
 
     val successFunction = { spell: Spell =>
@@ -89,31 +88,31 @@ class SpellController @Inject()(
     formValidationResult.fold(errorFunction, successFunction)
   }
 
-  def updateSpellPage(id: String) = Action.async { implicit request: MessagesRequest[AnyContent] =>
-    val spellF: Future[Option[SpellDto]] = spellRepository.findOne(id)
-    spellF.map(_ match {
-      case Some(spell) => Ok(views.html.updateSpell(spellDtoForm.fill(spell), updateSpellCall))
-      case None => Ok(views.html.createSpell(spellForm, createSpellCall))
+  def updateSpellPage(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    val spellF: Future[Option[Spell]] = spellRepository.findOne(id)
+    spellF.map(s => s match {
+      case Some(spell) => Ok(views.html.spellUpdate(spellForm.fill(spell), updateSpellCall))
+      case None => Ok(views.html.spellCreate(spellForm, createSpellCall))
     })
   }
 
   def updateSpell(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
 
-    val errorFunction = { formWithErrors: Form[SpellDto] =>
+    val errorFunction = { formWithErrors: Form[Spell] =>
       // This is the bad case, where the form had validation errors.
       // Let's show the user the form again, with the errors highlighted.
       // Note how we pass the form with errors to the template.
       println(formWithErrors.errors.mkString(";"))
-      BadRequest(views.html.updateSpell(formWithErrors, createSpellCall))
+      BadRequest(views.html.spellUpdate(formWithErrors, createSpellCall))
     }
 
-    val successFunction = { spell: SpellDto =>
+    val successFunction = { spell: Spell =>
       spellRepository.update(spell)
       Redirect(routes.SpellController.getSpellsPage(None, None, None, None, None, None))
         .flashing("info" -> s"${spell.name} updated!")
     }
 
-    val formValidationResult = spellDtoForm.bindFromRequest()
+    val formValidationResult = spellForm.bindFromRequest()
     formValidationResult.fold(errorFunction, successFunction)
   }
 
@@ -148,7 +147,7 @@ class SpellController @Inject()(
         val objectIdTryResult = BSONObjectID.parse(id)
         objectIdTryResult match {
           case Success(objectId) =>
-            val spellDto = SpellDto(objectId, spell.name, spell.range, spell.cleric, spell.magicUser, spell.duration, spell.description)
+            val spellDto = Spell(Some(objectId), spell.name, spell.range, spell.cleric, spell.magicUser, spell.duration, spell.description)
             spellRepository.update(spellDto).map(result => Ok(Json.toJson(result.n)))
           case Failure(_) => Future.successful(BadRequest("Cannot parse the spell id"))
         }

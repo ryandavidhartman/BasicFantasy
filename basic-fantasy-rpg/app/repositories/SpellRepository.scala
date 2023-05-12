@@ -1,6 +1,6 @@
 package repositories
 
-import models.{Spell, SpellDto}
+import models.Spell
 import play.modules.reactivemongo.ReactiveMongoApi
 import reactivemongo.api.Cursor
 import reactivemongo.api.bson.collection.BSONCollection
@@ -16,30 +16,30 @@ import scala.util.{Failure, Success}
 class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
                                  implicit val ec: ExecutionContext)  {
   def collection: Future[BSONCollection] = reactiveMongoApi.database.map(db => db.collection("Spells"))
-  def findAll(limit: Int = 100): Future[Seq[SpellDto]] = {
+  def findAll(limit: Int = 100): Future[Seq[Spell]] = {
     val query = BSONDocument.empty
     val projection = Some(BSONDocument.empty)
     collection.flatMap { col =>
       col.find(query, projection)
-        .cursor[SpellDto]()
-        .collect[Seq](limit, Cursor.FailOnError[Seq[SpellDto]]())
+        .cursor[Spell]()
+        .collect[Seq](limit, Cursor.FailOnError[Seq[Spell]]())
     }
   }
-  def findOne(id: String): Future[Option[SpellDto]] = {
+  def findOne(id: String): Future[Option[Spell]] = {
     BSONObjectID.parse(id) match {
-      case Success(id) => collection.flatMap(_.find(BSONDocument("_id" -> id), Option.empty[Spell]).one[SpellDto])
+      case Success(id) => collection.flatMap(_.find(BSONDocument("_id" -> id), Option.empty[Spell]).one[Spell])
       case Failure(e) => throw e
     }
   }
-  def findOne(fieldName: String, fieldValue: BSONValue): Future[Option[SpellDto]] = {
-    collection.flatMap(_.find(BSONDocument(fieldName -> fieldValue), Option.empty[Spell]).one[SpellDto])
+  def findOne(fieldName: String, fieldValue: BSONValue): Future[Option[Spell]] = {
+    collection.flatMap(_.find(BSONDocument(fieldName -> fieldValue), Option.empty[Spell]).one[Spell])
   }
 
   def create(spell: Spell): Future[WriteResult] = {
     collection.flatMap(_.insert(ordered = false).one(spell))
   }
 
-  def update(spell: SpellDto): Future[WriteResult] = {
+  def update(spell: Spell): Future[WriteResult] = {
     collection.flatMap(
       _.update(ordered = false).one(BSONDocument("_id" -> spell._id), spell)
     )

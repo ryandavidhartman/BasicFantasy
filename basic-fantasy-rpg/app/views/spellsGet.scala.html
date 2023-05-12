@@ -1,4 +1,4 @@
-@(spells: Seq[SpellDto], updateUrl: String)(implicit request: MessagesRequestHeader)
+@(spells: Seq[Spell], updateUrl: String)(implicit request: MessagesRequestHeader)
 
 @main("Spells") {
     <h1>Spells</h1>
@@ -46,7 +46,7 @@
             @s.description
         </div>
         <div style="float: left; width: 100%; border: 1px solid #000000;">
-            <a href="@updateUrl/@s._id.stringify">update</a>
+            <a href="@updateUrl/@s._id.get.stringify">update</a>
         </div>
         <div style="float: left; width: 100%; border: 1px solid #000000;">
             <hr>
