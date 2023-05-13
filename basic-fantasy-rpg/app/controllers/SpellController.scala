@@ -91,23 +91,16 @@ class SpellController @Inject()(
   }
 
   // CRUD API for Spells
-  def findAll(name: Option[String],
-              range: Option[String],
-              cleric: Option[Int],
-              magicUser: Option[Int],
-              duration: Option[String],
-              description: Option[String]): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+  def get(name: Option[String],
+          range: Option[String],
+          cleric: Option[Int],
+          magicUser: Option[Int],
+          duration: Option[String],
+          description: Option[String]): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     spellRepository.findAll(name, range, cleric, magicUser, duration, description).map {
       spells => Ok(Json.toJson(spells))
     }
   }
-
-  def findByName(spellName: String): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    spellRepository.findOne(fieldName = "name", fieldValue = BSONString(spellName)).map {
-      spell => Ok(Json.toJson(spell))
-    }
-  }
-
   def create(): Action[JsValue] = Action.async(controllerComponents.parsers.json) { implicit request => {
 
     request.body.validate[Spell].fold(
