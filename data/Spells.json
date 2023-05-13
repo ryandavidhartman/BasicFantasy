@@ -212,7 +212,7 @@
   "_id": {
     "$oid": "645aedf7830478173c8f289b"
   },
-  "name": "Cure Serious Woinds",
+  "name": "Cure Serious Wounds",
   "range": "touch",
   "cleric": 4,
   "duration": "instantaneous",
@@ -292,4 +292,22 @@
   "magicUser": 4,
   "duration": "instantaneous",
   "description": "The caster of this spell instantly transfers himself or herself, or any single target creature within range, to any spot within 200' plus 20' per caster level. The caster or target creature always arrives at exactly the spot desired, whether the caster visualizes the area or states direction and distance. An unwilling target may save vs. Spells to avoid being transported. Anything worn or carried by the caster or target creature will be transported also, including another character or creature if the transportee can lift it. If the target area is within a solid object, the spell fails automatically."
+},{
+  "_id": {
+    "$oid": "645f009671cee42ab89cb788"
+  },
+  "name": "Disintegrate",
+  "range": "60'",
+  "magicUser": 6,
+  "duration": "instantaneous",
+  "description": "This spell causes a thin, green ray to spring from the caster's pointing finger. Any single creature or object (up to a 10x10x10 foot cube of material) is entirely disintegrated, leaving behind only a trace of fine dust. A disintegrated creature’s equipment is unaffected.\r\n\r\nA creature that makes a successful save vs. Spells is unaffected. The ray can target only one creature per casting, if that target saves, the spell is wasted."
+},{
+  "_id": {
+    "$oid": "645f026671cee42ab8a1f85d"
+  },
+  "name": "Dispel Evil",
+  "range": "touch",
+  "cleric": 5,
+  "duration": "1 round/level",
+  "description": "This powerful spell aids the caster in dealing with creatures from the nether planes, hereafter called “evil creatures.”\r\n\r\nFirst, the caster gains a +4 bonus to Armor Class against attacks by evil creatures.\r\n\r\nSecond, the caster can choose to drive an evil creature back to its home plane by touch (requiring a successful attack roll). The creature can negate the effects with a successful save vs. Spells. This use discharges and ends the spell, even if the saving throw succeeds.\r\n\r\nThird, with a touch the caster can automatically dispel any one spell cast by an evil creature. Exception: Spells that can’t be dispelled by dispel magic also can’t be dispelled by dispel evil. Saving throws do not apply to this effect. This use also ends the spell.\r\n\r\nThe exact definition of evil is left for the GM to decide; however, extraplanar creatures that oppose the caster should almost always qualify.\r\n"
 }]
