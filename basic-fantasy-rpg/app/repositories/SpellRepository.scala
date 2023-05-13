@@ -16,9 +16,25 @@ import scala.util.{Failure, Success}
 class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
                                  implicit val ec: ExecutionContext)  {
   def collection: Future[BSONCollection] = reactiveMongoApi.database.map(db => db.collection("Spells"))
-  def findAll(limit: Int = 100): Future[Seq[Spell]] = {
-    val query = BSONDocument.empty
+  def findAll(name: Option[String] = None,
+              range: Option[String] = None,
+              cleric: Option[Int] = None,
+              magicUser: Option[Int] = None,
+              duration: Option[String] = None,
+              description: Option[String] = None,
+              limit: Int = 100): Future[Seq[Spell]] = {
+
+    val query = BSONDocument(
+      "name" -> name,
+      "range" -> range,
+      "cleric" -> cleric,
+      "magicUser" -> magicUser,
+      "duration" -> duration,
+      "description" -> description
+    )
+
     val projection = Some(BSONDocument.empty)
+
     collection.flatMap { col =>
       col.find(query, projection)
         .cursor[Spell]()

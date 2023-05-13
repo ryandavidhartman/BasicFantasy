@@ -244,4 +244,52 @@
   "magicUser": 6,
   "duration": "instantaneous",
   "description": "This spell will kill 3d12 hit dice or levels of creatures in a 30' radius sphere centered wherever the caster wishes (within the range limit). Excess levels of effectiveness are lost. Each creature affected is allowed to save vs. Death Ray; those that fail the save die immediately. Creatures of 8 or more hit dice or levels are immune to the spell, as are undead monsters, golems, and any other “creature” that is not truly alive."
+},{
+  "_id": {
+    "$oid": "645d8ea1830478173cb70051"
+  },
+  "name": "Detect Evil",
+  "range": "60'",
+  "cleric": 1,
+  "magicUser": 2,
+  "duration": "1 round/level",
+  "description": "This spell allows the caster to detect evil; specifically, the caster can detect creatures with evil intentions, magic items with evil enchantments, and possibly extraplanar creatures of evil nature. Normal characters, even “bad” characters, cannot be detected by this spell, as only overwhelming evil is detectable. The caster sees the “evil” creatures or objects with a definite glow around them, but the glow cannot be seen by anyone else.\r\n\r\nThe exact definition of evil is left for the GM to decide. Note that items such as ordinary traps or poisons are not “evil,” and thus not detectable by this spell.\r\n\r\nReversed, this spell becomes detect good, which works just as described above with respect to detecting “good” enchantments, angelic creatures, and so on.\r\n"
+},{
+  "_id": {
+    "$oid": "645d8f4c830478173cb8d26b"
+  },
+  "name": "Detect Good",
+  "range": "60'",
+  "cleric": 1,
+  "magicUser": 2,
+  "duration": "1 round/level",
+  "description": "This spell allows the caster to detect good; specifically, the caster can detect creatures with good intentions, magic items with good enchantments, and possibly extraplanar creatures of good nature. Normal characters, even “good” characters, cannot be detected by this spell, as only overwhelming good is detectable. The caster sees the “good” creatures or objects with a definite glow around them, but the glow cannot be seen by anyone else.\r\n\r\nThe exact definition of good is left for the GM to decide. \r\n\r\nReversed, this spell becomes detect evil, which works just as described above with respect to detecting “evil” enchantments, demonic creatures, and so on.\r\n"
+},{
+  "_id": {
+    "$oid": "645d93e7830478173cc5c703"
+  },
+  "name": "Detect Invisible",
+  "range": "60'",
+  "magicUser": 2,
+  "duration": "1 turn/level",
+  "description": "By means of this spell the caster is able to see invisible characters, creatures or objects within the given range, seeing them as translucent shapes."
+},{
+  "_id": {
+    "$oid": "645d960f830478173ccbaf6a"
+  },
+  "name": "Detect Magic",
+  "range": "60'",
+  "cleric": 1,
+  "magicUser": 1,
+  "duration": "2 turns",
+  "description": "The caster of this spell is able to detect enchanted or enspelled objects or creatures within the given range by sight, seeing them surrounded by a pale glowing light. Only the caster sees the glow. Invisible creatures or objects are not detected by this spell, but the emanations of the invisibility magic will be seen as an amorphous glowing fog, possibly allowing the caster (only) to attack the invisible creature at an attack penalty of only -2."
+},{
+  "_id": {
+    "$oid": "645d9bca830478173cdb7fe4"
+  },
+  "name": "Dimension Door",
+  "range": "10'",
+  "magicUser": 4,
+  "duration": "instantaneous",
+  "description": "The caster of this spell instantly transfers himself or herself, or any single target creature within range, to any spot within 200' plus 20' per caster level. The caster or target creature always arrives at exactly the spot desired, whether the caster visualizes the area or states direction and distance. An unwilling target may save vs. Spells to avoid being transported. Anything worn or carried by the caster or target creature will be transported also, including another character or creature if the transportee can lift it. If the target area is within a solid object, the spell fails automatically."
 }]

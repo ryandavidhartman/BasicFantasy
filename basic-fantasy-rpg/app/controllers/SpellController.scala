@@ -34,34 +34,8 @@ class SpellController @Inject()(
                     magicUser: Option[Int],
                     duration: Option[String],
                     description: Option[String]): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
-    val spellsF: Future[Seq[Spell]] = spellRepository.findAll()
-    spellsF.map { spells =>
-      val filteredSpells1 = name match {
-        case Some(n) => spells.filter(s => s.name == n)
-        case None => spells
-      }
-      val filteredSpells2 = range match {
-        case Some(n) => filteredSpells1.filter(s => s.range == n)
-        case None => filteredSpells1
-      }
-      val filteredSpells3 = cleric match {
-        case Some(n) => filteredSpells2.filter(s => s.cleric == Option(n))
-        case None => filteredSpells2
-      }
-      val filteredSpells4 = magicUser match {
-        case Some(n) => filteredSpells3.filter(s => s.magicUser == Option(n))
-        case None => filteredSpells3
-      }
-      val filteredSpells5 = duration match {
-        case Some(n) => filteredSpells4.filter(s => s.duration == n)
-        case None => filteredSpells4
-      }
-      val filteredSpells6 = description match {
-        case Some(n) => filteredSpells5.filter(s => s.description.contains(n))
-        case None => filteredSpells5
-      }
-      Ok(views.html.spellsGet(filteredSpells6.sortBy(_.name), updateSpellURL))
-    }
+    spellRepository.findAll(name, range, cleric, magicUser, duration, description)
+      .map(spells =>  Ok(views.html.spellsGet(spells.sortBy(_.name), updateSpellURL)))
   }
   def createSpellPage(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
     Ok(views.html.spellCreate(spellForm, createSpellCall))
@@ -117,8 +91,13 @@ class SpellController @Inject()(
   }
 
   // CRUD API for Spells
-  def findAll(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    spellRepository.findAll().map {
+  def findAll(name: Option[String],
+              range: Option[String],
+              cleric: Option[Int],
+              magicUser: Option[Int],
+              duration: Option[String],
+              description: Option[String]): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+    spellRepository.findAll(name, range, cleric, magicUser, duration, description).map {
       spells => Ok(Json.toJson(spells))
     }
   }

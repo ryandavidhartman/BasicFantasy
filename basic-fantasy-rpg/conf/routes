@@ -18,8 +18,8 @@ GET     /spells/update/:id     controllers.SpellController.updateSpellPage(id: S
 POST    /spells/update         controllers.SpellController.updateSpell()
 
 # spell api routing
-GET     /spells                controllers.SpellController.findAll()
-GET     /spells/:name          controllers.SpellController.findByName(name: String)
-POST    /spells                controllers.SpellController.create()
-PUT     /spells/:id            controllers.SpellController.update(id: String)
-DELETE  /spells/:id            controllers.SpellController.delete(id: String)
+GET     /v1/api/spells         controllers.SpellController.findAll(name: Option[String], range: Option[String], cleric: Option[Int], magicUser: Option[Int], duration: Option[String], description: Option[String])
+GET     /v1/api/spells/:name   controllers.SpellController.findByName(name: String)
+POST    /v1/api/spells         controllers.SpellController.create()
+PUT     /v1/api/spells/:id     controllers.SpellController.update(id: String)
+DELETE  /v1/api/spells/:id     controllers.SpellController.delete(id: String)
