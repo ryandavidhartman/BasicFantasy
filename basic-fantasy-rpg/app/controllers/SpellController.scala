@@ -34,7 +34,7 @@ class SpellController @Inject()(
                     magicUser: Option[Int],
                     duration: Option[String],
                     description: Option[String]): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
-    spellRepository.findAll(name, range, cleric, magicUser, duration, description)
+    spellRepository.get(name, range, cleric, magicUser, duration, description)
       .map(spells =>  Ok(views.html.spellsGet(spells.sortBy(_.name), updateSpellURL)))
   }
   def createSpellPage(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
@@ -97,7 +97,7 @@ class SpellController @Inject()(
           magicUser: Option[Int],
           duration: Option[String],
           description: Option[String]): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    spellRepository.findAll(name, range, cleric, magicUser, duration, description).map {
+    spellRepository.get(name, range, cleric, magicUser, duration, description).map {
       spells => Ok(Json.toJson(spells))
     }
   }
