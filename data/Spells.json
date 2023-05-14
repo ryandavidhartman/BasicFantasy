@@ -1,5 +1,14 @@
 [{
   "_id": {
+    "$oid": "644499a2b0d2ebddff43f65b"
+  },
+  "name": "Animate Objects",
+  "range": "Range: 100'+10'/level",
+  "cleric": 6,
+  "duration": "1 round/level",
+  "description": "This spell imbues inanimate objects with mobility and a semblance of life. The animated objects then attack whomever or whatever the caster designates. This spell cannot animate objects carried or worn by a creature. An animated object can be of any non-magical material. The caster can animate one object per level, up to a maximum of 25 lbs. per caster level (i.e. 300 lbs. at 12th level, 325 lbs. at 13th level, and so on).\nThe GM must rule on the effectiveness of animated objects in combat. In general, animated objects attack using the same attack bonus as the caster. Small or lightweight objects do no more than 1d4 damage per hit, while larger and/or heavier objects do 1d6 or 1d8 (at the GM's discretion). As a special case, weapons which are animated do damage using the normal die roll for the type, but only up to a maximum 1d8. Animated objects have a movement rate of 10', and generally must move in contact with the ground (walking, hopping, slithering, or bouncing, however seems most appropriate to the GM)."
+},{
+  "_id": {
     "$oid": "644499a2b0d2ebddff43f65a"
   },
   "name": "Animate Dead",
@@ -8,15 +17,6 @@
   "magicUser": 5,
   "duration": "special",
   "description": "This spell turns the bones or bodies of dead creatures into undead skeletons or zombies that follow the caster's spoken commands. They remain animated until they are destroyed. The caster may animate a number of hit dice of undead equal to twice his or her caster level, and no more. Animated skeletons have hit dice equal to the number the creature had in life; for skeletons of humans or demi-humans, this means one hit die, regardless of the character level of the deceased. Zombies have one more hit die than the creature had in life. An animated skeleton can be created only from a mostly intact skeleton; a zombie can be created only from a mostly intact corpse. The caster must touch the remains to be animated. No character may normally control more hit dice of undead than 4 times his or her level, regardless of how many times this spell is cast."
-},{
-  "_id": {
-    "$oid": "644499a2b0d2ebddff43f65b"
-  },
-  "name": "Animate Objects",
-  "range": "Range: 100'+10'/level",
-  "cleric": 6,
-  "duration": "1 round/level",
-  "description": "This spell imbues inanimate objects with mobility and a semblance of life. The animated objects then attack whomever or whatever the caster designates. This spell cannot animate objects carried or worn by a creature. An animated object can be of any non-magical material. The caster can animate one object per level, up to a maximum of 25 lbs. per caster level (i.e. 300 lbs. at 12th level, 325 lbs. at 13th level, and so on).\nThe GM must rule on the effectiveness of animated objects in combat. In general, animated objects attack using the same attack bonus as the caster. Small or lightweight objects do no more than 1d4 damage per hit, while larger and/or heavier objects do 1d6 or 1d8 (at the GM's discretion). As a special case, weapons which are animated do damage using the normal die roll for the type, but only up to a maximum 1d8. Animated objects have a movement rate of 10', and generally must move in contact with the ground (walking, hopping, slithering, or bouncing, however seems most appropriate to the GM)."
 },{
   "_id": {
     "$oid": "644499a2b0d2ebddff43f65c"
@@ -310,4 +310,59 @@
   "cleric": 5,
   "duration": "1 round/level",
   "description": "This powerful spell aids the caster in dealing with creatures from the nether planes, hereafter called “evil creatures.”\r\n\r\nFirst, the caster gains a +4 bonus to Armor Class against attacks by evil creatures.\r\n\r\nSecond, the caster can choose to drive an evil creature back to its home plane by touch (requiring a successful attack roll). The creature can negate the effects with a successful save vs. Spells. This use discharges and ends the spell, even if the saving throw succeeds.\r\n\r\nThird, with a touch the caster can automatically dispel any one spell cast by an evil creature. Exception: Spells that can’t be dispelled by dispel magic also can’t be dispelled by dispel evil. Saving throws do not apply to this effect. This use also ends the spell.\r\n\r\nThe exact definition of evil is left for the GM to decide; however, extraplanar creatures that oppose the caster should almost always qualify.\r\n"
+},{
+  "_id": {
+    "$oid": "64605af782c2771114be7a6e"
+  },
+  "name": "Dispel Magic",
+  "range": "120'",
+  "cleric": 4,
+  "magicUser": 3,
+  "duration": "instantaneous",
+  "description": "The caster can use dispel magic to end ongoing spells that have been cast on a creature or object, or to end ongoing spells (or at least their effects) within a cubic area 20' on a side. The caster must choose whether to dispel magic on a creature or object, or to affect an area.\r\n\r\nIf dispel magic is targeted at a creature, all spell effects (including ongoing potion effects) may be canceled. If cast upon an area, all such effects within the area may be canceled. Any spell or effect having a caster level equal to or less than the dispel magic caster's level is ended automatically. Those created by higher level casters might not be canceled; there is a 5% chance the dispel magic will fail for each level the spell effect exceeds the caster level. For example, a 10th level caster dispelling magic created by a 14th level caster has a 20% chance of failure.\r\n\r\nSome spells cannot be ended by dispel magic; this specifically includes any curse, including those created by bestow curse (the reverse of remove curse) as well as by cursed items.\r\n"
+},{
+  "_id": {
+    "$oid": "64605b5b82c2771114bf8f16"
+  },
+  "name": "ESP",
+  "range": "60'",
+  "magicUser": 2,
+  "duration": "1 turn/level",
+  "description": "This spell permits the caster to detect the surface thoughts of one or more targets within range. The caster must designate a direction, and then concentrate for a turn in order to “hear” the thoughts. Each turn the caster may choose to “listen” in a different direction. The caster may stop listening, then resume again later, so long as the duration has not expired. The target creature is not normally aware of being spied upon in this way.\r\n\r\nRock more than 2 inches thick or a thin coating of lead or gold will block the spell. All undead creatures are immune to this effect, as are mindless creatures such as golems."
+},{
+  "_id": {
+    "$oid": "64605d0382c2771114c4696b"
+  },
+  "name": "Feeblemind",
+  "range": "180'",
+  "magicUser": 5,
+  "duration": "permanent",
+  "description": "If the target creature fails a saving throw vs. Spells, its Intelligence and Charisma scores each drop to 1. The affected creature is unable to cast spells, understand language, or communicate coherently. The victim does remember who its friends are and can follow and protect them from harm. The subject remains in this state until a heal spell is used to cancel the effect. A target creature that can cast Magic-User spells suffers a penalty of -4 on its saving throw against this spell. "
+},{
+  "_id": {
+    "$oid": "64605df082c2771114c719dc"
+  },
+  "name": "Find Traps",
+  "range": "30'",
+  "cleric": 2,
+  "duration": "3 turns",
+  "description": "This spell permits the caster to detect a variety of traps, both mechanical and magical. When the caster moves within 30’ of a trap, he or she will see it glow with a faint greenish-blue aura. The caster is not, however, able to detect certain natural hazards such as quicksand, a sinkhole, or unsafe walls of natural rock. The spell also does not bestow the caster with the knowledge needed to disarm the trap, nor any details about its type or nature."
+},{
+  "_id": {
+    "$oid": "64605e9c82c2771114c91589"
+  },
+  "name": "Find the Path",
+  "range": "touch",
+  "cleric": 6,
+  "duration": "1 turn/level",
+  "description": "The recipient of this spell can find the shortest, most direct physical route to a specified destination. The caster must have some knowledge about the location; any location the caster has ever visited can be so located, as well as locations described to the caster. Even knowing the name of a location (if it has a name) is enough for this spell to function.\r\n\r\nThe locale can be outdoors or underground. Find the path works with respect to locations, not objects or creatures. The location must be on the same plane as the caster at the time of casting.\r\n\r\nThe spell enables the subject to sense the correct direction that will eventually lead it to its destination, indicating at appropriate times the exact path to follow or physical actions to take. For example, the spell enables the subject to detect secret doors and to know any passwords required. The spell ends when the destination is reached or the duration expires, whichever comes first.\r\n"
+},{
+  "_id": {
+    "$oid": "64605f4282c2771114cb00ab"
+  },
+  "name": "Fireball",
+  "range": "100' + 10'/level",
+  "magicUser": 3,
+  "duration": "instantaneous",
+  "description": "A fireball spell creates an explosion of flame that detonates with a low roar and deals 1d6 points of fire damage per caster level to every creature within a spherical volume having a 20' radius. A save vs. Spells for half damage is allowed. The explosion creates almost no pressure.\r\n\r\nThe caster points a finger and determines the range (distance and height) at which the fireball is to burst. A glowing, pea-sized bead streaks from the pointing digit and, unless it impacts upon a material body or solid barrier prior to attaining the prescribed range, blossoms into the fireball at that point. (An early impact results in an early detonation.) If the caster attempts to send the bead through a narrow passage, such as through an arrow slit, he or she must roll a missile attack (without range adjustments) to hit the opening, or else the bead strikes the barrier and detonates prematurely.\r\n\r\nThe fireball sets fire to combustibles and damages objects in the area. It can melt metals with low melting points, such as lead, gold, copper, silver, and bronze. If the damage caused to an interposing barrier shatters or breaks through it, the fireball may continue beyond the barrier in order to attain its full volume."
 }]
