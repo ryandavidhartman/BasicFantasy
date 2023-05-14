@@ -13,7 +13,7 @@ case class Spell(
  magicUser: Option[Int],
  duration: String,
  description: String
-)
+) extends Model
 
 object Spell {
 

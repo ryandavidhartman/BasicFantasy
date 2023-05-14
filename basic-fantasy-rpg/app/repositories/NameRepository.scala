@@ -7,7 +7,8 @@ import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 import models.Name
 import reactivemongo.api.Cursor
-import reactivemongo.api.bson.BSONDocument
+import reactivemongo.api.bson.{BSONDocument, BSONObjectID, BSONValue}
+import reactivemongo.api.commands.WriteResult
 
 class NameRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
                                  implicit val ec: ExecutionContext) {
@@ -37,5 +38,15 @@ class NameRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
         .collect[Seq](limit, Cursor.FailOnError[Seq[Name]]())
     }
   }
+
+  def findOne(id: String): Future[Option[Name]] = RepositoryUtilities.findOne[Name](id, collection)
+
+  def findOne(fieldName: String, fieldValue: BSONValue): Future[Option[Name]] = RepositoryUtilities.findOne[Name](fieldName, fieldValue, collection)
+
+  def create(name: Name): Future[WriteResult] = RepositoryUtilities.create[Name](name, collection)
+
+  def update(name: Name): Future[WriteResult] = RepositoryUtilities.update[Name](name, collection)
+
+  def delete(id: BSONObjectID): Future[WriteResult] = RepositoryUtilities.delete(id, collection)
 
 }

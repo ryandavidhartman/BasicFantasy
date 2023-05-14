@@ -10,9 +10,9 @@ case class Name(
  name: String,
  firstName: Option[Boolean],
  lastName: Option[Boolean],
- gender: String,
+ gender: Option[String],
  race: String
-)
+) extends Model
 
 object Name {
 
@@ -40,7 +40,7 @@ object Name {
         name = doc.getAsOpt[String]("name").getOrElse("unknown"),
         firstName = doc.getAsOpt[Boolean]("firstName"),
         lastName = doc.getAsOpt[Boolean]("lastName"),
-        gender = doc.getAsOpt[String]("gender").getOrElse("unknown"),
+        gender = doc.getAsOpt[String]("gender"),
         race = doc.getAsOpt[String]("race").getOrElse("unknown"),
       )
     }

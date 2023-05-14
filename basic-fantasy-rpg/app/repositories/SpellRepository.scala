@@ -9,12 +9,11 @@ import reactivemongo.api.commands.WriteResult
 
 import javax.inject._
 import scala.concurrent.{ExecutionContext, Future}
-import scala.util.{Failure, Success}
 
 @Singleton
 class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
                                  implicit val ec: ExecutionContext)  {
-  def collection: Future[BSONCollection] = reactiveMongoApi.database.map(db => db.collection("Spells"))
+  def collection: Future[BSONCollection] = reactiveMongoApi.database.map(db => db.collection(name = "Spells"))
   def get(name: Option[String] = None,
           range: Option[String] = None,
           cleric: Option[Int] = None,
@@ -40,29 +39,9 @@ class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
         .collect[Seq](limit, Cursor.FailOnError[Seq[Spell]]())
     }
   }
-  def findOne(id: String): Future[Option[Spell]] = {
-    BSONObjectID.parse(id) match {
-      case Success(id) => collection.flatMap(_.find(BSONDocument("_id" -> id), Option.empty[Spell]).one[Spell])
-      case Failure(e) => throw e
-    }
-  }
-  def findOne(fieldName: String, fieldValue: BSONValue): Future[Option[Spell]] = {
-    collection.flatMap(_.find(BSONDocument(fieldName -> fieldValue), Option.empty[Spell]).one[Spell])
-  }
-
-  def create(spell: Spell): Future[WriteResult] = {
-    collection.flatMap(_.insert(ordered = false).one(spell))
-  }
-
-  def update(spell: Spell): Future[WriteResult] = {
-    collection.flatMap(
-      _.update(ordered = false).one(BSONDocument("_id" -> spell._id), spell)
-    )
-  }
-
-  def delete(id: BSONObjectID):Future[WriteResult] = {
-    collection.flatMap(
-      _.delete().one(BSONDocument("_id" -> id), Some(1))
-    )
-  }
+  def findOne(id: String): Future[Option[Spell]] = RepositoryUtilities.findOne[Spell](id, collection)
+  def findOne(fieldName: String, fieldValue: BSONValue): Future[Option[Spell]] = RepositoryUtilities.findOne[Spell](fieldName, fieldValue, collection)
+  def create(spell: Spell): Future[WriteResult] = RepositoryUtilities.create[Spell](spell, collection)
+  def update(spell: Spell): Future[WriteResult] = RepositoryUtilities.update[Spell](spell, collection)
+  def delete(id: BSONObjectID):Future[WriteResult] = RepositoryUtilities.delete(id, collection)
 }
