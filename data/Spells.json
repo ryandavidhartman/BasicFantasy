@@ -365,4 +365,149 @@
   "magicUser": 3,
   "duration": "instantaneous",
   "description": "A fireball spell creates an explosion of flame that detonates with a low roar and deals 1d6 points of fire damage per caster level to every creature within a spherical volume having a 20' radius. A save vs. Spells for half damage is allowed. The explosion creates almost no pressure.\r\n\r\nThe caster points a finger and determines the range (distance and height) at which the fireball is to burst. A glowing, pea-sized bead streaks from the pointing digit and, unless it impacts upon a material body or solid barrier prior to attaining the prescribed range, blossoms into the fireball at that point. (An early impact results in an early detonation.) If the caster attempts to send the bead through a narrow passage, such as through an arrow slit, he or she must roll a missile attack (without range adjustments) to hit the opening, or else the bead strikes the barrier and detonates prematurely.\r\n\r\nThe fireball sets fire to combustibles and damages objects in the area. It can melt metals with low melting points, such as lead, gold, copper, silver, and bronze. If the damage caused to an interposing barrier shatters or breaks through it, the fireball may continue beyond the barrier in order to attain its full volume."
+},{
+  "_id": {
+    "$oid": "646185ba82c2771114e46678"
+  },
+  "name": "Flesh to Stone",
+  "range": "30'/level",
+  "magicUser": 6,
+  "duration": "permanent",
+  "description": "This spell causes the subject, along with all its carried gear, to turn into a mindless, inert statue. A saving throw vs. Petrification is allowed to resist the spell. If the statue resulting from this spell is broken or damaged, the subject (if ever returned to its original state) suffers equivalent damage or deformities. Only creatures made of flesh are affected by this spell.\r\n\r\nThe reverse spell, stone to flesh, acts as a counterspell for flesh to stone, restoring the creature just as it was when it was petrified. It does nothing if applied to stone that is not the result of flesh to stone or similar petrification effects (such as a medusa's gaze)."
+},{
+  "_id": {
+    "$oid": "646185ff82c2771114e51cae"
+  },
+  "name": "Stone to Flesh",
+  "range": "30'/level",
+  "magicUser": 6,
+  "duration": "permanent",
+  "description": "Stone to flesh, acts as a counterspell for flesh to stone, restoring the creature just as it was when it was petrified. It does nothing if applied to stone that is not the result of flesh to stone or similar petrification effects (such as a medusa's gaze)."
+},{
+  "_id": {
+    "$oid": "646186be82c2771114e72637"
+  },
+  "name": "Floating Disc",
+  "range": "0",
+  "magicUser": 1,
+  "duration": "5 turns +1 turn/level",
+  "description": "This spell creates an invisible, slightly concave circular plane of force for carrying loads. It is about the size of a shield, being 3 feet in diameter and 1 inch deep at its center. It can hold a maximum of 500 pounds of weight. (Note that water weighs about 8 pounds per gallon.) The disc must be loaded so that the items placed upon it are properly supported, or they will (of course) fall off. For example, the disc can support just over 62 gallons of water, but the water must be in a barrel or other reasonable container that can be placed upon the disc. Similarly, a pile of loose coins will tend to slip and slide about, and some will fall off with every step the caster takes; but a large sack full of coins, properly tied, will remain stable.\r\n\r\nThe disc floats level to the ground, at about the height of the caster's waist. It remains still when within 10' of the caster, and follows at the caster's movement rate if he or she moves away from it. The floating disc can be pushed as needed to position it but will be dispelled if somehow moved more than 10' from the caster. When the spell duration expires, the disc disappears from existence and drops whatever was supported to the surface beneath."
+},{
+  "_id": {
+    "$oid": "6461875582c2771114e8d301"
+  },
+  "name": "Fly",
+  "range": "touch",
+  "magicUser": 3,
+  "duration": "1 turn/level",
+  "description": "The subject of this spell can fly at a speed equal to his or her normal ground movement rate (as adjusted by encumbrance). The subject can ascend at half speed and descend at double speed, with the same maneuverability as the subject has when moving on the ground. Flying under the effect of this spell requires only as much concentration as walking, so the subject can attack or cast spells normally. The subject of a fly spell can neither charge nor run, nor carry aloft more weight than his or her maximum load.\r\n\r\nShould the spell duration expire while the subject is still aloft, the magic fails slowly. The subject floats downward 120' per round for 1d10 rounds. If the subject reaches the ground in that amount of time, he or she lands safely. If not, the subject falls the rest of the distance, taking normal falling damage. Since dispelling a spell effectively ends it, the subject also descends in this way if the fly spell is dispelled."
+},{
+  "_id": {
+    "$oid": "6461888c82c2771114ec3ebe"
+  },
+  "name": "Geas",
+  "range": "5' per level",
+  "magicUser": 6,
+  "duration": "special",
+  "description": "Geas places a magical command on a creature to carry out some service or to refrain from some action or course of activity, as desired by the caster. The target creature must be able to understand the caster for this spell to take effect. While a geas cannot compel a creature to kill itself or perform acts that would result in certain death, it can cause almost any other course of activity.\r\n\r\nA saving throw vs. Spells will allow an unwilling target to resist a geas when it is first cast. However, the target may choose to accept the geas, typically as part of a bargain with the caster to perform some service.\r\n\r\nThe geased creature must follow the given instructions until the geas is completed, no matter how long it takes.\r\n\r\nIf the instructions involve some open-ended task that the recipient cannot complete through his or her own actions, the spell remains in effect for a maximum of one day per caster level. A clever recipient can subvert some instructions, at the GM's discretion.\r\n\r\nFor every 24 hours that the subject chooses not to obey the geas (or is prevented from obeying it), it suffers a –2 penalty to each of its ability scores, up to a total of –8. No ability score can be reduced to less than 3 by this effect. The ability score penalties are removed 24 hours after the subject resumes obeying the geas.\r\n\r\nA geas (and all effects thereof) can be ended by a remove curse spell, or by a wish, or by the reverse of this spell. Dispel magic does not affect a geas."
+},{
+  "_id": {
+    "$oid": "6461899482c2771114ef3a0b"
+  },
+  "name": "Remove Geas",
+  "range": "5' per level",
+  "magicUser": 6,
+  "duration": "instantaneous",
+  "description": "A geas (and all effects thereof) can be ended by a remove curse spell, or by a wish, or by this spell. Dispel magic does not affect a geas."
+},{
+  "_id": {
+    "$oid": "64618a4282c2771114f1440d"
+  },
+  "name": "Growth of Animals",
+  "range": "60'+10'/level",
+  "cleric": 3,
+  "duration": "1 turn/level",
+  "description": "This spell causes an animal to grow to twice its normal size and eight times its normal weight. The affected creature will do double normal damage with all physical attacks, and its existing natural Armor Class increases by 2. The animal's carrying capacity is also doubled. Unfriendly animals may save vs. Spells to resist this spell; normally, domesticated animals will not attempt to resist it, though they may become confused or panicky afterward (at the GM's discretion).\r\n\r\nAll equipment worn or carried by an animal is similarly enlarged by the spell, though this change has no effect on the magical properties of any such equipment. Any enlarged item that leaves the enlarged creature’s possession instantly returns to its normal size.\r\n\r\nThe spell gives no means of command or influence over the enlarged animals."
+},{
+  "_id": {
+    "$oid": "64618adf82c2771114f303fe"
+  },
+  "name": "Growth of Plants",
+  "range": "120'",
+  "magicUser": 4,
+  "duration": "permanent",
+  "description": "This spell causes normal vegetation (grasses, briars, bushes, creepers, thistles, trees, vines, etc.) within range to become thick and overgrown. The dimensions of the growth are determined by the caster, but cannot exceed 1000 sq. feet (a 10'x100' area or equivalent) per 5 caster levels. The plants entwine to form a thicket or jungle that creatures must hack or force a way through. All movement within the affected area is reduced to no more than 5’ per round for less than giant sized creatures; giant sized creatures are reduced to half normal movement rate. The area must have brush and/or trees in it for this spell to take effect.\r\n\r\nThe reverse form, shrink plants, may be used to render overgrown areas passable. The area of effect is identical to the normal version.\r\n\r\nGrowth of plants and its reverse are permanent until countered, either by the opposite form or by dispel magic. This spell has no effect on animated plant creatures of any sort."
+},{
+  "_id": {
+    "$oid": "64618bc282c2771114f571be"
+  },
+  "name": "Shrink Plants",
+  "range": "120'",
+  "magicUser": 4,
+  "duration": "permanent",
+  "description": "This spell is the reverse form of, growth of plants, and may be used to render overgrown areas passable. The area of effect is identical to the normal version.\r\n\r\nThe effective dimension of the spell is determined by the caster, but cannot exceed 1000 sq. feet (a 10'x100' area or equivalent) per 5 caster levels.\r\n\r\nShrink plants and its reverse are permanent until countered, either by the opposite form or by dispel magic. This spell has no effect on animated plant creatures of any sort."
+},{
+  "_id": {
+    "$oid": "64618f4882c2771114ff007c"
+  },
+  "name": "Hallucinatory Terrain",
+  "range": "400'+40'/level",
+  "magicUser": 4,
+  "duration": "12 turns/level",
+  "description": "This spell makes one 10 yard cube per level of outdoor terrain appear like a different type (i.e. field into forest, grassland into desert, or the like). This spell requires a full turn to cast.\r\n\r\nThe affected terrain looks, sounds, and smells like another sort of natural terrain. Structures, equipment, and creatures within the area are not hidden or changed in appearance. A save vs. Spells is allowed to see through the illusion, but only if the creatures or characters affected actively attempt to do so."
+},{
+  "_id": {
+    "$oid": "6461900982c2771114010a4d"
+  },
+  "name": "Haste",
+  "range": "30'+10'/level",
+  "magicUser": 3,
+  "duration": "1 round/level",
+  "description": "This spell accelerates the actions of 1 creature per caster level. The affected creatures move and act twice as quickly as normal, having double their normal movement rates and making twice the normal attacks per round, for the duration of the spell. Spellcasting is not accelerated, nor is the use of magic items such as wands, which may still be used just once per round. Multiple haste or speed effects don’t combine; only apply the most powerful or longest lasting effect.\r\n\r\nReversed, haste becomes slow; affected creatures move at half speed, attacking half as often (generally, every other round) and making half a normal move each round. Naturally, target creatures may save vs. Spells to avoid the effect. Haste and slow counter and dispel each other."
+},{
+  "_id": {
+    "$oid": "646190b482c277111402b6d7"
+  },
+  "name": "Slow",
+  "range": " 30'+10'/level",
+  "magicUser": 3,
+  "duration": "1 round/level",
+  "description": "Reversed form of haste.  Slow affects 1 creature per caster level,  affected creatures move at half speed, attacking half as often (generally, every other round) and making half a normal move each round. Naturally, target creatures may save vs. Spells to avoid the effect.\r\n\r\nHaste and slow counter and dispel each other."
+},{
+  "_id": {
+    "$oid": "6461915f82c277111404799a"
+  },
+  "name": "Heal",
+  "range": "touch",
+  "cleric": 6,
+  "duration": "permanent",
+  "description": "Heal enables the caster to wipe away injury and afflictions. It immediately ends any and all of the following adverse conditions affecting the target: ability damage, blindness, confusion, deafness, disease, exhaustion or fatigue, feeblemind, insanity, nausea, and poison. It also restores all but 1d4 of the target's hit points. Heal does not remove negative levels or restore permanently drained ability score points.\r\n\r\nThe reversed spell, harm, injures the creature touched so horribly that it is left with only 1d4 hit points. The caster must succeed at a normal attack roll in this case; failure means the spell is wasted. Note that, if the victim has fewer hit points remaining than the number rolled, he or she will take at least one point of damage (and this is the only case in which harm may kill a creature).\r\n\r\nGenerally, both heal and harm only affect living creatures. If used against an undead creature, heal instead acts like harm; likewise, harm affects undead like heal. Constructs such as golems are unaffected by either spell."
+},{
+  "_id": {
+    "$oid": "646191c982c2771114058a4f"
+  },
+  "name": "Harm",
+  "range": "touch",
+  "cleric": 6,
+  "duration": "permanent",
+  "description": "The reverse spell of heal.  Harm, injures the creature touched so horribly that it is left with only 1d4 hit points. The caster must succeed at a normal attack roll in this case; failure means the spell is wasted. Note that, if the victim has fewer hit points remaining than the number rolled, he or she will take at least one point of damage (and this is the only case in which harm may kill a creature).\r\n\r\nGenerally, both heal and harm only affect living creatures. If used against an undead creature, heal instead acts like harm; likewise, harm affects undead like heal. Constructs such as golems are unaffected by either spell."
+},{
+  "_id": {
+    "$oid": "646192c982c2771114085e49"
+  },
+  "name": "Hold Monster",
+  "range": "180'",
+  "magicUser": 5,
+  "duration": "2d8 turns",
+  "description": "This spell functions like hold person, except that it affects any living creature that fails its save vs. Spells."
+},{
+  "_id": {
+    "$oid": "646193b582c27711140ac919"
+  },
+  "name": "Hold Person",
+  "range": "180'",
+  "cleric": 2,
+  "magicUser": 3,
+  "duration": "2d8 turns",
+  "description": "This spell will render any living (not undead) human, demi-human or humanoid creature paralyzed. Creatures larger than ogres will not be affected by this spell. Targets of the spell are aware, and breathe normally, but cannot take any actions, including speech. A successful save vs. Spells will negate the effect. The spell may be cast at a single person, who makes his or her save at -2, or at a group, in which case 1d4 of the creatures in the group may be affected.\r\n\r\nA winged creature which is paralyzed cannot flap its wings and falls (if in flight at the time). A paralyzed swimmer can’t swim and may drown."
 }]
