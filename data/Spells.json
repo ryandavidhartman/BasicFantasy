@@ -1,14 +1,5 @@
 [{
   "_id": {
-    "$oid": "644499a2b0d2ebddff43f65b"
-  },
-  "name": "Animate Objects",
-  "range": "Range: 100'+10'/level",
-  "cleric": 6,
-  "duration": "1 round/level",
-  "description": "This spell imbues inanimate objects with mobility and a semblance of life. The animated objects then attack whomever or whatever the caster designates. This spell cannot animate objects carried or worn by a creature. An animated object can be of any non-magical material. The caster can animate one object per level, up to a maximum of 25 lbs. per caster level (i.e. 300 lbs. at 12th level, 325 lbs. at 13th level, and so on).\nThe GM must rule on the effectiveness of animated objects in combat. In general, animated objects attack using the same attack bonus as the caster. Small or lightweight objects do no more than 1d4 damage per hit, while larger and/or heavier objects do 1d6 or 1d8 (at the GM's discretion). As a special case, weapons which are animated do damage using the normal die roll for the type, but only up to a maximum 1d8. Animated objects have a movement rate of 10', and generally must move in contact with the ground (walking, hopping, slithering, or bouncing, however seems most appropriate to the GM)."
-},{
-  "_id": {
     "$oid": "644499a2b0d2ebddff43f65a"
   },
   "name": "Animate Dead",
@@ -17,6 +8,15 @@
   "magicUser": 5,
   "duration": "special",
   "description": "This spell turns the bones or bodies of dead creatures into undead skeletons or zombies that follow the caster's spoken commands. They remain animated until they are destroyed. The caster may animate a number of hit dice of undead equal to twice his or her caster level, and no more. Animated skeletons have hit dice equal to the number the creature had in life; for skeletons of humans or demi-humans, this means one hit die, regardless of the character level of the deceased. Zombies have one more hit die than the creature had in life. An animated skeleton can be created only from a mostly intact skeleton; a zombie can be created only from a mostly intact corpse. The caster must touch the remains to be animated. No character may normally control more hit dice of undead than 4 times his or her level, regardless of how many times this spell is cast."
+},{
+  "_id": {
+    "$oid": "644499a2b0d2ebddff43f65b"
+  },
+  "name": "Animate Objects",
+  "range": "Range: 100'+10'/level",
+  "cleric": 6,
+  "duration": "1 round/level",
+  "description": "This spell imbues inanimate objects with mobility and a semblance of life. The animated objects then attack whomever or whatever the caster designates. This spell cannot animate objects carried or worn by a creature. An animated object can be of any non-magical material. The caster can animate one object per level, up to a maximum of 25 lbs. per caster level (i.e. 300 lbs. at 12th level, 325 lbs. at 13th level, and so on).\nThe GM must rule on the effectiveness of animated objects in combat. In general, animated objects attack using the same attack bonus as the caster. Small or lightweight objects do no more than 1d4 damage per hit, while larger and/or heavier objects do 1d6 or 1d8 (at the GM's discretion). As a special case, weapons which are animated do damage using the normal die roll for the type, but only up to a maximum 1d8. Animated objects have a movement rate of 10', and generally must move in contact with the ground (walking, hopping, slithering, or bouncing, however seems most appropriate to the GM)."
 },{
   "_id": {
     "$oid": "644499a2b0d2ebddff43f65c"
@@ -510,4 +510,76 @@
   "magicUser": 3,
   "duration": "2d8 turns",
   "description": "This spell will render any living (not undead) human, demi-human or humanoid creature paralyzed. Creatures larger than ogres will not be affected by this spell. Targets of the spell are aware, and breathe normally, but cannot take any actions, including speech. A successful save vs. Spells will negate the effect. The spell may be cast at a single person, who makes his or her save at -2, or at a group, in which case 1d4 of the creatures in the group may be affected.\r\n\r\nA winged creature which is paralyzed cannot flap its wings and falls (if in flight at the time). A paralyzed swimmer can’t swim and may drown."
+},{
+  "_id": {
+    "$oid": "646eb57dcc894a304873395a"
+  },
+  "name": "Hold Portal",
+  "range": "100'+10'/level",
+  "magicUser": 1,
+  "duration": "1 round/level",
+  "description": "This spell magically holds shut a door, gate, window, or shutter of wood, metal, or stone. The magic affects the portal just as if it were securely closed and normally locked. A knock spell or a successful dispel magic spell can negate a hold portal spell."
+},{
+  "_id": {
+    "$oid": "646eb5f5cc894a3048749bcd"
+  },
+  "name": "Ice Storm",
+  "range": "300' + 30'/level",
+  "magicUser": 4,
+  "duration": "1 round",
+  "description": "This spell causes great magical hailstones to pound down for 1 full round, dealing 5d6 points of damage to every creature in a 20' radius around the target spot; a successful save vs. Spells will reduce damage by half. The ice storm fills a vertical volume of 40', so creatures higher than that distance above the target spot are unaffected. A –20% penalty applies to each Listen roll made within the ice storm’s effect, and all land movement within its area is at half speed. At the end of the duration, the hail disappears, leaving no aftereffects (other than the damage dealt). Any creature naturally resistant to cold takes half damage (or one-quarter damage if it makes its save).\r\n"
+},{
+  "_id": {
+    "$oid": "646eb69dcc894a3048767086"
+  },
+  "name": "Insect Plague",
+  "range": "300' + 30'/level",
+  "cleric": 5,
+  "duration": "1 round/level",
+  "description": "This spell summons one swarm of locusts per three caster levels, to a maximum of six swarms at 18th level. See Insect Swarm in the Monsters section for the effects of a swarm. The swarms must be summoned so that each one is adjacent to at least one other swarm (that is, the swarms must fill one contiguous area). The caster may summon the locust swarms so that they share the area of other creatures. Each swarm attacks any creatures occupying its area. The swarms are stationary after being summoned.\r\n"
+},{
+  "_id": {
+    "$oid": "646eb720cc894a304877bf89"
+  },
+  "name": "Invisibility",
+  "range": "touch",
+  "magicUser": 2,
+  "duration": "special",
+  "description": "The creature or object touched becomes invisible, vanishing from sight, including Darkvision. If the recipient is a creature carrying gear, that vanishes, too. If the spell is cast on someone else, neither the caster nor his or her allies can see the subject, unless they can normally see invisible things or employ magic to do so.\r\n\r\nItems dropped or put down by an invisible creature become visible; items picked up disappear if tucked into the clothing or pouches worn by the creature. Light, however, never becomes invisible, although a source of light can become so (thus, the effect is that of a light with no visible source). Any part of an item that the subject carries but that extends more than 10 feet from it becomes visible. Of course, the subject is not magically silenced, and certain other conditions can render the recipient detectable (such as stepping in a puddle).\r\n\r\nThe spell ends if the subject attacks any creature or casts any spell. Actions (other than spellcasting) directed at unattended objects do not break the spell. Causing harm indirectly is not an attack. The spell lasts at most 24 hours.\r\n"
+},{
+  "_id": {
+    "$oid": "646eb7cccc894a30487968ed"
+  },
+  "name": "Invisibility 10' Radius",
+  "range": "touch",
+  "magicUser": 3,
+  "duration": "1 turn/level",
+  "description": "This spell functions like invisibility, except that this spell confers invisibility upon all creatures within 10 feet of the recipient. The center of the effect is mobile with the recipient.\r\n\r\nThose affected by this spell can see each other and themselves as if unaffected by the spell. Affected creatures (other than the recipient) who attack negate the invisibility only for themselves, but if the spell recipient attacks, the invisibility ends for all affected creatures. Any affected creature moving out of the area becomes visible, but creatures moving into the area after the spell is cast do not become invisible (including any previously affected creatures who have become visible as described above)."
+},{
+  "_id": {
+    "$oid": "646eb849cc894a30487aac73"
+  },
+  "name": "Invisible Stalker",
+  "range": "self",
+  "magicUser": 6,
+  "duration": "special",
+  "description": "The caster summons an invisible stalker to do his or her bidding (see the Monsters section). The spell persists until dispel evil is cast on the creature, it is slain, or the task is fulfilled. The GM is advised to review the monster entry for the invisible stalker when this spell is used, as they may not always be reliable servants"
+},{
+  "_id": {
+    "$oid": "646eb8fbcc894a30487c7e5c"
+  },
+  "name": "Knock",
+  "range": "30'",
+  "magicUser": 2,
+  "duration": "special",
+  "description": "The knock spell opens stuck, barred, locked, held, or wizard locked doors. It opens secret doors, as well as locked or trick-opening boxes or chests. It also loosens welds, shackles, or chains (provided they serve to hold shut something which can be opened). If used to open a wizard locked door, the spell does not remove the wizard lock but simply suspends its functioning for one turn. In all other cases, the door does not relock itself or become stuck again on its own. Knock will not raise a portcullis or operate any other similar mechanism, nor will it affect ropes, vines, and the like. Each spell can undo a single means of preventing access."
+},{
+  "_id": {
+    "$oid": "646eb974cc894a30487dc0b1"
+  },
+  "name": "Levitate",
+  "range": "touch",
+  "magicUser": 2,
+  "duration": "1 turn/level",
+  "description": "Levitate allows the caster to move himself or herself, another creature, or an object up and down as desired. A creature must be willing to be levitated, and an object must be unattended or possessed by a willing creature. The caster can mentally direct the recipient to move up or down as much as 20 feet each round, by concentration. The caster cannot move the recipient horizontally, but the recipient could clamber along the face of a cliff, for example, or push against a ceiling to move laterally (generally at half its normal land speed).\r\n\r\nA levitating creature that attacks with a weapon finds itself increasingly unstable; the first attack has a –1 attack penalty, the second –2, and so on, to a maximum penalty of –5. A full round spent stabilizing allows the creature to begin again at –1."
 }]
