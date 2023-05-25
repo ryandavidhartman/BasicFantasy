@@ -1,5 +1,14 @@
 [{
   "_id": {
+    "$oid": "644499a2b0d2ebddff43f65b"
+  },
+  "name": "Animate Objects",
+  "range": "Range: 100'+10'/level",
+  "cleric": 6,
+  "duration": "1 round/level",
+  "description": "This spell imbues inanimate objects with mobility and a semblance of life. The animated objects then attack whomever or whatever the caster designates. This spell cannot animate objects carried or worn by a creature. An animated object can be of any non-magical material. The caster can animate one object per level, up to a maximum of 25 lbs. per caster level (i.e. 300 lbs. at 12th level, 325 lbs. at 13th level, and so on).\nThe GM must rule on the effectiveness of animated objects in combat. In general, animated objects attack using the same attack bonus as the caster. Small or lightweight objects do no more than 1d4 damage per hit, while larger and/or heavier objects do 1d6 or 1d8 (at the GM's discretion). As a special case, weapons which are animated do damage using the normal die roll for the type, but only up to a maximum 1d8. Animated objects have a movement rate of 10', and generally must move in contact with the ground (walking, hopping, slithering, or bouncing, however seems most appropriate to the GM)."
+},{
+  "_id": {
     "$oid": "644499a2b0d2ebddff43f65a"
   },
   "name": "Animate Dead",
@@ -8,15 +17,6 @@
   "magicUser": 5,
   "duration": "special",
   "description": "This spell turns the bones or bodies of dead creatures into undead skeletons or zombies that follow the caster's spoken commands. They remain animated until they are destroyed. The caster may animate a number of hit dice of undead equal to twice his or her caster level, and no more. Animated skeletons have hit dice equal to the number the creature had in life; for skeletons of humans or demi-humans, this means one hit die, regardless of the character level of the deceased. Zombies have one more hit die than the creature had in life. An animated skeleton can be created only from a mostly intact skeleton; a zombie can be created only from a mostly intact corpse. The caster must touch the remains to be animated. No character may normally control more hit dice of undead than 4 times his or her level, regardless of how many times this spell is cast."
-},{
-  "_id": {
-    "$oid": "644499a2b0d2ebddff43f65b"
-  },
-  "name": "Animate Objects",
-  "range": "Range: 100'+10'/level",
-  "cleric": 6,
-  "duration": "1 round/level",
-  "description": "This spell imbues inanimate objects with mobility and a semblance of life. The animated objects then attack whomever or whatever the caster designates. This spell cannot animate objects carried or worn by a creature. An animated object can be of any non-magical material. The caster can animate one object per level, up to a maximum of 25 lbs. per caster level (i.e. 300 lbs. at 12th level, 325 lbs. at 13th level, and so on).\nThe GM must rule on the effectiveness of animated objects in combat. In general, animated objects attack using the same attack bonus as the caster. Small or lightweight objects do no more than 1d4 damage per hit, while larger and/or heavier objects do 1d6 or 1d8 (at the GM's discretion). As a special case, weapons which are animated do damage using the normal die roll for the type, but only up to a maximum 1d8. Animated objects have a movement rate of 10', and generally must move in contact with the ground (walking, hopping, slithering, or bouncing, however seems most appropriate to the GM)."
 },{
   "_id": {
     "$oid": "644499a2b0d2ebddff43f65c"
@@ -582,4 +582,70 @@
   "magicUser": 2,
   "duration": "1 turn/level",
   "description": "Levitate allows the caster to move himself or herself, another creature, or an object up and down as desired. A creature must be willing to be levitated, and an object must be unattended or possessed by a willing creature. The caster can mentally direct the recipient to move up or down as much as 20 feet each round, by concentration. The caster cannot move the recipient horizontally, but the recipient could clamber along the face of a cliff, for example, or push against a ceiling to move laterally (generally at half its normal land speed).\r\n\r\nA levitating creature that attacks with a weapon finds itself increasingly unstable; the first attack has a –1 attack penalty, the second –2, and so on, to a maximum penalty of –5. A full round spent stabilizing allows the creature to begin again at –1."
+},{
+  "_id": {
+    "$oid": "646fb66027fdeec78df51706"
+  },
+  "name": "Light",
+  "range": "120'",
+  "cleric": 1,
+  "magicUser": 1,
+  "duration": "6 turns + 1 turn/level",
+  "description": "This spell creates a light equal to torchlight which illuminates a 30' radius area (and provides dim light for an additional 20') around the target location or object. The effect is immobile if cast into an area, but it can be cast on a movable object. Light taken into an area of magical darkness does not function.\r\n\r\nReversed, light becomes darkness, creating an area of darkness just as described above. This darkness blocks out Darkvision and negates mundane light sources.\r\n\r\nA light spell may be cast to counter and dispel the darkness spell of an equal or lower level caster (and vice versa). Doing so causes both spells to instantly cease, restoring the existing ambient light level.\r\n\r\nEither version of this spell may be used to blind an opponent by means of casting it on the target's ocular organs. The target is allowed a saving throw vs. Death Ray to avoid the effect, and if the save is made, the spell does not take effect at all. A light or darkness spell cast to blind does not have the given area of effect (that is, no light or darkness is shed around the victim)."
+},{
+  "_id": {
+    "$oid": "646fb67f27fdeec78df568de"
+  },
+  "name": "Darkness",
+  "range": "120'",
+  "cleric": 1,
+  "magicUser": 1,
+  "duration": "6 turns + 1 turn/level",
+  "description": "This spell creates a light equal to torchlight which illuminates a 30' radius area (and provides dim light for an additional 20') around the target location or object. The effect is immobile if cast into an area, but it can be cast on a movable object. Light taken into an area of magical darkness does not function.\r\n\r\nReversed, light becomes darkness, creating an area of darkness just as described above. This darkness blocks out Darkvision and negates mundane light sources.\r\n\r\nA light spell may be cast to counter and dispel the darkness spell of an equal or lower level caster (and vice versa). Doing so causes both spells to instantly cease, restoring the existing ambient light level.\r\n\r\nEither version of this spell may be used to blind an opponent by means of casting it on the target's ocular organs. The target is allowed a saving throw vs. Death Ray to avoid the effect, and if the save is made, the spell does not take effect at all. A light or darkness spell cast to blind does not have the given area of effect (that is, no light or darkness is shed around the victim)."
+},{
+  "_id": {
+    "$oid": "646fb73d27fdeec78df78d87"
+  },
+  "name": "Lightning Bolt",
+  "range": "50' + 10'/level",
+  "magicUser": 3,
+  "duration": "instantaneous",
+  "description": "This spell releases a powerful stroke of electrical energy that deals 1d6 points of electricity damage per caster level to each creature within its area. A save vs. Spells for half damage is allowed. The bolt begins at the caster's fingertips and extends to the range given. The caster may choose to limit the range of the spell, but the minimum range is 60 feet. The lightning bolt passes through an area 5' wide, arcing and jumping, so that, while it is not actually 5' wide, for game purposes treat it as if it is so.\r\n\r\nThe lightning bolt sets fire to combustibles and damages objects in its path. It can melt metals with a low melting point, such as lead, gold, copper, silver, or bronze. If the damage caused to an interposing barrier shatters or breaks through it, the bolt may continue beyond the barrier if the spell’s range permits; otherwise, it may reflect from the barrier back toward the caster, or in a random direction at the GM's option. Creatures already affected by the lightning bolt do not take additional damage if struck by the reflection of the same bolt."
+},{
+  "_id": {
+    "$oid": "646fbb7927fdeec78d02cde6"
+  },
+  "name": "Locate Object",
+  "range": "360'",
+  "cleric": 3,
+  "magicUser": 2,
+  "duration": "1 round/level",
+  "description": "This spell allows the caster to sense the direction of a well-known or clearly visualized object. He or she can search for general items, in which case the nearest one of its kind is located if more than one is within range. The caster cannot specify a unique item unless he or she has observed that particular item firsthand (not merely through divination such as clairvoyance or a crystal ball). The spell is blocked by even a thin sheet of lead or gold. Creatures cannot be found by this spell."
+},{
+  "_id": {
+    "$oid": "646fbbf127fdeec78d041a92"
+  },
+  "name": "Lower Water",
+  "range": "360'",
+  "magicUser": 6,
+  "duration": "1 turn/level",
+  "description": "This spell causes water or similar liquid to reduce its depth by as much as 2 feet per caster level (to a minimum depth of 1 inch). The water is lowered within a more or less square-shaped depression whose sides are up to 10 feet long per caster level. In extremely large and deep bodies of water, such as a deep ocean, the spell creates a whirlpool that sweeps ships and similar craft downward, putting them at risk and rendering them unable to leave by normal movement for the duration of the spell. When cast on water elementals and other water-based creatures, this spell acts as a slow spell (the reverse of haste); a save vs. Spells is allowed, with success negating the effect. The spell has no effect on other creatures."
+},{
+  "_id": {
+    "$oid": "646fbc9827fdeec78d05d314"
+  },
+  "name": "MagicJar",
+  "range": "60'",
+  "magicUser": 5,
+  "duration": "special",
+  "description": "By casting magic jar, the caster places his or her soul in a gem or large crystal within spell range (known as the magic jar), leaving the body lifeless. The caster may then attempt to take control of a nearby living creature within spell range, forcing its soul into the magic jar. The caster may move back to the jar (thereby returning the trapped soul to its body) and attempt to possess another body. The spell ends when the caster's soul returns to his or her own body, leaving the receptacle empty.\r\n\r\nTo cast the spell, the magic jar must be within spell range and the caster must know where it is, though he or she does not need to be able to see it. When the caster transfers his or her soul upon casting, the caster's body is, as near as anyone can tell, dead, but does not undergo decay as a normal dead body would.\r\n\r\nPossession of a creature by means of this spell is blocked by protection from evil or a similar ward. The subject is allowed a save vs. Spells to resist. Failure to take over the host leaves the caster's life force in the magic jar, and that target creature is immune to further attempts for the duration of the spell.\r\n\r\nIf the caster is successful, his or her life force occupies the host body, and the host’s life force is imprisoned in the magic jar. The caster keeps his or her Intelligence, Wisdom, Charisma, level, class, attack bonus, saving throws, and mental abilities (including spellcasting ability). The body retains its Strength, Dexterity, Constitution, hit points, and natural abilities. A body with extra limbs does not allow the caster to make more attacks than normal. The caster does not have access to any extraordinary or supernatural abilities of the body.\r\n\r\nIf the caster's spirit is in the magic jar, and the jar is broken (whether by dispel magic or physical damage): If the jar is in range of the caster's body, the caster's spirit returns to its body. Otherwise, the caster's spirit departs (the caster dies). In either case, the spell ends.\r\n\r\nIf the caster's spirit is driven from the host body by dispel evil: If the magic jar is in range of the host body, the caster's spirit returns to the jar, and the host's spirit returns to its body. The caster will not be able to possess the same host again for the remaining duration of the spell. If the magic jar is not in range of the host body, the caster's spirit departs, the host's spirit is freed from the jar (and departs), and the host's body dies.\r\n\r\nIf the host's spirit is in the magic jar, and the jar is broken: If the jar is in range of the host's body, the caster's spirit departs, the host's spirit returns to its body, and the spell ends. Otherwise, the host's spirit departs, and the caster's spirit is stranded in the host body. Note here that the spell has not ended. Dispel evil can still be used to drive the caster's spirit from the body, which departs as noted, ending the spell.\r\n\r\nIn any case where the spell ends with the caster's body unoccupied by a spirit, that body does truly die."
+},{
+  "_id": {
+    "$oid": "646fbd1e27fdeec78d07339e"
+  },
+  "name": "Magic Missile",
+  "range": "100'+10'/level",
+  "magicUser": 1,
+  "duration": "instantaneous",
+  "description": "This spell causes a missile of magical energy to dart forth from the caster's fingertip and strike its target, which must be at least partially visible to the caster, dealing 1d6+1 points of damage. The missile strikes unerringly. Specific parts of a creature can’t be singled out. Inanimate objects are not damaged by the spell.\r\n\r\nFor every three caster levels beyond 1st, an additional missile is fired – two at 4th level, three at 7th, four at 10th, and the maximum of five missiles at 13th level or higher. If the caster fires multiple missiles, he or she can target a single creature or several creatures. A single missile can strike only one creature. Targets must be designated before damage is rolled."
 }]
