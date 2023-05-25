@@ -46,5 +46,14 @@ object Name {
     }
   }
 
-  implicit val jsonFormat: OFormat[Name] = Json.format[Name]
+  case class BulkNames(
+                   names: Seq[String],
+                   firstName: Option[Boolean],
+                   lastName: Option[Boolean],
+                   gender: Option[String],
+                   race: String
+                 )
+
+  implicit val jsonNamesFormat: OFormat[Name] = Json.format[Name]
+  implicit val jsonBulkNamesFormat: OFormat[BulkNames] = Json.format[BulkNames]
 }

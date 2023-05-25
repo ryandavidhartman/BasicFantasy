@@ -1,6 +1,7 @@
 package controllers
 
 import models.Name
+import models.Name.BulkNames
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{Action, AnyContent, MessagesAbstractController, MessagesControllerComponents, MessagesRequest}
 import repositories.NameRepository
@@ -42,5 +43,25 @@ class NameController @Inject()(
           _ => Created(Json.toJson(name))
         }
     )
+  }
+
+  def createBulk(): Action[JsValue] = Action.async(controllerComponents.parsers.json) { implicit request =>
+    request.body.validate[BulkNames].fold(
+      _ => Future.successful(BadRequest("Cannot parse request body")),
+      bulkNames => bulkNames.names.map { n =>
+        val name = Name(
+          _id = None,
+          name = n,
+          firstName = bulkNames.firstName,
+          lastName = bulkNames.lastName,
+          gender = bulkNames.gender,
+          race = bulkNames.race
+        )
+        nameRepository.create(name).map {
+          _ => Created(Json.toJson(name))
+        }
+      }
+    )
+    Future.successful(Ok)
   }
 }

@@ -30,3 +30,4 @@ GET    /names                  controllers.NameController.getNamesPage(name: Opt
 # name api routing
 GET   /v1/api/names            controllers.NameController.get(name: Option[String],firstName: Option[Boolean], lastName: Option[Boolean], gender: Option[String], race: Option[String])
 POST  /v1/api/names            controllers.NameController.create()
+POST  /v1/api/names/bulk       controllers.NameController.createBulk()
