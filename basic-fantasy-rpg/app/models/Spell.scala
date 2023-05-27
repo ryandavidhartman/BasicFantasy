@@ -12,7 +12,8 @@ case class Spell(
  cleric: Option[Int],
  magicUser: Option[Int],
  duration: String,
- description: String
+ description: String,
+ alignment: String
 ) extends Model
 
 object Spell {
@@ -30,7 +31,8 @@ object Spell {
         "cleric" -> spell.cleric,
         "magicUser" -> spell.magicUser,
         "duration" -> spell.duration,
-        "description" -> spell.description
+        "description" -> spell.description,
+        "alignment" -> spell.alignment
       )
     }
   }
@@ -44,7 +46,8 @@ object Spell {
         cleric = doc.getAsOpt[Int]("cleric"),
         magicUser = doc.getAsOpt[Int]("magicUser"),
         duration = doc.getAsOpt[String]("duration").getOrElse("unknown"),
-        description = doc.getAsOpt[String]("description").getOrElse("unknown")
+        description = doc.getAsOpt[String]("description").getOrElse("unknown"),
+        alignment = doc.getAsOpt[String]("alignment").getOrElse("unknown"),
       )
     }
   }

@@ -6,7 +6,7 @@ import models.Spell
 import play.api.data._
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc._
-import reactivemongo.api.bson.{BSONObjectID, BSONString}
+import reactivemongo.api.bson.BSONObjectID
 import repositories.SpellRepository
 
 import javax.inject._
@@ -33,8 +33,9 @@ class SpellController @Inject()(
                     cleric: Option[Int],
                     magicUser: Option[Int],
                     duration: Option[String],
-                    description: Option[String]): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
-    spellRepository.get(name, range, cleric, magicUser, duration, description)
+                    description: Option[String],
+                    alignment: Option[String]): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    spellRepository.get(name, range, cleric, magicUser, duration, description, alignment)
       .map(spells =>  Ok(views.html.spellsGet(spells.sortBy(_.name), updateSpellURL)))
   }
   def createSpellPage(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
@@ -54,7 +55,7 @@ class SpellController @Inject()(
     val successFunction = { spell: Spell =>
       // This is the good case, where the form was successfully parsed as a Data object.
       spellRepository.create(spell)
-      Redirect(routes.SpellController.getSpellsPage(None, None, None, None, None, None))
+      Redirect(routes.SpellController.getSpellsPage(None, None, None, None, None, None, None))
         .flashing("info" -> s"${spell.name} added!")
     }
 
@@ -64,7 +65,7 @@ class SpellController @Inject()(
 
   def updateSpellPage(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     val spellF: Future[Option[Spell]] = spellRepository.findOne(id)
-    spellF.map(s => s match {
+    spellF.map((s: Option[Spell]) => s match {
       case Some(spell) => Ok(views.html.spellUpdate(spellForm.fill(spell), updateSpellCall))
       case None => Ok(views.html.spellCreate(spellForm, createSpellCall))
     })
@@ -82,7 +83,7 @@ class SpellController @Inject()(
 
     val successFunction = { spell: Spell =>
       spellRepository.update(spell)
-      Redirect(routes.SpellController.getSpellsPage(None, None, None, None, None, None))
+      Redirect(routes.SpellController.getSpellsPage(None, None, None, None, None, None, None))
         .flashing("info" -> s"${spell.name} updated!")
     }
 
@@ -96,8 +97,9 @@ class SpellController @Inject()(
           cleric: Option[Int],
           magicUser: Option[Int],
           duration: Option[String],
-          description: Option[String]): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    spellRepository.get(name, range, cleric, magicUser, duration, description).map {
+          description: Option[String],
+          alignment: Option[String]): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+    spellRepository.get(name, range, cleric, magicUser, duration, description, alignment).map {
       spells => Ok(Json.toJson(spells))
     }
   }
@@ -117,7 +119,7 @@ class SpellController @Inject()(
         val objectIdTryResult = BSONObjectID.parse(id)
         objectIdTryResult match {
           case Success(objectId) =>
-            val spellDto = Spell(Some(objectId), spell.name, spell.range, spell.cleric, spell.magicUser, spell.duration, spell.description)
+            val spellDto = Spell(Some(objectId), spell.name, spell.range, spell.cleric, spell.magicUser, spell.duration, spell.description, spell.alignment)
             spellRepository.update(spellDto).map(result => Ok(Json.toJson(result.n)))
           case Failure(_) => Future.successful(BadRequest("Cannot parse the spell id"))
         }

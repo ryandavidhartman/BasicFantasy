@@ -31,8 +31,6 @@ object SpellsPerLevel {
     20 -> Seq(6, 5, 5, 4, 3, 3),
   )
 
-
-
   val magicUserSpellsPerLevel: Map[Int, Seq[Int]] = Map(
     //        1  2  3  4  5  6
     1 -> Seq(1, 0, 0, 0, 0, 0),

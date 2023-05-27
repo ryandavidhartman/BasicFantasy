@@ -17,7 +17,8 @@ object SpellForm {
       "cleric" -> optional(number(min = 1, max = 6)),
       "magicUser" -> optional(number(min = 1, max = 6)),
       "duration" -> nonEmptyText,
-      "description" -> nonEmptyText
+      "description" -> nonEmptyText,
+      "alignment" -> nonEmptyText
     )(Spell.apply)(Spell.unapply)
   )
 

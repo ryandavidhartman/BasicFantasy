@@ -4,7 +4,7 @@ import models.Spell
 import play.modules.reactivemongo.ReactiveMongoApi
 import reactivemongo.api.Cursor
 import reactivemongo.api.bson.collection.BSONCollection
-import reactivemongo.api.bson.{BSONDocument, BSONObjectID, BSONValue}
+import reactivemongo.api.bson.{BSONArray, BSONDocument, BSONObjectID, BSONValue}
 import reactivemongo.api.commands.WriteResult
 
 import javax.inject._
@@ -20,15 +20,30 @@ class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
           magicUser: Option[Int] = None,
           duration: Option[String] = None,
           description: Option[String] = None,
-          limit: Int = 100): Future[Seq[Spell]] = {
+          alignment: Option[String] = None,
+          limit: Int = 200): Future[Seq[Spell]] = {
 
-    val query = BSONDocument(
+
+    val alignmentQuery = alignment match {
+      case Some(value) => BSONDocument(
+        "$or" -> BSONArray(
+          BSONDocument("alignment" -> value),
+          BSONDocument("alignment" -> "neutral")
+        )
+      )
+      case None => BSONDocument.empty
+    }
+    val otherQueries = BSONDocument(
       "name" -> name,
       "range" -> range,
       "cleric" -> cleric,
       "magicUser" -> magicUser,
       "duration" -> duration,
       "description" -> description
+    )
+
+    val query = BSONDocument(
+      "$and" -> BSONArray(alignmentQuery, otherQueries)
     )
 
     val projection = Some(BSONDocument.empty)
