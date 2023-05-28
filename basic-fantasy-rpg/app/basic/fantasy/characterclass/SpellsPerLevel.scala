@@ -1,11 +1,18 @@
 package basic.fantasy.characterclass
 
 import basic.fantasy.Roller
-import basic.fantasy.backgrounds.Spells._
 import basic.fantasy.backgrounds.CharacterAlignments.{Chaotic, CharacterAlignment, Lawful, Neutral}
 import basic.fantasy.characterclass.CharacterClasses.CharacterClass
+import models.Spell
+import repositories.SpellRepository
 
-object SpellsPerLevel {
+import javax.inject.{Inject, Singleton}
+import scala.concurrent.{ExecutionContext, Future}
+
+@Singleton
+class SpellsPerLevel @Inject()(
+  implicit executionContext: ExecutionContext,
+  val spellRepository: SpellRepository) {
 
   val clericSpellsPerLevel: Map[Int, Seq[Int]] = Map(
     //        1  2  3  4  5  6
@@ -55,39 +62,64 @@ object SpellsPerLevel {
     20 -> Seq(6, 5, 5, 4, 4, 3),
   )
 
-  def getRandomSpells(count: Int, spells: Seq[Spell]): String = {
-    if (count > 0) {
+  def getRandomSpells(numSpellsForLevelN: Int, levelNSpells: Seq[Spell]): Seq[Spell] = {
+    if (numSpellsForLevelN > 0) {
       try {
-        (0 until count).map { _ =>
-          val random = Roller.randomInt(spells.length)
-          spells(random).name
-        }.mkString(",")
+        (0 until numSpellsForLevelN).map { _ =>
+          val random = Roller.randomInt(levelNSpells.length)
+          levelNSpells(random)
+        }
       } catch {
-        case e: Throwable => println(e.getMessage); e.getMessage
+        case e: Throwable => println(e.getMessage); Seq.empty
       }
     } else
-      "0"
+      Seq.empty
   }
 
+  def getSpellsFromDb(characterClass: CharacterClass, alignment: Option[String]): Future[Map[Int, Seq[Spell]]] = {
+    if(characterClass.isCleric)
+      spellRepository.get(Some("cleric"), alignment).map(_.groupBy(_.cleric.get))
+    else if (characterClass.isMagicUser)
+      spellRepository.get(Some("magicUser"), alignment).map(_.groupBy(_.magicUser.get))
+    else
+      Future.successful(Map.empty)
+  }
 
-  def getSpells(characterClass: CharacterClass, characterLevel: Int, characterAlignment: CharacterAlignment): Seq[String] = {
-    if (characterClass.isMagicUser) {
-      val spellsForAlignment = characterAlignment match {
-        case Lawful => GoodMagicUserSpells
-        case Neutral => KnownMagicUserSpells
-        case Chaotic => EvilMagicUserSpells
-      }
-      (1 to 6).map(i => getRandomSpells(magicUserSpellsPerLevel(characterLevel)(i-1), spellsForAlignment(i)))
-    } else if (characterClass.isCleric) {
-      val spellsForAlignment = characterAlignment match {
-        case Lawful => GoodClericSpells
-        case Neutral => KnownClericSpells
-        case Chaotic => EvilClericSpells
-      }
-      (1 to 6).map(i =>  getRandomSpells(clericSpellsPerLevel(characterLevel)(i-1),  spellsForAlignment(i)))
-    } else {
-      Seq("0", "0", "0", "0", "0", "0")
+  lazy val EvilClericSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(CharacterClasses.Cleric, Some("dark"))
+  lazy val EvilMagicUserSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(CharacterClasses.MagicUser, Some("dark"))
+  lazy val GoodClericSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(CharacterClasses.Cleric, Some("light"))
+  lazy val GoodMagicUserSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(CharacterClasses.MagicUser, Some("light"))
+  lazy val KnownClericSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(CharacterClasses.Cleric, None)
+  lazy val KnownMagicUserSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(CharacterClasses.MagicUser, None)
+
+  def getSpells(characterClass: CharacterClass, characterLevel: Int, characterAlignment: CharacterAlignment): Future[Map[Int, Seq[Spell]]] = {
+
+    val (spellsForAlignmentF: Future[Map[Int, Seq[Spell]]], spellsPerCharacterLevel: Map[Int, Seq[Int]]) =
+      if (characterClass.isMagicUser) {
+        val spells = characterAlignment match {
+          case Lawful => GoodMagicUserSpells
+          case Neutral => KnownMagicUserSpells
+          case Chaotic => EvilMagicUserSpells
+        }
+        (spells, magicUserSpellsPerLevel)
+      } else if (characterClass.isCleric) {
+        val spells = characterAlignment match {
+          case Lawful => GoodClericSpells
+          case Neutral => KnownClericSpells
+          case Chaotic => EvilClericSpells
+        }
+        (spells, clericSpellsPerLevel)
+      } else {
+        (Future.successful(Map.empty), Seq.empty)
     }
+
+    spellsForAlignmentF.map(spellsForAlignment => {
+      val spellsPerSpellLevel: Seq[Int] = spellsPerCharacterLevel(characterLevel)
+      spellsForAlignment.map {
+        case (spellLevel: Int, possibleSpellsPerLevel: Seq[Spell]) => (spellLevel, getRandomSpells(spellsPerSpellLevel(spellLevel), possibleSpellsPerLevel))
+      }
+    })
   }
+
 
 }
