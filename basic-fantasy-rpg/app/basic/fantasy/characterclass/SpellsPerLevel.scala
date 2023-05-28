@@ -2,7 +2,7 @@ package basic.fantasy.characterclass
 
 import basic.fantasy.Roller
 import basic.fantasy.backgrounds.CharacterAlignments.{Chaotic, CharacterAlignment, Lawful, Neutral}
-import basic.fantasy.characterclass.CharacterClasses.CharacterClass
+import basic.fantasy.characterclass.CharacterClasses.{CharacterClass, Cleric, MagicUser}
 import models.Spell
 import repositories.SpellRepository
 
@@ -77,20 +77,55 @@ class SpellsPerLevel @Inject()(
   }
 
   def getSpellsFromDb(characterClass: CharacterClass, alignment: Option[String]): Future[Map[Int, Seq[Spell]]] = {
-    if(characterClass.isCleric)
-      spellRepository.get(Some("cleric"), alignment).map(_.groupBy(_.cleric.get))
-    else if (characterClass.isMagicUser)
-      spellRepository.get(Some("magicUser"), alignment).map(_.groupBy(_.magicUser.get))
+    if(characterClass.isCleric) {
+      val firstF = spellRepository.get(cleric = Some(1), alignment = alignment)
+      val secondF = spellRepository.get(cleric = Some(2), alignment = alignment)
+      val thirdF = spellRepository.get(cleric = Some(3), alignment = alignment)
+      val fourthF = spellRepository.get(cleric = Some(4), alignment = alignment)
+      val fifthF = spellRepository.get(cleric = Some(5), alignment = alignment)
+      val sixthF = spellRepository.get(cleric = Some(6), alignment = alignment)
+
+      for {
+        first <- firstF
+        second <- secondF
+        third <- thirdF
+        fourth <- fourthF
+        fifth <- fifthF
+        sixth <- sixthF
+      } yield {
+        Map(1 -> first, 2 -> second, 3 -> third, 4 -> fourth, 5 -> fifth, 6 -> sixth)
+      }
+
+
+    } else if (characterClass.isMagicUser) {
+      val firstF = spellRepository.get(magicUser = Some(1), alignment = alignment)
+      val secondF = spellRepository.get(magicUser = Some(2), alignment = alignment)
+      val thirdF = spellRepository.get(magicUser = Some(3), alignment = alignment)
+      val fourthF = spellRepository.get(magicUser = Some(4), alignment = alignment)
+      val fifthF = spellRepository.get(magicUser = Some(5), alignment = alignment)
+      val sixthF = spellRepository.get(magicUser = Some(6), alignment = alignment)
+
+      for {
+        first <- firstF
+        second <- secondF
+        third <- thirdF
+        fourth <- fourthF
+        fifth <- fifthF
+        sixth <- sixthF
+      } yield {
+        Map(1 -> first, 2 -> second, 3 -> third, 4 -> fourth, 5 -> fifth, 6 -> sixth)
+      }
+    }
     else
       Future.successful(Map.empty)
   }
 
-  lazy val EvilClericSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(CharacterClasses.Cleric, Some("dark"))
-  lazy val EvilMagicUserSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(CharacterClasses.MagicUser, Some("dark"))
-  lazy val GoodClericSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(CharacterClasses.Cleric, Some("light"))
-  lazy val GoodMagicUserSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(CharacterClasses.MagicUser, Some("light"))
-  lazy val KnownClericSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(CharacterClasses.Cleric, None)
-  lazy val KnownMagicUserSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(CharacterClasses.MagicUser, None)
+  private lazy val EvilClericSpells: Future[Map[Int, Seq[Spell]]]     = getSpellsFromDb(Cleric, Some("dark"))
+  private lazy val EvilMagicUserSpells: Future[Map[Int, Seq[Spell]]]  = getSpellsFromDb(MagicUser, Some("dark"))
+  private lazy val GoodClericSpells: Future[Map[Int, Seq[Spell]]]     = getSpellsFromDb(Cleric, Some("light"))
+  private lazy val GoodMagicUserSpells: Future[Map[Int, Seq[Spell]]]  = getSpellsFromDb(MagicUser, Some("light"))
+  private lazy val KnownClericSpells: Future[Map[Int, Seq[Spell]]]    = getSpellsFromDb(Cleric, None)
+  private lazy val KnownMagicUserSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(MagicUser, None)
 
   def getSpells(characterClass: CharacterClass, characterLevel: Int, characterAlignment: CharacterAlignment): Future[Map[Int, Seq[Spell]]] = {
 
@@ -116,7 +151,7 @@ class SpellsPerLevel @Inject()(
     spellsForAlignmentF.map(spellsForAlignment => {
       val spellsPerSpellLevel: Seq[Int] = spellsPerCharacterLevel(characterLevel)
       spellsForAlignment.map {
-        case (spellLevel: Int, possibleSpellsPerLevel: Seq[Spell]) => (spellLevel, getRandomSpells(spellsPerSpellLevel(spellLevel), possibleSpellsPerLevel))
+        case (spellLevel: Int, possibleSpellsPerLevel: Seq[Spell]) => (spellLevel, getRandomSpells(spellsPerSpellLevel(spellLevel-1), possibleSpellsPerLevel))
       }
     })
   }

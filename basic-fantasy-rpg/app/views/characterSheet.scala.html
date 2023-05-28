@@ -1,0 +1,54 @@
+@(spells: Seq[Spell])(implicit request: MessagesRequestHeader)
+
+@main("Character Sheet") {
+    <h1>TBD</h1>
+
+    @for(s <- spells) {
+        <div style="float: left; width: 20%; border: 1px solid #000000">
+            Name:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @s.name
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000;">
+            Range:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @s.range
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000;">
+            Cleric:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @s.cleric.getOrElse("n/a")
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000;">
+            Magic User:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @s.magicUser.getOrElse("n/a")
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000;">
+            Duration:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @s.duration
+        </div>
+        <div style="float: left; width: 20%;">
+            Description:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @s.description
+        </div>
+        <div style="float: left; width: 20%;">
+            Alignment:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @s.alignment
+        </div>
+        <div style="float: left; width: 100%; border: 1px solid #000000;">
+            <hr>
+        </div>
+    }
+
+}
