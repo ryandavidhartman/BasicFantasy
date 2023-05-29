@@ -1,6 +1,8 @@
 package controllers
 
 import basic.fantasy.backgrounds.CharacterAlignments
+import basic.fantasy.backgrounds.CharacterAlignments.stringToCharacterAlignment
+import basic.fantasy.characterclass.CharacterClasses.stringToCharacterClass
 import basic.fantasy.characterclass.{CharacterClasses, SpellsPerLevel}
 import models.Spell
 import play.api.mvc.{Action, AnyContent, MessagesAbstractController, MessagesControllerComponents, MessagesRequest}
@@ -17,9 +19,13 @@ class CharacterSheetController @Inject()(
                                  controllerComponents: MessagesControllerComponents)
   extends MessagesAbstractController(controllerComponents) {
 
-  def getCharacter(level: Option[Int]): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
-    val knownSpells: Future[Map[Int, Seq[Spell]]] = spellsPerLevel.getSpells(CharacterClasses.MagicUser, level.getOrElse(1), CharacterAlignments.Lawful)
-    knownSpells.map(spells => Ok(views.html.characterSheet(spells(1).sortBy(_.name))))
+  private val baseSpellURL = "http://localhost:9000/spells"
+  def getCharacter(characterClass: Option[String], race: Option[String], alignment: Option[String], level: Option[Int]): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    val lvl = level.getOrElse(1)
+    val cc = stringToCharacterClass(characterClass.getOrElse("fighter"))
+    val align = stringToCharacterAlignment(alignment.getOrElse("lawful"))
+    val knownSpells: Future[Map[Int, Seq[Spell]]] = spellsPerLevel.getSpells(cc, lvl, align)
+    knownSpells.map(spells => Ok(views.html.characterSheet(spells, baseSpellURL)))
 
   }
 

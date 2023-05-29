@@ -87,14 +87,14 @@ object CharacterClasses {
 
   case class InvalidCharacterClassException(msg: String) extends Exception(msg)
 
-  def stringToCharacterClass(characterClass: String): CharacterClass = characterClass match {
-    case "Cleric" => Cleric
-    case "Fighter" => Fighter
-    case "Fighter/Magic-User" => FighterMagicUser
-    case "Magic-User" => MagicUser
-    case "Magic-User/Thief" => MagicUserThief
-    case "Monk" => Monk
-    case "Thief" => Thief
+  def stringToCharacterClass(characterClass: String): CharacterClass = characterClass.toLowerCase match {
+    case "cleric" => Cleric
+    case "fighter" => Fighter
+    case "fighter/magic-user" => FighterMagicUser
+    case "magic-user" => MagicUser
+    case "magic-user/thief" => MagicUserThief
+    case "monk" => Monk
+    case "thief" => Thief
     case _ => throw InvalidCharacterClassException(s"Invalid character class: $characterClass")
   }
 

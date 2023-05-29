@@ -10,7 +10,7 @@ GET     /                      controllers.HomeController.index()
 GET     /assets/*file          controllers.Assets.versioned(path="/public", file: Asset)
 
 # character sheet ui routing
-GET     /character             controllers.CharacterSheetController.getCharacter(level: Option[Int])
+GET     /character             controllers.CharacterSheetController.getCharacter(characterClass: Option[String], race: Option[String], alignment: Option[String], level: Option[Int])
 
 
 # spell ui routing

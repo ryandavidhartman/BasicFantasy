@@ -10,10 +10,10 @@ object CharacterAlignments {
   case object Neutral extends CharacterAlignment
   case object Chaotic extends CharacterAlignment
 
-  def stringToCharacterAlignment(alignment: String): CharacterAlignment = alignment match {
-    case "Lawful" => Lawful
-    case "Neutral" => Neutral
-    case "Chaotic" => Chaotic
+  def stringToCharacterAlignment(alignment: String): CharacterAlignment = alignment.toLowerCase match {
+    case "lawful" => Lawful
+    case "neutral" => Neutral
+    case "chaotic" => Chaotic
     case _ => throw InvalidAlignmentException(s"Invalid character alignment: $alignment")
   }
 

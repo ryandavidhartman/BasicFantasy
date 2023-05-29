@@ -128,6 +128,13 @@ class SpellsPerLevel @Inject()(
   private lazy val KnownMagicUserSpells: Future[Map[Int, Seq[Spell]]] = getSpellsFromDb(MagicUser, None)
 
   def getSpells(characterClass: CharacterClass, characterLevel: Int, characterAlignment: CharacterAlignment): Future[Map[Int, Seq[Spell]]] = {
+    if(characterClass.isSpellCaster)
+      getForCastersSpells(characterClass, characterLevel, characterAlignment)
+    else
+      Future.successful(Map.empty[Int, Seq[Spell]])
+  }
+
+  private def getForCastersSpells(characterClass: CharacterClass, characterLevel: Int, characterAlignment: CharacterAlignment): Future[Map[Int, Seq[Spell]]] = {
 
     val (spellsForAlignmentF: Future[Map[Int, Seq[Spell]]], spellsPerCharacterLevel: Map[Int, Seq[Int]]) =
       if (characterClass.isMagicUser) {
@@ -146,12 +153,12 @@ class SpellsPerLevel @Inject()(
         (spells, clericSpellsPerLevel)
       } else {
         (Future.successful(Map.empty), Seq.empty)
-    }
+      }
 
     spellsForAlignmentF.map(spellsForAlignment => {
       val spellsPerSpellLevel: Seq[Int] = spellsPerCharacterLevel(characterLevel)
       spellsForAlignment.map {
-        case (spellLevel: Int, possibleSpellsPerLevel: Seq[Spell]) => (spellLevel, getRandomSpells(spellsPerSpellLevel(spellLevel-1), possibleSpellsPerLevel))
+        case (spellLevel: Int, possibleSpellsPerLevel: Seq[Spell]) => (spellLevel, getRandomSpells(spellsPerSpellLevel(spellLevel - 1), possibleSpellsPerLevel))
       }
     })
   }
