@@ -13,10 +13,10 @@ import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class CharacterSheetController @Inject()(
-                                 implicit executionContext: ExecutionContext,
-                                 val spellRepository: SpellRepository,
-                                 val spellsPerLevel: SpellsPerLevel,
-                                 controllerComponents: MessagesControllerComponents)
+                                          implicit executionContext: ExecutionContext,
+                                          val spellRepository: SpellRepository,
+                                          val spellsPerLevel: SpellsPerLevel,
+                                          controllerComponents: MessagesControllerComponents)
   extends MessagesAbstractController(controllerComponents) {
 
   private val baseSpellURL = "http://localhost:9000/spells"
@@ -26,7 +26,6 @@ class CharacterSheetController @Inject()(
     val align = stringToCharacterAlignment(alignment.getOrElse("lawful"))
     val knownSpells: Future[Map[Int, Seq[Spell]]] = spellsPerLevel.getSpells(cc, lvl, align)
     knownSpells.map(spells => Ok(views.html.characterSheet(cc, spells, baseSpellURL)))
-
   }
 
-  }
+}

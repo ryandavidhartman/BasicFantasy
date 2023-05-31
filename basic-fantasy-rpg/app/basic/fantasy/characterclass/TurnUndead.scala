@@ -2,7 +2,7 @@ package basic.fantasy.characterclass
 
 object TurnUndead {
 
-  val turns = Map(
+  val turns = Map[Int, String](
     //     01    02    03    04    05    06    07    08    09 Monster Hit Dice
     0 -> Seq("0", "0", "0", "0", "0", "0", "0", "0", "0"),
     1 -> Seq("13", "17", "19", "No", "No", "No", "No", "No", "No"),
