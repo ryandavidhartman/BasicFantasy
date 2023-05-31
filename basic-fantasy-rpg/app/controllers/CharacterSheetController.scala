@@ -25,7 +25,7 @@ class CharacterSheetController @Inject()(
     val cc = stringToCharacterClass(characterClass.getOrElse("fighter"))
     val align = stringToCharacterAlignment(alignment.getOrElse("lawful"))
     val knownSpells: Future[Map[Int, Seq[Spell]]] = spellsPerLevel.getSpells(cc, lvl, align)
-    knownSpells.map(spells => Ok(views.html.characterSheet(spells, baseSpellURL)))
+    knownSpells.map(spells => Ok(views.html.characterSheet(cc, spells, baseSpellURL)))
 
   }
 
