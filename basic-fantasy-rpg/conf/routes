@@ -34,3 +34,7 @@ GET    /names                  controllers.NameController.getNamesPage(name: Opt
 GET   /v1/api/names            controllers.NameController.get(name: Option[String],firstName: Option[Boolean], lastName: Option[Boolean], gender: Option[String], race: Option[String])
 POST  /v1/api/names            controllers.NameController.create()
 POST  /v1/api/names/bulk       controllers.NameController.createBulk()
+
+# personality
+POST /v1/api/personality        controllers.PersonalityController.create()
+POST /v1/api/personalities/bulk controllers.PersonalityController.createBulk()
