@@ -2,7 +2,8 @@
 
 @(characterClass: CharacterClass,
   spells: Map[Int,Seq[Spell]],
-  baseSpellUrl: String)(implicit request: MessagesRequestHeader)
+  baseSpellUrl: String,
+  personality: String)(implicit request: MessagesRequestHeader)
 
 @main("Character Sheet") {
 <table class="callout">
@@ -97,7 +98,7 @@
     </div>
     <div class="large-5 medium-5 cell">
         Personality
-        <input type="text" id="character_personality_input" name="character_personality_input">
+        <input type="text" id="character_personality_input" name="character_personality_input" value="@personality">
     </div>
     <div class="large-2 medium-4 cell">
         Strength

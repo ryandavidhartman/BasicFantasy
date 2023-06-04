@@ -1,16 +1,6 @@
 package basic.fantasy.backgrounds
 
 object Races {
-
-  /*
-   • +4 vs. Death Ray or Poison
-• +4 vs. Magic Wands
-• +4 vs. Paralysis or Petrify
-• +3 vs. Dragon Breath
-• +4 vs. Spells
-
-   */
-
   case class SavingsThrowBonuses(
    deathRayOrPoison: Int,
    magicWands: Int,
@@ -18,7 +8,6 @@ object Races {
    breathWeapons: Int,
    spells: Int
   )
-
   sealed trait Race {
     val weapons: Seq[String] = Seq.empty[String]
     val getAbilities: Seq[String]
@@ -40,11 +29,9 @@ object Races {
         (80, 195)
     }
   }
-
   case object Human extends Race {
     override val getAbilities: Seq[String] = Seq("+10% Bonus on Earned XP")
   }
-
   case object Elf extends Race {
     override val getAbilities: Seq[String] = Seq(
       "Darkvision with a 60' range",
@@ -55,7 +42,6 @@ object Races {
     )
     override val savingsThrowBonuses: SavingsThrowBonuses = SavingsThrowBonuses(0, 2, 1, 0, 2)
   }
-
   case object Dwarf extends Race {
     override val weapons = Seq(
       "No 2-handed swords, pole-arms, or longbows"
@@ -68,7 +54,6 @@ object Races {
 
     override val savingsThrowBonuses: SavingsThrowBonuses = SavingsThrowBonuses(4, 4, 4, 3, 4)
   }
-
   case object Halfling extends Race {
     override val weapons: Seq[String] = Seq(
       "Must use medium weapons in two hands",
@@ -100,7 +85,6 @@ object Races {
 
     override val savingsThrowBonuses: SavingsThrowBonuses = SavingsThrowBonuses(4, 4, 4, 3, 4)
   }
-
   case object HalfElf extends Race {
     override val getAbilities: Seq[String] = Seq(
       "Darkvision with a 30' range",
@@ -110,7 +94,6 @@ object Races {
 
     override val savingsThrowBonuses: SavingsThrowBonuses = SavingsThrowBonuses(0, 1, 0, 0, 1)
   }
-
   case object HalfOrc extends Race {
     override val getAbilities: Seq[String] = Seq(
       "+5% on all earned experience.",
@@ -120,7 +103,6 @@ object Races {
 
     override val savingsThrowBonuses: SavingsThrowBonuses = SavingsThrowBonuses(1, 0, 0, 0, 0)
   }
-
   def stringToRace(race: String): Race = race match {
     case "Human" => Human
     case "Elf" => Elf
@@ -130,6 +112,5 @@ object Races {
     case "HalfOrc" => HalfOrc
     case _ => throw InvalidRaceException(s"Invalid character race: $race")
   }
-
   case class InvalidRaceException(msg: String) extends Exception(msg)
 }

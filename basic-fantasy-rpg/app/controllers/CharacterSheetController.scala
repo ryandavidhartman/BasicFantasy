@@ -1,6 +1,6 @@
 package controllers
 
-import basic.fantasy.backgrounds.CharacterAlignments
+import basic.fantasy.backgrounds.{CharacterAlignments, PersonalityGenerator}
 import basic.fantasy.backgrounds.CharacterAlignments.stringToCharacterAlignment
 import basic.fantasy.characterclass.CharacterClasses.stringToCharacterClass
 import basic.fantasy.characterclass.{CharacterClasses, SpellsPerLevel}
@@ -16,6 +16,7 @@ class CharacterSheetController @Inject()(
                                           implicit executionContext: ExecutionContext,
                                           val spellRepository: SpellRepository,
                                           val spellsPerLevel: SpellsPerLevel,
+                                          val personalityGenerator: PersonalityGenerator,
                                           controllerComponents: MessagesControllerComponents)
   extends MessagesAbstractController(controllerComponents) {
 
@@ -24,8 +25,14 @@ class CharacterSheetController @Inject()(
     val lvl = level.getOrElse(1)
     val cc = stringToCharacterClass(characterClass.getOrElse("fighter"))
     val align = stringToCharacterAlignment(alignment.getOrElse("lawful"))
-    val knownSpells: Future[Map[Int, Seq[Spell]]] = spellsPerLevel.getSpells(cc, lvl, align)
-    knownSpells.map(spells => Ok(views.html.characterSheet(cc, spells, baseSpellURL)))
+
+    for {
+      knownSpells <- spellsPerLevel.getSpells(cc, lvl, align)
+      personality <- personalityGenerator.getPersonality(align)
+    } yield {
+      Ok(views.html.characterSheet(cc, knownSpells, baseSpellURL, personality))
+    }
+
   }
 
 }
