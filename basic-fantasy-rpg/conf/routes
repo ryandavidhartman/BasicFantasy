@@ -11,6 +11,8 @@ GET     /assets/*file          controllers.Assets.versioned(path="/public", file
 
 # character sheet ui routing
 GET     /character             controllers.CharacterSheetController.getCharacter(characterClass: Option[String], race: Option[String], alignment: Option[String], level: Option[Int])
+GET     /character/create      controllers.CharacterSheetController.createCharacterSheetPage()
+POST    /character/create      controllers.CharacterSheetController.createCharacterSheet()
 
 
 # spell ui routing

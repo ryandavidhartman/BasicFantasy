@@ -36,7 +36,6 @@ object Spell {
       )
     }
   }
-
   implicit object bsonReader extends BSONDocumentReader[Spell] {
     override def readDocument(doc: BSONDocument): Try[Spell] = Try {
       Spell(

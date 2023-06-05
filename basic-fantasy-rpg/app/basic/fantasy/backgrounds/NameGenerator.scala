@@ -22,7 +22,7 @@ class NameGenerator  @Inject()(
     case HalfOrc => if (Roller.coinFLip()) getOrcishName(gender) else getHumanName(gender)
   }
 
-  def getHumanName(gender: String): Future[String] = {
+  private def getHumanName(gender: String): Future[String] = {
     for {
       surName <- genericNameGetter(HumanSurnames)
       firstName <- if(gender.toLowerCase == "male") genericNameGetter(HumanMaleFirstNames) else genericNameGetter(HumanFemaleFirstNames)
@@ -31,7 +31,7 @@ class NameGenerator  @Inject()(
     }
   }
 
-  def getElvenName(gender: String): Future[String] = {
+  private def getElvenName(gender: String): Future[String] = {
     for {
       surName <- genericNameGetter(ElvenSurnames)
       firstName <- if (gender.toLowerCase == "male") genericNameGetter(ElvenMaleFirstNames) else genericNameGetter(ElvenFemaleFirstNames)
@@ -40,7 +40,7 @@ class NameGenerator  @Inject()(
     }
   }
 
-  def getDwarvenName(gender: String): Future[String] = {
+  private def getDwarvenName(gender: String): Future[String] = {
     for {
       surName <- genericNameGetter(DwarvenSurnames)
       firstName <- if (gender.toLowerCase == "male") genericNameGetter(DwarvenMaleFirstNames) else genericNameGetter(DwarvenFemaleFirstNames)
@@ -49,7 +49,7 @@ class NameGenerator  @Inject()(
     }
   }
 
-  def getHalflingName(gender: String): Future[String] = {
+  private def getHalflingName(gender: String): Future[String] = {
     for {
       surName <- genericNameGetter(HalflingSurnames)
       firstName <- if (gender.toLowerCase == "male") genericNameGetter(HalflingMaleFirstNames) else genericNameGetter(HalflingFemaleFirstNames)
@@ -58,14 +58,14 @@ class NameGenerator  @Inject()(
     }
   }
 
-  def getOrcishName(gender: String): Future[String] = {
+  private def getOrcishName(gender: String): Future[String] = {
     if (gender.toLowerCase == "male")
       genericNameGetter(OrcishMaleNames)
     else
       genericNameGetter(OrcishFemaleNames)
   }
 
-  def genericNameGetter(names: Future[Seq[String]]): Future[String] = {
+  private def genericNameGetter(names: Future[Seq[String]]): Future[String] = {
     names.map(n => {
       val count = n.length
       n(Roller.randomInt(count))
