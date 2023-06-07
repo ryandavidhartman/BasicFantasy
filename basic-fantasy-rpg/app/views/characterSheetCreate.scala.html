@@ -1,4 +1,4 @@
-@(form: Form[CharacterSheet], postUrl: Call)(implicit request: MessagesRequestHeader)
+@(form: Form[CharacterSheet], postUrl: Call, getRandomName: Call)(implicit request: MessagesRequestHeader)
 
 @main("Create a new Character") {
     <h1>Make a new Character</h1>
@@ -12,10 +12,9 @@
         }
     }
 
-    @helper.form(postUrl) {
+    @helper.form(getRandomName) {
         @helper.CSRF.formField
-
         @helper.inputText(form("name"))
-        <button>Create Character</button>
+        <input type="submit" value="Get Name">
     }
 }

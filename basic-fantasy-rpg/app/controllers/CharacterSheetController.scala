@@ -24,10 +24,10 @@ class CharacterSheetController @Inject()(
   extends MessagesAbstractController(controllerComponents) {
 
   private val createCharacterSheetCall = routes.CharacterSheetController.createCharacterSheet()
-
+  private val getRandomNameCall = routes.CharacterSheetController.getRandomName()
 
   def createCharacterSheetPage(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
-    Ok(views.html.characterSheetCreate(characterSheetForm, createCharacterSheetCall))
+    Ok(views.html.characterSheetCreate(characterSheetForm, createCharacterSheetCall, getRandomNameCall ))
   }
 
   def createCharacterSheet(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
@@ -37,7 +37,7 @@ class CharacterSheetController @Inject()(
       // Let's show the user the form again, with the errors highlighted.
       // Note how we pass the form with errors to the template.
       println(formWithErrors.errors.mkString(";"))
-      BadRequest(views.html.characterSheetCreate(formWithErrors, createCharacterSheetCall))
+      BadRequest(views.html.characterSheetCreate(formWithErrors, createCharacterSheetCall, getRandomNameCall ))
     }
 
     val successFunction = { characterSheet: CharacterSheet =>
@@ -53,6 +53,19 @@ class CharacterSheetController @Inject()(
 
 
 
+  // Button Handlers
+  def getRandomName(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
+    val formValidationResult = characterSheetForm.bindFromRequest()
+    formValidationResult.value match {
+      case Some(form) => Ok(views.html.characterSheetCreate(characterSheetForm.fill(form.copy(name  = "bob")), createCharacterSheetCall, getRandomNameCall ))
+      case None => Ok(views.html.characterSheetCreate(characterSheetForm, createCharacterSheetCall, getRandomNameCall ))
+    }
+  }
+
+
+  /*
+  Some garbage stuff
+   */
   private val baseSpellURL = "http://localhost:9000/spells"
   def getCharacter(characterClass: Option[String], race: Option[String], alignment: Option[String], level: Option[Int]): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     val lvl = level.getOrElse(1)

@@ -13,6 +13,7 @@ GET     /assets/*file          controllers.Assets.versioned(path="/public", file
 GET     /character             controllers.CharacterSheetController.getCharacter(characterClass: Option[String], race: Option[String], alignment: Option[String], level: Option[Int])
 GET     /character/create      controllers.CharacterSheetController.createCharacterSheetPage()
 POST    /character/create      controllers.CharacterSheetController.createCharacterSheet()
+POST    /character/name        controllers.CharacterSheetController.getRandomName()
 
 
 # spell ui routing
