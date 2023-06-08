@@ -14,7 +14,15 @@
 
     @helper.form(getRandomName) {
         @helper.CSRF.formField
-        @helper.inputText(form("name"))
-        <input type="submit" value="Get Name">
+        <table class="callout">
+            <tr>
+                <td align="Left">
+                    @helper.inputText(form("name"))
+                </td>
+                <td>
+                    <input type="submit" class="button noprint" value="Roll Name">
+                </td>
+            </tr>
+        </table>
     }
 }

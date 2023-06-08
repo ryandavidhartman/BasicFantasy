@@ -91,7 +91,6 @@ object Races {
       "Able to find secret doors on a 1-2 on 1d6, when searching",
       "+5% on all earned experience, except for multiclass."
     )
-
     override val savingsThrowBonuses: SavingsThrowBonuses = SavingsThrowBonuses(0, 1, 0, 0, 1)
   }
   case object HalfOrc extends Race {
@@ -100,7 +99,6 @@ object Races {
       "Darkvision with a 60' range",
       "When dealing with humanoids of Human-size or smaller, a Half-Orc gains an additional +1 on any reaction"
     )
-
     override val savingsThrowBonuses: SavingsThrowBonuses = SavingsThrowBonuses(1, 0, 0, 0, 0)
   }
   def stringToRace(race: String): Race = race match {
@@ -113,4 +111,6 @@ object Races {
     case _ => throw InvalidRaceException(s"Invalid character race: $race")
   }
   case class InvalidRaceException(msg: String) extends Exception(msg)
+
+  val All_RACES: Seq[String] = Seq("Human", "Elf", "Dwarf", "Halfling", "HalfElf", "HalfOrc")
 }

@@ -1,27 +1,27 @@
 package controllers
 
-import basic.fantasy.backgrounds.{CharacterAlignments, PersonalityGenerator}
 import basic.fantasy.backgrounds.CharacterAlignments.stringToCharacterAlignment
+import basic.fantasy.backgrounds.{NameGenerator, PersonalityGenerator, Races}
 import basic.fantasy.characterclass.CharacterClasses.stringToCharacterClass
-import basic.fantasy.characterclass.{CharacterClasses, SpellsPerLevel}
+import basic.fantasy.characterclass.SpellsPerLevel
 import controllers.CharacterSheetForm.characterSheetForm
-import models.{CharacterSheet, Spell}
+import models.CharacterSheet
 import play.api.data.Form
-import play.api.mvc.{Action, AnyContent, MessagesAbstractController, MessagesControllerComponents, MessagesRequest}
+import play.api.mvc._
 import repositories.{CharacterSheetRepository, SpellRepository}
 
 import javax.inject.{Inject, Singleton}
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.ExecutionContext
 
 @Singleton
 class CharacterSheetController @Inject()(
-                                          implicit executionContext: ExecutionContext,
-                                          val spellRepository: SpellRepository,
-                                          val spellsPerLevel: SpellsPerLevel,
-                                          val personalityGenerator: PersonalityGenerator,
-                                          val characterSheetRepository: CharacterSheetRepository,
-                                          controllerComponents: MessagesControllerComponents)
-  extends MessagesAbstractController(controllerComponents) {
+  implicit executionContext: ExecutionContext,
+  val spellRepository: SpellRepository,
+  val spellsPerLevel: SpellsPerLevel,
+  val personalityGenerator: PersonalityGenerator,
+  val nameGenerator: NameGenerator,
+  val characterSheetRepository: CharacterSheetRepository,
+  controllerComponents: MessagesControllerComponents) extends MessagesAbstractController(controllerComponents) {
 
   private val createCharacterSheetCall = routes.CharacterSheetController.createCharacterSheet()
   private val getRandomNameCall = routes.CharacterSheetController.getRandomName()
@@ -54,11 +54,15 @@ class CharacterSheetController @Inject()(
 
 
   // Button Handlers
-  def getRandomName(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
+  def getRandomName(): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     val formValidationResult = characterSheetForm.bindFromRequest()
-    formValidationResult.value match {
-      case Some(form) => Ok(views.html.characterSheetCreate(characterSheetForm.fill(form.copy(name  = "bob")), createCharacterSheetCall, getRandomNameCall ))
-      case None => Ok(views.html.characterSheetCreate(characterSheetForm, createCharacterSheetCall, getRandomNameCall ))
+    nameGenerator.getName(Races.Human, "male").map { randomName =>
+      formValidationResult.value match {
+        case Some(form) => Ok(views.html.characterSheetCreate(characterSheetForm.fill(form.copy(name = randomName)), createCharacterSheetCall, getRandomNameCall))
+        case None =>
+          val newCharacterSheet: CharacterSheet = ???
+          Ok(views.html.characterSheetCreate(characterSheetForm.fill(newCharacterSheet), createCharacterSheetCall, getRandomNameCall))
+      }
     }
   }
 

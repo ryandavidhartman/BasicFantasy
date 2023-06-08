@@ -11,7 +11,7 @@ import scala.util.Try
 case class CharacterSheet(
   _id: Option[BSONObjectID],
   name: String,
-  //characterAttributes: Option[CharacterAttributes],
+  characterAttributes: Option[CharacterAttributes],
   //combat: Option[Combat],
   //savingsThrows: Option[SavingsThrows],
   //abilitiesRestrictions: Option[Seq[String]],
@@ -38,12 +38,12 @@ object CharacterSheet {
       )
     }
   }
-
   implicit object bsonReader extends BSONDocumentReader[CharacterSheet] {
     override def readDocument(doc: BSONDocument): Try[CharacterSheet] = Try {
       CharacterSheet(
         _id = doc.getAsOpt[BSONObjectID]("_id"),
         name = doc.getAsOpt[String]("name").getOrElse("unknown"),
+        characterAttributes = doc.getAsOpt[CharacterAttributes]("characterAttributes")
       )
     }
   }
