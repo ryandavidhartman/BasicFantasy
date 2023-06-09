@@ -14,6 +14,7 @@ GET     /character             controllers.CharacterSheetController.getCharacter
 GET     /character/create      controllers.CharacterSheetController.createCharacterSheetPage()
 POST    /character/create      controllers.CharacterSheetController.createCharacterSheet()
 POST    /character/name        controllers.CharacterSheetController.getRandomName()
+POST    /character/attributes  controllers.CharacterSheetController.getRandomAttributes()
 
 
 # spell ui routing

@@ -48,12 +48,28 @@ object CharacterAttributes {
     "charisma" -> optional(number).verifying("Invalid Cha", value => value.forall(num => num >= 3 && num <= 18))
   )(CharacterAttributes.apply)(CharacterAttributes.unapply)
 
+  val default = CharacterAttributes(
+    race = Some("Human"),
+    characterClass = Some("Fighter"),
+    level = Some(1),
+    gender = Some("Male"),
+    height = Some("""5' 10""""),
+    weight = Some(170),
+    age = Some(25),
+    alignment = Some("Lawful"),
+    personality = Some("peppy/steppy"),
+    strength = Some(12),
+    dexterity = Some(12),
+    constitution = Some(12),
+    intelligence = Some(12),
+    wisdom = Some(12),
+    charisma = Some(12)
+  )
 
   import reactivemongo.play.json.compat._
   import bson2json._
   import json2bson._
   import lax._
-
   implicit object bsonWriter extends BSONDocumentWriter[CharacterAttributes] {
     override def writeTry(characterAttributes: CharacterAttributes): Try[BSONDocument] = Try {
       BSONDocument(

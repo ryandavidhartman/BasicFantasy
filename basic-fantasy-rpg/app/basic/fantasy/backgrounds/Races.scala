@@ -1,5 +1,7 @@
 package basic.fantasy.backgrounds
 
+import basic.fantasy.Roller
+
 object Races {
   case class SavingsThrowBonuses(
    deathRayOrPoison: Int,
@@ -101,16 +103,27 @@ object Races {
     )
     override val savingsThrowBonuses: SavingsThrowBonuses = SavingsThrowBonuses(1, 0, 0, 0, 0)
   }
-  def stringToRace(race: String): Race = race match {
-    case "Human" => Human
-    case "Elf" => Elf
-    case "Dwarf" => Dwarf
-    case "Halfling" => Halfling
-    case "HalfElf" => HalfElf
-    case "HalfOrc" => HalfOrc
+  def stringToRace(race: String): Race = race.toLowerCase.replace(" ", "").replace("-", "") match {
+    case "human" => Human
+    case "elf" => Elf
+    case "dwarf" => Dwarf
+    case "halfling" => Halfling
+    case "halfelf" => HalfElf
+    case "halforc" => HalfOrc
     case _ => throw InvalidRaceException(s"Invalid character race: $race")
   }
   case class InvalidRaceException(msg: String) extends Exception(msg)
 
-  val All_RACES: Seq[String] = Seq("Human", "Elf", "Dwarf", "Halfling", "HalfElf", "HalfOrc")
+  val All_RACES: Seq[String] = Seq("Human", "Elf", "Dwarf", "Halfling", "Half-Elf", "Half-Orc")
+
+  def getRandomRaceString(): String = {
+    Roller.randomInt(100) match {
+      case r if r < 40 => "Human"
+      case r if r < 60 => "Elf"
+      case r if r < 80 => "Dwarf"
+      case r if r < 86 => "Halfling"
+      case r if r < 96 => "Half-Elf"
+      case _ => "Half-Orc"
+    }
+  }
 }

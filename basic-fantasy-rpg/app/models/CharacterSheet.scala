@@ -11,7 +11,7 @@ import scala.util.Try
 case class CharacterSheet(
   _id: Option[BSONObjectID],
   name: String,
-  characterAttributes: Option[CharacterAttributes],
+  attributes: Option[CharacterAttributes]
   //combat: Option[Combat],
   //savingsThrows: Option[SavingsThrows],
   //abilitiesRestrictions: Option[Seq[String]],
@@ -43,7 +43,7 @@ object CharacterSheet {
       CharacterSheet(
         _id = doc.getAsOpt[BSONObjectID]("_id"),
         name = doc.getAsOpt[String]("name").getOrElse("unknown"),
-        characterAttributes = doc.getAsOpt[CharacterAttributes]("characterAttributes")
+        attributes = doc.getAsOpt[CharacterAttributes]("characterAttributes")
       )
     }
   }

@@ -5,7 +5,7 @@ import basic.fantasy.backgrounds.{NameGenerator, PersonalityGenerator, Races}
 import basic.fantasy.characterclass.CharacterClasses.stringToCharacterClass
 import basic.fantasy.characterclass.SpellsPerLevel
 import controllers.CharacterSheetForm.characterSheetForm
-import models.CharacterSheet
+import models.{CharacterAttributes, CharacterSheet}
 import play.api.data.Form
 import play.api.mvc._
 import repositories.{CharacterSheetRepository, SpellRepository}
@@ -23,11 +23,14 @@ class CharacterSheetController @Inject()(
   val characterSheetRepository: CharacterSheetRepository,
   controllerComponents: MessagesControllerComponents) extends MessagesAbstractController(controllerComponents) {
 
-  private val createCharacterSheetCall = routes.CharacterSheetController.createCharacterSheet()
-  private val getRandomNameCall = routes.CharacterSheetController.getRandomName()
+  private val apiRoutes: Map[String, Call] = Map(
+    "getRandomName" -> routes.CharacterSheetController.getRandomName(),
+    "getRandomAttributes" -> routes.CharacterSheetController.getRandomAttributes(),
+    "createCharacterSheet" -> routes.CharacterSheetController.createCharacterSheet()
+  )
 
   def createCharacterSheetPage(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
-    Ok(views.html.characterSheetCreate(characterSheetForm, createCharacterSheetCall, getRandomNameCall ))
+    Ok(views.html.characterSheetCreate(characterSheetForm, apiRoutes))
   }
 
   def createCharacterSheet(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
@@ -37,7 +40,7 @@ class CharacterSheetController @Inject()(
       // Let's show the user the form again, with the errors highlighted.
       // Note how we pass the form with errors to the template.
       println(formWithErrors.errors.mkString(";"))
-      BadRequest(views.html.characterSheetCreate(formWithErrors, createCharacterSheetCall, getRandomNameCall ))
+      BadRequest(views.html.characterSheetCreate(formWithErrors, apiRoutes))
     }
 
     val successFunction = { characterSheet: CharacterSheet =>
@@ -58,11 +61,28 @@ class CharacterSheetController @Inject()(
     val formValidationResult = characterSheetForm.bindFromRequest()
     nameGenerator.getName(Races.Human, "male").map { randomName =>
       formValidationResult.value match {
-        case Some(form) => Ok(views.html.characterSheetCreate(characterSheetForm.fill(form.copy(name = randomName)), createCharacterSheetCall, getRandomNameCall))
+        case Some(form) => Ok(views.html.characterSheetCreate(characterSheetForm.fill(form.copy(name = randomName)), apiRoutes))
         case None =>
-          val newCharacterSheet: CharacterSheet = ???
-          Ok(views.html.characterSheetCreate(characterSheetForm.fill(newCharacterSheet), createCharacterSheetCall, getRandomNameCall))
+          val newCharacterSheet: CharacterSheet = CharacterSheet(_id = None, name = randomName, attributes = Some(CharacterAttributes.default))
+          Ok(views.html.characterSheetCreate(characterSheetForm.fill(newCharacterSheet), apiRoutes))
       }
+    }
+  }
+
+  def getRandomAttributes(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
+    val formValidationResult = characterSheetForm.bindFromRequest()
+
+      formValidationResult.value match {
+        case Some(form) =>
+          throw new Exception("I HAVE A FORM!!!")
+          val randomRace = Races.getRandomRaceString()
+          val attributes: CharacterAttributes = CharacterAttributes.default.copy(race = Some(randomRace))
+          val newForm: CharacterSheet = form.copy(attributes = Some(attributes))
+          Ok(views.html.characterSheetCreate(characterSheetForm.fill(newForm), apiRoutes))
+        case None =>
+          throw new Exception("I HAVE NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO FORM!!!")
+          Ok(views.html.characterSheetCreate(characterSheetForm, apiRoutes))
+
     }
   }
 
