@@ -26,8 +26,11 @@ object ReactLogo extends js.Object
         img(src := ReactLogo.asInstanceOf[String], className := "App-logo", alt := "logo"),
         h1(className := "App-title")("Welcome to React (with Scala.js!)")
       ),
-      p(className := "App-intro")(
+      p(className := "App")(
         "To get started, edit ", code("App.scala"), " and save to reload."
+      ),
+      div()(
+        "help help"
       )
     )
   }
