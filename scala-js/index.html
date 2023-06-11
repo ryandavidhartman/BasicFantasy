@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Fantasy Character Generator</title>
+    <link rel="icon" type="image/ico" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<table class="callout">
+    <tr>
+        <td align="Right">
+            <h5>Name:</h5>
+        </td>
+        <td>
+            <input type="text" id="character_name_input" name="character_name_input" />
+        </td>
+        <td>
+            <input type="button" class="button noprint" id="roll_character_name" value="Roll Name" />
+        </td>
+    </tr>
+</table>
+
+<div class="grid-x grid-padding-x callout">
+    <div class="large-4 medium-4 cell">
+        <h5>Race</h5>
+        <select id="character_race_select">
+            <option value="Human" selected>Human</option>
+            <option value="Elf">Elf</option>
+            <option value="Dwarf">Dwarf</option>
+            <option value="Halfling">Halfling</option>
+            <option value="HalfOrc">Half-Orc</option>
+            <option value="HalfElf">Half-Elf</option>
+        </select>
+    </div>
+    <div class="large-4 medium-4 cell">
+        <h5>Class</h5>
+        <select id="character_class_select">
+            <option value="Fighter" selected>Fighter</option>
+            <option value="Magic-User">Magic-User</option>
+            <option value="Monk">Monk</option>
+            <option value="Thief">Thief</option>
+            <option value="Cleric">Cleric</option>
+            <option value="Fighter/Magic-User">Fighter/Magic-User</option>
+            <option value="Magic-User/Thief">Magic-User/Thief</option>
+        </select>
+    </div>
+    <div class="large-4 medium-4 cell">
+        <h5>Level</h5>
+        <select id="character_level_select">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+        </select>
+    </div>
+    <div class="large-2 medium-2 cell">
+        Gender
+        <select id="character_gender_select">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+    </div>
+    <div class="large-1 medium-1">
+        Height
+        <input type="text" id="character_height_input" name="character_height_input">
+    </div>
+    <div class="large-1 medium-1">
+        Weight
+        <input type="text" id="character_weight_input" name="character_weight_input" value="0">
+    </div>
+    <div class="large-1 medium-1">
+        Age
+        <input type="text" id="character_age_input" name="character_age_input" value="0">
+    </div>
+    <div class="large-2 medium-2 cell">
+        Alignment
+        <select id="character_alignment_select">
+            <option value="Lawful">Lawful</option>
+            <option value="Neutral">Neutral</option>
+            <option value="Chaotic">Chaotic</option>
+        </select>
+    </div>
+    <div class="large-5 medium-5 cell">
+        Personality
+        <input type="text" id="character_personality_input" name="character_personality_input">
+    </div>
+    <div class="large-2 medium-4 cell">
+        Strength
+        <select id="character_strength_select">
+            <option value="3">3 (-3)</option>
+            <option value="4">4 (-2)</option>
+            <option value="5">5 (-2)</option>
+            <option value="6">6 (-1)</option>
+            <option value="7">7 (-1)</option>
+            <option value="8">8 (-1)</option>
+            <option value="9">9 (0)</option>
+            <option value="10" selected>10 (0)</option>
+            <option value="11">11 (0)</option>
+            <option value="12">12 (0)</option>
+            <option value="13">13 (+1)</option>
+            <option value="14">14 (+1)</option>
+            <option value="15">15 (+1)</option>
+            <option value="16">16 (+2)</option>
+            <option value="17">17 (+2)</option>
+            <option value="18">18 (+3)</option>
+        </select>
+    </div>
+    <div class="large-2 medium-4 cell">
+        Dexterity
+        <select id="character_dexterity_select">
+            <option value="3">3 (-3)</option>
+            <option value="4">4 (-2)</option>
+            <option value="5">5 (-2)</option>
+            <option value="6">6 (-1)</option>
+            <option value="7">7 (-1)</option>
+            <option value="8">8 (-1)</option>
+            <option value="9">9 (0)</option>
+            <option value="10" selected>10 (0)</option>
+            <option value="11">11 (0)</option>
+            <option value="12">12 (0)</option>
+            <option value="13">13 (+1)</option>
+            <option value="14">14 (+1)</option>
+            <option value="15">15 (+1)</option>
+            <option value="16">16 (+2)</option>
+            <option value="17">17 (+2)</option>
+            <option value="18">18 (+3)</option>
+        </select>
+    </div>
+    <div class="large-2 medium-4 cell">
+        Constitution
+        <select id="character_constitution_select">
+            <option value="3">3 (-3)</option>
+            <option value="4">4 (-2)</option>
+            <option value="5">5 (-2)</option>
+            <option value="6">6 (-1)</option>
+            <option value="7">7 (-1)</option>
+            <option value="8">8 (-1)</option>
+            <option value="9">9 (0)</option>
+            <option value="10" selected>10 (0)</option>
+            <option value="11">11 (0)</option>
+            <option value="12">12 (0)</option>
+            <option value="13">13 (+1)</option>
+            <option value="14">14 (+1)</option>
+            <option value="15">15 (+1)</option>
+            <option value="16">16 (+2)</option>
+            <option value="17">17 (+2)</option>
+            <option value="18">18 (+3)</option>
+        </select>
+    </div>
+    <div class="large-2 medium-4 cell">
+        Intelligence
+        <select id="character_intelligence_select">
+            <option value="3">3 (-3)</option>
+            <option value="4">4 (-2)</option>
+            <option value="5">5 (-2)</option>
+            <option value="6">6 (-1)</option>
+            <option value="7">7 (-1)</option>
+            <option value="8">8 (-1)</option>
+            <option value="9">9 (0)</option>
+            <option value="10" selected>10 (0)</option>
+            <option value="11">11 (0)</option>
+            <option value="12">12 (0)</option>
+            <option value="13">13 (+1)</option>
+            <option value="14">14 (+1)</option>
+            <option value="15">15 (+1)</option>
+            <option value="16">16 (+2)</option>
+            <option value="17">17 (+2)</option>
+            <option value="18">18 (+3)</option>
+        </select>
+    </div>
+    <div class="large-2 medium-4 cell">
+        Wisdom
+        <select id="character_wisdom_select">
+            <option value="3">3 (-3)</option>
+            <option value="4">4 (-2)</option>
+            <option value="5">5 (-2)</option>
+            <option value="6">6 (-1)</option>
+            <option value="7">7 (-1)</option>
+            <option value="8">8 (-1)</option>
+            <option value="9">9 (0)</option>
+            <option value="10" selected>10 (0)</option>
+            <option value="11">11 (0)</option>
+            <option value="12">12 (0)</option>
+            <option value="13">13 (+1)</option>
+            <option value="14">14 (+1)</option>
+            <option value="15">15 (+1)</option>
+            <option value="16">16 (+2)</option>
+            <option value="17">17 (+2)</option>
+            <option value="18">18 (+3)</option>
+        </select>
+    </div>
+    <div class="large-2 medium-4 cell">
+        Charisma
+        <select id="character_charisma_select">
+            <option value="3">3 (-3)</option>
+            <option value="4">4 (-2)</option>
+            <option value="5">5 (-2)</option>
+            <option value="6">6 (-1)</option>
+            <option value="7">7 (-1)</option>
+            <option value="8">8 (-1)</option>
+            <option value="9">9 (0)</option>
+            <option value="10" selected>10 (0)</option>
+            <option value="11">11 (0)</option>
+            <option value="12">12 (0)</option>
+            <option value="13">13 (+1)</option>
+            <option value="14">14 (+1)</option>
+            <option value="15">15 (+1)</option>
+            <option value="16">16 (+2)</option>
+            <option value="17">17 (+2)</option>
+            <option value="18">18 (+3)</option>
+        </select>
+    </div>
+    <fieldset class="large-12 medium-12 cell">
+        <input type="button" class="button noprint" id="roll_ability_scores" value="Roll Scores" />
+        <input type="button" class="button noprint" id="save_character" value="Save Character" />
+    </fieldset>
+</div>
+
+<div class="large-12 medium-12 callout" style="break-after:page">
+    <div class="grid-x grid-padding-x">
+    <div class="large-4 medium-4 cell">
+        <h5>Combat</h5>
+        <div class="callout" id="combat_stats" style="height: 540px;">
+            <table class="unstriped">
+                <tr>
+                    <td><strong>Attack Bonus:</strong></td>
+                    <td><span id="base_attack_bonus">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Melee Bonus:</strong></td>
+                    <td><span id="melee_attack_bonus">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Ranged Bonus:</strong></td>
+                    <td><span id="ranged_attack_bonus">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>AC Bonus:</strong></td>
+                    <td><span id="ac_bonus">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Base AC:</strong></td>
+                    <td><span id="base_ac">11</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Hit Points:</strong></td>
+                    <td><span id="hit_points">0</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="large-4 medium-4 cell">
+        <h5>Saving Throws</h5>
+        <div class="callout" id="saving_throws" style="height: 540px;">
+            <table class="unstriped">
+                <tr>
+                    <td><strong>Death Ray or Poison:</strong></td>
+                    <td><span id="death">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Magic Wands:</strong></td>
+                    <td><span id="wands">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Paralysis or Petrify:</strong></td>
+                    <td><span id="paralysis">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Breath Weapons:</strong></td>
+                    <td><span id="breath">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Spells:</strong></td>
+                    <td><span id="spells">0</span></td>
+                </tr>
+                <tr>
+                    <td><small>Poison use Con mod, Illusion use Int mod, Charm use Wis mod</small></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="small-4 cell">
+        <h5>Abilities/Restrictions</h5>
+        <textarea id="special_abilities"  style="height: 540px;"></textarea>
+    </div>
+    </div>
+</div>
+<div class="large-12 medium-12 callout" style="break-after:page">
+    <div class="grid-x grid-padding-x">
+    <div class="large-4 medium-4 cell" id="turn_undead_div">
+        <h5>Turning Undead</h5>
+        <div class="callout" id="turning">
+            <table class="unstriped">
+                <tr>
+                    <td><strong>Skeletons:</strong></td>
+                    <td><span id="skeleton">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Zombie:</strong></td>
+                    <td><span id="zombie">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Ghoul:</strong></td>
+                    <td><span id="ghoul">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Wight:</strong></td>
+                    <td><span id="wight">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Wraith:</strong></td>
+                    <td><span id="wraith">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Mummy:</strong></td>
+                    <td><span id="mummy">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Spectre:</strong></td>
+                    <td><span id="spectre">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Vampire:</strong></td>
+                    <td><span id="vampire">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Ghost:</strong></td>
+                    <td><span id="ghost">0</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="large-4 medium-4 cell" id="thief_skills_div">
+        <h5>Thief Skills</h5>
+        <div class="callout" id="thief_skills">
+            <table class="unstriped">
+                <tr>
+                    <td><strong>Open Locks:</strong></td>
+                    <td><span id="openLocks">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Remove Traps:</strong></td>
+                    <td><span id="removeTraps">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Pick Pockets:</strong></td>
+                    <td><span id="pickPockets">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Move Silently:</strong></td>
+                    <td><span id="moveSilently">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Climb Walls:</strong></td>
+                    <td><span id="climbWalls">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Hide:</strong></td>
+                    <td><span id="hide">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Listen:</strong></td>
+                    <td><span id="listen">0</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="large-4 medium-4 cell" id="monk_skills_div">
+        <h5>Monk Skills</h5>
+        <div class="callout" id="monk_skills">
+            <table class="unstriped">
+                <tr>
+                    <td><strong>Move Silently:</strong></td>
+                    <td><span id="monkMoveSilently">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Climb Walls:</strong></td>
+                    <td><span id="monkClimbWalls">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Hide:</strong></td>
+                    <td><span id="monkHide">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Listen:</strong></td>
+                    <td><span id="monkListen">0</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="large-4 medium-4 cell" id="caster_spells_div">
+        <h5>Spells per Level</h5>
+        <div class="callout" id="spells_list">
+            <table class="unstriped">
+                <tr>
+                    <td><strong>First Level:</strong></td>
+                    <td><span id="first_level">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Second Level:</strong></td>
+                    <td><span id="second_level">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Third Level:</strong></td>
+                    <td><span id="third_level">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Fourth Level:</strong></td>
+                    <td><span id="fourth_level">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Fifth Level:</strong></td>
+                    <td><span id="fifth_level">0</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Sixth Level:</strong></td>
+                    <td><span id="sixth_level">0</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="large-4 medium-4 cell" id="monk_powers_div">
+        <h5>Monk Powers</h5>
+        <textarea id="monk_powers" style="height: 290px;"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="large-12 medium-12 callout" style="break-after:page">
+    <div class="grid-x grid-padding-x">
+        <div class="large-4 medium-4 cell" style="width:50%;">
+        <h5>Background</h5>
+        <div class="callout">
+            From:
+            <textarea id="nationality"></textarea>
+            Languages:
+            <textarea id="language"></textarea>
+            Parent's Occupation:
+            <textarea id="parentOccupation"></textarea>
+            Birth Order:
+            <textarea id="birthOrder"></textarea>
+            Childhood Events:
+            <textarea id="childhoodEvents" style="height: 90px;"></textarea>
+            Adolescent Events:
+            <textarea id="adolescentEvents" style="height: 90px;"></textarea>
+        </div>
+    </div>
+    <div class="large-4 medium-4 cell" style="width:50%;">
+            <h5>Equipment</h5>
+            <div class="callout">
+                Armor:
+                <textarea id="armor" style="height: 30px;"></textarea>
+                Main Hand:
+                <textarea id="mainHand" style="height: 30px;"></textarea>
+                Off Hand:
+                <textarea id="offHand" style="height: 30px;"></textarea>
+                Ranged Weapon:
+                <textarea id="rangedWeapon" style="height: 30px;"></textarea>
+                Magic Items:
+                <textarea id="magicItems" style="height: 30px;"></textarea>
+                Gear:
+                <textarea id="equipmentPack" style="height: 360px;"></textarea>
+            </div>
+    </div>
+</div>
+</div>
+
+<!-- Include Scala.js compiled code -->
+<script type="text/javascript" src="./target/scala-2.13/basic-fantasy-character-generator-fastopt/main.js"></script>
+</body>
+</html>
