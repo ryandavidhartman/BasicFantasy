@@ -14,7 +14,7 @@ libraryDependencies ++= Seq(
   "org.reactivemongo" %% "play2-reactivemongo" % "1.1.0-play28-RC9",
   // Provide JSON serialization for reactive mongo
   "org.reactivemongo" %% "reactivemongo-play-json-compat" % "1.1.0-play28-RC9",
-  "ch.qos.logback" % "logback-classic" % "1.4.6",
+  "ch.qos.logback" % "logback-classic" % "1.4.7",
 
 )
 
