@@ -9,6 +9,7 @@ import reactivemongo.api.commands.WriteResult
 
 import javax.inject._
 import scala.concurrent.{ExecutionContext, Future}
+import scala.util.Random
 
 
 @Singleton
@@ -17,7 +18,7 @@ class PersonalityRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
   def get(name: Option[String] = None,
           description: Option[String] = None,
           alignment: Option[String] = None,
-          limit: Int = 100): Future[Seq[Personality]] = {
+          limit: Int = 4): Future[Seq[Personality]] = {
 
     val alignmentQuery = alignment match {
       case Some(value) => BSONDocument(
@@ -41,11 +42,13 @@ class PersonalityRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
 
     val projection = Some(BSONDocument.empty)
 
-    collection.flatMap { col =>
+    val allMatches: Future[Seq[Personality]] = collection.flatMap { col =>
       col.find(query, projection)
         .cursor[Personality]()
-        .collect[Seq](limit, Cursor.FailOnError[Seq[Personality]]())
+        .collect[Seq](Int.MaxValue, Cursor.FailOnError[Seq[Personality]]())
     }
+
+    allMatches.map(personalities => Random.shuffle(personalities).distinct.take(limit))
   }
   private def collection: Future[BSONCollection] = reactiveMongoApi.database.map(db => db.collection(name = "Personalities"))
   def findOne(id: String): Future[Option[Personality]] = RepositoryUtilities.findOne[Personality](id, collection)

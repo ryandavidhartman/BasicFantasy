@@ -3,7 +3,9 @@ package controllers
 import models.Personality
 import models.Personality.BulkPersonalities
 import play.api.libs.json.{JsValue, Json}
-import play.api.mvc.{Action, MessagesAbstractController, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent, MessagesAbstractController, MessagesControllerComponents, Request}
+import reactivemongo.api.Cursor
+import reactivemongo.api.bson.{BSONArray, BSONDocument}
 import repositories.PersonalityRepository
 
 import javax.inject.{Inject, Singleton}
@@ -16,6 +18,16 @@ class PersonalityController @Inject()(
                                        val personalityRepository: PersonalityRepository,
                                        controllerComponents: MessagesControllerComponents)
   extends MessagesAbstractController(controllerComponents) {
+
+
+  def get( name: Option[String],
+           description: Option[String],
+           alignment: Option[String], limit: Option[Int]): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+    personalityRepository.get(name, description, alignment, limit.getOrElse(4)).map {
+      personalities => Ok(Json.toJson(personalities))
+    }
+  }
+
 
   def create(): Action[JsValue] = Action.async(controllerComponents.parsers.json) { implicit request =>
     request.body.validate[Personality].fold(
@@ -44,5 +56,4 @@ class PersonalityController @Inject()(
     )
     Future.successful(Ok)
   }
-
 }
