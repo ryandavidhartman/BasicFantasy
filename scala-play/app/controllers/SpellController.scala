@@ -103,6 +103,12 @@ class SpellController @Inject()(
       spells => Ok(Json.toJson(spells))
     }
   }
+
+  def list(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] => {
+    spellRepository.list().map {
+      names => Ok(Json.toJson(names))}
+    }
+  }
   def create(): Action[JsValue] = Action.async(controllerComponents.parsers.json) { implicit request =>
     request.body.validate[Spell].fold(
       _ => Future.successful(BadRequest("Cannot parse request body")),

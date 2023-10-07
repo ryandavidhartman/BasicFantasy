@@ -4,7 +4,7 @@ import models.Spell
 import play.modules.reactivemongo.ReactiveMongoApi
 import reactivemongo.api.Cursor
 import reactivemongo.api.bson.collection.BSONCollection
-import reactivemongo.api.bson.{BSONArray, BSONDocument, BSONObjectID, BSONValue}
+import reactivemongo.api.bson.{BSONArray, BSONDocument, BSONObjectID, BSONString, BSONValue}
 import reactivemongo.api.commands.WriteResult
 
 import javax.inject._
@@ -48,11 +48,36 @@ class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
 
     val projection = Some(BSONDocument.empty)
 
+    val sortCriteria = BSONDocument("name" -> 1) // Sort by "name" in ascending order
+
     collection.flatMap { col =>
       col.find(query, projection)
+        .sort(sortCriteria)
         .cursor[Spell]()
         .collect[Seq](limit, Cursor.FailOnError[Seq[Spell]]())
     }
+  }
+
+  def list(): Future[Seq[String]] = {
+
+    val query = BSONDocument.empty
+    val projection = Some(BSONDocument(
+      "name" -> 1
+    ))
+
+    val sortCriteria = BSONDocument("name" -> 1) // Sort by "name" in ascending order
+
+    val limit = 1000
+    collection.flatMap { col =>
+      col.find(query, projection)
+        .sort(sortCriteria)
+        .cursor[BSONDocument]()
+        .collect[List](limit, Cursor.FailOnError[List[BSONDocument]]())
+        .map(_.flatMap { doc =>
+          doc.getAsOpt[String]("name")
+        })
+    }
+
   }
   def findOne(id: String): Future[Option[Spell]] = RepositoryUtilities.findOne[Spell](id, collection)
   def findOne(fieldName: String, fieldValue: BSONValue): Future[Option[Spell]] = RepositoryUtilities.findOne[Spell](fieldName, fieldValue, collection)
