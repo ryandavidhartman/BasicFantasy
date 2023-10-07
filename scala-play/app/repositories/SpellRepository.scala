@@ -7,6 +7,7 @@ import reactivemongo.api.bson.collection.BSONCollection
 import reactivemongo.api.bson.{BSONArray, BSONDocument, BSONObjectID, BSONString, BSONValue}
 import reactivemongo.api.commands.WriteResult
 
+import java.nio.charset.StandardCharsets
 import javax.inject._
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -58,10 +59,11 @@ class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
     }
   }
 
-  def list(): Future[Seq[String]] = {
+  def list(): Future[Seq[(String, String)]] = {
 
     val query = BSONDocument.empty
     val projection = Some(BSONDocument(
+      "_id" -> 1,
       "name" -> 1
     ))
 
@@ -74,7 +76,12 @@ class SpellRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
         .cursor[BSONDocument]()
         .collect[List](limit, Cursor.FailOnError[List[BSONDocument]]())
         .map(_.flatMap { doc =>
-          doc.getAsOpt[String]("name")
+          val id = doc.getAsOpt[BSONObjectID]("_id") match {
+            case Some(bsonId) => bsonId.stringify
+            case None => "unknown"
+          }
+          val name = doc.getAsOpt[String]("name").getOrElse("unknown")
+          Seq((id, name))
         })
     }
 

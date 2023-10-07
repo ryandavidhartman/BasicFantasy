@@ -1,0 +1,17 @@
+@(spells: Seq[(String, String)], viewUrl: String)(implicit request: MessagesRequestHeader)
+
+@main("Spells") {
+<h1>Spell List</h1>
+
+@* Flash shows updates to a page *@
+@request.flash.data.map{ case (name, value) =>
+<div>@name: @value</div>
+}
+
+@for(s <- spells) {
+<div style="float: left; width: 100%; border: 1px solid #000000;">
+    <a href="@viewUrl/@s._1">@s._2</a>
+</div>
+}
+
+}

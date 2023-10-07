@@ -19,9 +19,11 @@ POST    /character/attributes  controllers.CharacterSheetController.getRandomAtt
 
 # spell ui routing
 GET     /spells                controllers.SpellController.getSpellsPage(name: Option[String], range: Option[String], cleric: Option[Int], magicUser: Option[Int], duration: Option[String], description: Option[String], alignment: Option[String])
+GET     /spells/list           controllers.SpellController.getListPage()
 GET     /spells/create         controllers.SpellController.createSpellPage()
 POST    /spells/create         controllers.SpellController.createSpell()
 GET     /spells/update/:id     controllers.SpellController.updateSpellPage(id: String)
+GET     /spells/view/:id       controllers.SpellController.viewSpellPage(id: String)
 POST    /spells/update         controllers.SpellController.updateSpell()
 
 # spell api routing

@@ -1,0 +1,54 @@
+@(s: Spell, updateUrl: String)(implicit request: MessagesRequestHeader)
+
+@main("Spells") {
+    <h1>Spell Details</h1>
+
+    <div style="float: left; width: 20%; border: 1px solid #000000">
+        Name:
+    </div>
+    <div style="float: left; width: 80%; border: 1px solid #000000;">
+        @s.name
+    </div>
+    <div style="float: left; width: 20%; border: 1px solid #000000;">
+        Range:
+    </div>
+    <div style="float: left; width: 80%; border: 1px solid #000000;">
+        @s.range
+    </div>
+    <div style="float: left; width: 20%; border: 1px solid #000000;">
+        Cleric:
+    </div>
+    <div style="float: left; width: 80%; border: 1px solid #000000;">
+        @s.cleric.getOrElse("n/a")
+    </div>
+    <div style="float: left; width: 20%; border: 1px solid #000000;">
+        Magic User:
+    </div>
+    <div style="float: left; width: 80%; border: 1px solid #000000;">
+        @s.magicUser.getOrElse("n/a")
+    </div>
+    <div style="float: left; width: 20%; border: 1px solid #000000;">
+        Duration:
+    </div>
+    <div style="float: left; width: 80%; border: 1px solid #000000;">
+        @s.duration
+    </div>
+    <div style="float: left; width: 20%; border: 1px solid #000000;">
+        Description:
+    </div>
+    <div style="float: left; width: 80%; border: 1px solid #000000;">
+        @s.description
+    </div>
+    <div style="float: left; width: 20%; border: 1px solid #000000;">
+        Alignment:
+    </div>
+    <div style="float: left; width: 80%; border: 1px solid #000000;">
+        @s.alignment
+    </div>
+    <div style="float: left; width: 100%; border: 1px solid #000000;">
+        <a href="@updateUrl/@s._id.get.stringify">update</a>
+    </div>
+    <div style="float: left; width: 100%; border: 1px solid #000000;">
+        <hr>
+    </div>
+}

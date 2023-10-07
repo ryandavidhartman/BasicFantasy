@@ -25,6 +25,7 @@ class SpellController @Inject()(
   private val updateSpellCall = routes.SpellController.updateSpell()
 
   private val updateSpellURL = "http://localhost:9000/spells/update"
+  private val viewSpellURL = "http://localhost:9000/spells/view"
 
 
   // Spell UI Methods
@@ -38,6 +39,12 @@ class SpellController @Inject()(
     spellRepository.get(name, range, cleric, magicUser, duration, description, alignment)
       .map(spells =>  Ok(views.html.spellsGet(spells.sortBy(_.name), updateSpellURL)))
   }
+
+  def getListPage(): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    spellRepository.list().map(l => Ok(views.html.spellList(l, viewSpellURL)))
+  }
+
+
   def createSpellPage(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
     Ok(views.html.spellCreate(spellForm, createSpellCall))
   }
@@ -68,6 +75,14 @@ class SpellController @Inject()(
     spellF.map((s: Option[Spell]) => s match {
       case Some(spell) => Ok(views.html.spellUpdate(spellForm.fill(spell), updateSpellCall))
       case None => Ok(views.html.spellCreate(spellForm, createSpellCall))
+    })
+  }
+
+  def viewSpellPage(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    val spellF: Future[Option[Spell]] = spellRepository.findOne(id)
+    spellF.map((s: Option[Spell]) => s match {
+      case Some(spell) => Ok(views.html.spellsView(spell, updateSpellURL))
+      case None => NotFound(Json.toJson(s"bad  id: $id"))
     })
   }
 
