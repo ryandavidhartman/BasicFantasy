@@ -37,7 +37,6 @@
         <select id="character_class_select">
             <option value="Fighter" selected>Fighter</option>
             <option value="Magic-User">Magic-User</option>
-            <option value="Monk">Monk</option>
             <option value="Thief">Thief</option>
             <option value="Cleric">Cleric</option>
             <option value="Fighter/Magic-User">Fighter/Magic-User</option>
@@ -390,32 +389,6 @@
             </div>
         }
 
-        @if(characterClass.isMonk) {
-            <div class="large-4 medium-4 cell" id="monk_skills_div">
-                <h5>Monk Skills</h5>
-                <div class="callout" id="monk_skills">
-                    <table class="unstriped">
-                        <tr>
-                            <td><strong>Move Silently:</strong></td>
-                            <td><span id="monkMoveSilently">0</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Climb Walls:</strong></td>
-                            <td><span id="monkClimbWalls">0</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Hide:</strong></td>
-                            <td><span id="monkHide">0</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Listen:</strong></td>
-                            <td><span id="monkListen">0</span></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        }
-
         @if(characterClass.isSpellCaster) {
             <div class="large-4 medium-4 cell" id="caster_spells_div">
                 <h5>Memorized Spells</h5>
@@ -432,12 +405,6 @@
             </div>
         }
 
-        @if(characterClass.isMonk) {
-            <div class="large-4 medium-4 cell" id="monk_powers_div">
-                <h5>Monk Powers</h5>
-                <textarea id="monk_powers" style="height: 290px;"></textarea>
-            </div>
-        }
     </div>
 </div>
 

@@ -1,7 +1,7 @@
 package basic.fantasy.equipment
 
 import basic.fantasy.Roller
-import basic.fantasy.characterclass.CharacterClasses.{CharacterClass, Cleric, Fighter, FighterMagicUser, MagicUser, MagicUserThief, Monk, Thief}
+import basic.fantasy.characterclass.CharacterClasses._
 
 object EquipmentPacks {
 
@@ -136,7 +136,6 @@ object EquipmentPacks {
     case FighterMagicUser => ScholarExplorersPack
     case MagicUser => ScholarsPack
     case MagicUserThief => ScholarBurglarsPack
-    case Monk => if(Roller.coinFLip()) ExplorersPack else  PriestsPack
     case Thief => BurglarsPack
   }
 

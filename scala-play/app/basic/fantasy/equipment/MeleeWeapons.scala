@@ -2,7 +2,7 @@ package basic.fantasy.equipment
 
 import basic.fantasy.Roller
 import basic.fantasy.backgrounds.Races.{Dwarf, Elf, HalfElf, HalfOrc, Halfling, Human, Race}
-import basic.fantasy.characterclass.CharacterClasses.{CharacterClass, Cleric, Fighter, FighterMagicUser, MagicUser, MagicUserThief, Monk, Thief}
+import basic.fantasy.characterclass.CharacterClasses.{CharacterClass, Cleric, Fighter, FighterMagicUser, MagicUser, MagicUserThief, Thief}
 
 object MeleeWeapons {
 
@@ -36,16 +36,7 @@ object MeleeWeapons {
     extends MeleeWeapon(0, Small, 0,"") {
     val name = "Unarmed"
     override def toString: String = {
-      val damage =
-        if(characterClass.isMonk)
-          if(level < 4) "1d4"
-          else if(level < 8) "1d6"
-          else if(level < 12) "1d8"
-          else if(level < 16) "1d10"
-          else if(level < 20) "2d6"
-          else "2d8"
-        else "punch 1d3, kick 1d4 (-2 attack penalty)"
-
+      val damage = "punch 1d3, kick 1d4 (-2 attack penalty)"
       s"Unarmed Attack: $damage"
 
     }
@@ -471,8 +462,6 @@ object MeleeWeapons {
           getSword(level, maxSize, offHand = false)
         else
           getDagger(level, offHand = false)
-      case Monk =>
-        Unarmed(characterClass, level)
       case Thief => getAxe(level, maxSize)
         if(roll < 70)
           getSword(level, maxSize, offHand = false)
@@ -499,19 +488,8 @@ object MeleeWeapons {
     if(characterClass.isFighter && mainWeapon.size != maxSize &&  hasShield == false)
       if(roll < 40)
         getDagger(level, offHand = true)
-      else if(roll < 60)
-        getSword(level, Small, offHand = true)
-    if(characterClass.isMonk)
-      if(roll < 20)
-        getChainOrFlail(level,maxSize)
-      else if(roll < 40)
-        getHammerOrMace(level, maxSize)
-      else if(roll < 60)
-        getSpearOrPoleArm(level, maxSize)
-      else if(roll < 80)
-        getSword(level, maxSize, offHand = false)
       else
-        getOtherWeapons(level, maxSize)
+        getSword(level, Small, offHand = true)
     else
       Unarmed(characterClass, level)
 
