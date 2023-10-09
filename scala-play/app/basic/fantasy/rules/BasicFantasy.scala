@@ -88,7 +88,7 @@ object BasicFantasy {
 
     val truncated_level = Math.min(level, cutOffLevel)
     val hitDice: Int = characterClass match {
-      case f if f.isFighter => 8
+      case f if f.isFighter && !f.isMagicUser => 8
       case c if c.isCleric || (c.isFighter && c.isMagicUser) => 6
       case s if s.isThief || s.isMagicUser => 4
     }
