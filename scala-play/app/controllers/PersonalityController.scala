@@ -28,6 +28,12 @@ class PersonalityController @Inject()(
     }
   }
 
+  def getRandom(alignment: String): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+    personalityRepository.get(None, None, Some(alignment), limit = 3).map {
+      personalities => Ok(Json.toJson(personalities.map(_.name)))
+    }
+  }
+
 
   def create(): Action[JsValue] = Action.async(controllerComponents.parsers.json) { implicit request =>
     request.body.validate[Personality].fold(

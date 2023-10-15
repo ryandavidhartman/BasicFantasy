@@ -44,5 +44,6 @@ POST  /v1/api/names/bulk       controllers.NameController.createBulk()
 
 # personality
 GET  /v1/api/personalities      controllers.PersonalityController.get(name: Option[String], description: Option[String], alignment: Option[String], limit: Option[Int])
+GET  /v1/api/personalities/random/:alignment controllers.PersonalityController.getRandom(alignment: String)
 POST /v1/api/personalities      controllers.PersonalityController.create()
 POST /v1/api/personalities/bulk controllers.PersonalityController.createBulk()
