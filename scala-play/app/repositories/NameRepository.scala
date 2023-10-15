@@ -40,14 +40,12 @@ class NameRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
     }
   }
 
-  def getRandomFilteredName(name: Option[String] = None,
-                            firstName: Option[Boolean] = None,
+  def getRandomFilteredName(firstName: Option[Boolean] = None,
                             lastName: Option[Boolean] = None,
                             gender: Option[String] = None,
                             race: Option[String] = None): Future[Option[Name]] = {
 
     val query = BSONDocument(
-      "name" -> name,
       "firstName" -> firstName,
       "lastName" -> lastName,
       "gender" -> gender,
