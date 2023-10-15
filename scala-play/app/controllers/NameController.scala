@@ -35,6 +35,13 @@ class NameController @Inject()(
     nameRepository.get(name, firstName, lastName, gender, race).map(names => Ok(Json.toJson(names)))
   }
 
+//  def getRandom(race: String, gender: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+//    for {
+//      firstName <- nameRepository.get(None, Some(true), Some(false), )
+//    }
+//     ???
+//  }
+
   def create(): Action[JsValue] = Action.async(controllerComponents.parsers.json) { implicit request =>
     request.body.validate[Name].fold(
       _ => Future.successful(BadRequest("Cannot parse request body")),
