@@ -9,14 +9,6 @@ GET     /                      controllers.HomeController.index()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file          controllers.Assets.versioned(path="/public", file: Asset)
 
-# character sheet ui routing
-GET     /character             controllers.CharacterSheetController.getCharacter(characterClass: Option[String], race: Option[String], alignment: Option[String], level: Option[Int])
-GET     /character/create      controllers.CharacterSheetController.createCharacterSheetPage()
-POST    /character/create      controllers.CharacterSheetController.createCharacterSheet()
-POST    /character/name        controllers.CharacterSheetController.getRandomName()
-POST    /character/attributes  controllers.CharacterSheetController.getRandomAttributes()
-
-
 # spell ui routing
 GET     /spells                controllers.SpellController.getSpellsPage(name: Option[String], range: Option[String], cleric: Option[Int], magicUser: Option[Int], duration: Option[String], description: Option[String], alignment: Option[String])
 GET     /spells/list           controllers.SpellController.getListPage()
@@ -47,3 +39,5 @@ GET  /v1/api/personalities      controllers.PersonalityController.get(name: Opti
 GET  /v1/api/personalities/random/:alignment controllers.PersonalityController.getRandom(alignment: String)
 POST /v1/api/personalities      controllers.PersonalityController.create()
 POST /v1/api/personalities/bulk controllers.PersonalityController.createBulk()
+
+# background
