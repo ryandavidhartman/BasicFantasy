@@ -3,6 +3,7 @@ package basic.fantasy.backgrounds
 import basic.fantasy.Roller
 import basic.fantasy.Roller.getRandomData
 import basic.fantasy.backgrounds.Races._
+import play.api.libs.json.{Json, Writes}
 
 object BackgroundGenerator {
 
@@ -885,5 +886,26 @@ object BackgroundGenerator {
     case "Ylaruam" => Ylaruam
     case _ => Ylaruam //remove this!!!
   }
+
+  implicit val nationalityWrites: Writes[Nationality] = Writes {
+    case Karameikos => Json.obj("type" -> "Karameikos", "nativeLanguage" -> "Thyatian")
+    case Ylaruam => Json.obj("type" -> "Ylaruam", "nativeLanguage" -> "Ylaruamian")
+    case Glantri => Json.obj("type" -> "Glantri", "nativeLanguage" -> "Thyatian")
+    case Ierendi => Json.obj("type" -> "Ierendi", "nativeLanguage" -> "Ierendian")
+    case Alfheim => Json.obj("type" -> "Alfheim", "nativeLanguage" -> "Elvish")
+    case Rockhome => Json.obj("type" -> "Rockhome", "nativeLanguage" -> "Dwarvish")
+    case NorthernReaches => Json.obj("type" -> "Northern Reaches", "nativeLanguage" -> "Nordic")
+    case FiveShires => Json.obj("type" -> "The Five Shires", "nativeLanguage" -> "Hinish")
+    case Minrothad => Json.obj("type" -> "Minrothad", "nativeLanguage" -> "Minrothadi")
+    case Thar => Json.obj("type" -> "Thar", "nativeLanguage" -> "Goblin")
+    case Darokin => Json.obj("type" -> "Darokin", "nativeLanguage" -> "Darokian")
+    case Ethengar => Json.obj("type" -> "Ethengar", "nativeLanguage" -> "Ethengari")
+    case ShadowLands => Json.obj("type" -> "Shadow Lands", "nativeLanguage" -> "Elvish")
+    case Altruaghin => Json.obj("type" -> "Altruaghin", "nativeLanguage" -> "Altruaghini")
+    case Alphatia => Json.obj("type" -> "Alphatia", "nativeLanguage" -> "Alphatian")
+    case Thyatis => Json.obj("type" -> "Thyatis", "nativeLanguage" -> "Thyatian")
+    case Wildlands => Json.obj("type" -> "Wildlands", "nativeLanguage" -> "Regional Dialect")
+  }
+  implicit val backgroundWrites: Writes[Background] = Json.writes[Background]
 
 }

@@ -42,3 +42,4 @@ POST /v1/api/personalities      controllers.PersonalityController.create()
 POST /v1/api/personalities/bulk controllers.PersonalityController.createBulk()
 
 # background
+GET /v1/api/backgrounds/random/:race/:intelligence controllers.BackgroundController.getRandom(race: String, intelligence: String)
