@@ -83,15 +83,6 @@ class NameRepository @Inject() (reactiveMongoApi: ReactiveMongoApi,
 
   }
 
-
-
-
-
-
-
-
-
-
   def findOne(id: String): Future[Option[Name]] = RepositoryUtilities.findOne[Name](id, collection)
 
   def findOne(fieldName: String, fieldValue: BSONValue): Future[Option[Name]] = RepositoryUtilities.findOne[Name](fieldName, fieldValue, collection)

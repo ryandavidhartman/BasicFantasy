@@ -1,0 +1,27 @@
+package repositories
+
+import models.Region
+import play.modules.reactivemongo.ReactiveMongoApi
+import reactivemongo.api.bson.{BSONObjectID, BSONValue}
+import reactivemongo.api.bson.collection.BSONCollection
+import reactivemongo.api.commands.WriteResult
+
+import javax.inject.Inject
+import scala.concurrent.{ExecutionContext, Future}
+
+class RegionRepository@Inject() (reactiveMongoApi: ReactiveMongoApi,
+                                 implicit val ec: ExecutionContext) {
+
+  def collection: Future[BSONCollection] = reactiveMongoApi.database.map(db => db.collection("Regions"))
+
+  def findOne(id: String): Future[Option[Region]] = RepositoryUtilities.findOne[Region](id, collection)
+
+  def findOne(fieldName: String, fieldValue: BSONValue): Future[Option[Region]] = RepositoryUtilities.findOne[Region](fieldName, fieldValue, collection)
+
+  def create(region: Region): Future[WriteResult] = RepositoryUtilities.create[Region](region, collection)
+
+  def update(region: Region): Future[WriteResult] = RepositoryUtilities.update[Region](region, collection)
+
+  def delete(id: BSONObjectID): Future[WriteResult] = RepositoryUtilities.delete(id, collection)
+
+}
