@@ -16,6 +16,25 @@ class RegionRepository@Inject() (reactiveMongoApi: ReactiveMongoApi,
   def collection: Future[BSONCollection] = reactiveMongoApi.database.map(db => db.collection("Regions"))
 
 
+  def get(campaign: Option[String], name: Option[String]): Future[Seq[Region]] = {
+
+
+    val query = BSONDocument(
+      "campaign" -> campaign,
+      "name" -> name
+    )
+
+    val projection = Some(BSONDocument.empty)
+
+    val sortCriteria = BSONDocument("name" -> 1) // Sort by "name" in ascending order
+
+    collection.flatMap { col =>
+      col.find(query, projection)
+        .sort(sortCriteria)
+        .cursor[Region]()
+        .collect[Seq](Int.MaxValue, Cursor.FailOnError[Seq[Region]]())
+    }
+  }
   def list(): Future[Seq[(String, String)]] = {
 
     val query = BSONDocument.empty

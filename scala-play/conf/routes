@@ -44,6 +44,12 @@ POST /v1/api/personalities/bulk controllers.PersonalityController.createBulk()
 # background
 GET /v1/api/backgrounds/random/:race/:intelligence controllers.BackgroundController.getRandom(race: String, intelligence: String)
 
-# region
+# region api routing
+GET     /v1/api/regions         controllers.RegionController.get(campaign: Option[String], name: Option[String])
 GET     /v1/api/regions/list    controllers.RegionController.list()
 POST    /v1/api/regions         controllers.RegionController.create()
+
+#GET     /v1/api/spells/list    controllers.SpellController.list()
+#POST    /v1/api/spells         controllers.SpellController.create()
+#PUT     /v1/api/spells/:id     controllers.SpellController.update(id: String)
+#DELETE  /v1/api/spells/:id     controllers.SpellController.delete(id: String)

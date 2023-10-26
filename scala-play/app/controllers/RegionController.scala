@@ -15,7 +15,14 @@ class RegionController @Inject()(
                                   controllerComponents: MessagesControllerComponents)
   extends MessagesAbstractController(controllerComponents) {
 
+  import Region._
 
+  // Region CRUD API
+  def get(campaign: Option[String], name: Option[String]): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+    regionRepository.get(campaign, name).map {
+      regions => Ok(Json.toJson(regions))
+    }
+  }
   def list(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     regionRepository.list().map {
       names => Ok(Json.toJson(names))
@@ -31,7 +38,5 @@ class RegionController @Inject()(
         }
     )
   }
-
-
 
 }
