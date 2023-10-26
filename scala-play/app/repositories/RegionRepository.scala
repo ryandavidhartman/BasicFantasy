@@ -69,7 +69,7 @@ class RegionRepository@Inject() (reactiveMongoApi: ReactiveMongoApi,
 
   def create(region: Region): Future[WriteResult] = RepositoryUtilities.create[Region](region, collection)
 
-  //def update(region: Region): Future[WriteResult] = RepositoryUtilities.update[Region](region, collection)
+  def update(region: Region): Future[WriteResult] = RepositoryUtilities.update[Region](region, collection)
 
   def delete(id: BSONObjectID): Future[WriteResult] = RepositoryUtilities.delete(id, collection)
 
