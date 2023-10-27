@@ -142,7 +142,7 @@ class SpellController @Inject()(
           case Success(objectId) =>
             val spellDto = Spell(Some(objectId), spell.name, spell.range, spell.cleric, spell.magicUser, spell.duration, spell.description, spell.alignment)
             spellRepository.update(spellDto).map(result => Ok(Json.toJson(result.n)))
-          case Failure(_) => Future.successful(BadRequest("Cannot parse the spell json"))
+          case Failure(_) => Future.successful(BadRequest(s"Cannot update the spell id: $id"))
         }
       }
     )
@@ -152,7 +152,7 @@ class SpellController @Inject()(
     val objectIdTryResult = BSONObjectID.parse(id)
     objectIdTryResult match {
       case Success(objectId) => spellRepository.delete(objectId).map(_ => NoContent)
-      case Failure(_) => Future.successful(BadRequest("Cannot parse the spell id"))
+      case Failure(_) => Future.successful(BadRequest(s"Cannot parse the spell id: $id"))
     }
   }
 

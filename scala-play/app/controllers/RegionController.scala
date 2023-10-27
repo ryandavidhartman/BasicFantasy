@@ -61,10 +61,18 @@ class RegionController @Inject()(
               demography = region.demography
             )
             regionRepository.update(regionDto).map(result => Ok(Json.toJson(result.n)))
-          case Failure(_) => Future.successful(BadRequest("Cannot parse the region json"))
+          case Failure(_) => Future.successful(BadRequest(s"Cannot update the region id: $id"))
         }
       }
     )
+  }
+
+  def delete(id: String): Action[AnyContent] = Action.async { implicit request =>
+    val objectIdTryResult = BSONObjectID.parse(id)
+    objectIdTryResult match {
+      case Success(objectId) => regionRepository.delete(objectId).map(_ => NoContent)
+      case Failure(_) => Future.successful(BadRequest(s"Cannot parse the region id: $id"))
+    }
   }
 
 }
