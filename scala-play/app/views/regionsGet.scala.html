@@ -1,0 +1,38 @@
+@(regions: Seq[Region], updateUrl: String)(implicit request: MessagesRequestHeader)
+
+@main("regions") {
+    <h1>regions</h1>
+
+    @* Flash shows updates to a page *@
+    @request.flash.data.map{ case (name, value) =>
+        <div>@name: @value</div>
+    }
+
+    @for(r <- regions) {
+        <div style="float: left; width: 20%; border: 1px solid #000000">
+            Name:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @r.name
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000">
+            Ruler:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @r.ruler
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000">
+            Capital:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @r.capital
+        </div>
+        <div style="float: left; width: 100%; border: 1px solid #000000;">
+            <a href="@updateUrl/@r._id.get.stringify">update</a>
+        </div>
+        <div style="float: left; width: 100%; border: 1px solid #000000;">
+            <hr>
+        </div>
+    }
+
+}

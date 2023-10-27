@@ -2,13 +2,13 @@ package controllers
 
 import models.Region
 import play.api.libs.json.{JsValue, Json}
-import play.api.mvc.{Action, AnyContent, MessagesAbstractController, MessagesControllerComponents, Request}
+import play.api.mvc.{Action, AnyContent, MessagesAbstractController, MessagesControllerComponents, MessagesRequest, Request}
 import reactivemongo.api.bson.BSONObjectID
 import repositories.RegionRepository
 
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
-import scala.util.{Success, Failure}
+import scala.util.{Failure, Success}
 
 @Singleton
 class RegionController @Inject()(
@@ -18,6 +18,17 @@ class RegionController @Inject()(
   extends MessagesAbstractController(controllerComponents) {
 
   import Region._
+
+  // Region UI
+
+  private val updateRegionURL = "http://localhost:9000/regions/update"
+
+  def getRegionsPage(campaign: Option[String],
+                    name: Option[String]): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    regionRepository.get(campaign, name)
+      .map(spells => Ok(views.html.regionsGet(spells.sortBy(_.name), updateRegionURL)))
+  }
+
 
   // Region CRUD API
   def get(campaign: Option[String], name: Option[String]): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
