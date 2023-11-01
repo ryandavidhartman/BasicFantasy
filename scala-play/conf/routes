@@ -47,12 +47,12 @@ GET /v1/api/backgrounds/random/:race/:intelligence controllers.BackgroundControl
 
 # region ui routing
 GET     /regions                controllers.RegionController.getRegionsPage(campaign: Option[String], name: Option[String])
-#GET     /spells/list           controllers.SpellController.getListPage()
-#GET     /spells/create         controllers.SpellController.createSpellPage()
-#POST    /spells/create         controllers.SpellController.createSpell()
-#GET     /spells/update/:id     controllers.SpellController.updateSpellPage(id: String)
-#GET     /spells/view/:id       controllers.SpellController.viewSpellPage(id: String)
-#POST    /spells/update         controllers.SpellController.updateSpell()
+GET     /regions/list           controllers.RegionController.getListPage()
+GET     /regions/create         controllers.RegionController.createRegionPage()
+POST    /regions/create         controllers.RegionController.createRegion()
+GET     /regions/update/:id     controllers.RegionController.updateRegionPage(id: String)
+GET     /regions/view/:id       controllers.RegionController.viewRegionPage(id: String)
+POST    /regions/update         controllers.RegionController.updateRegion()
 
 # region api routing
 GET     /v1/api/regions         controllers.RegionController.get(campaign: Option[String], name: Option[String])

@@ -1,6 +1,8 @@
 package controllers
 
+import controllers.RegionForm.regionForm
 import models.Region
+import play.api.data.Form
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{Action, AnyContent, MessagesAbstractController, MessagesControllerComponents, MessagesRequest, Request}
 import reactivemongo.api.bson.BSONObjectID
@@ -21,6 +23,8 @@ class RegionController @Inject()(
 
   // Region UI
 
+  private val updateRegionCall = routes.RegionController.updateRegion()
+
   private val updateRegionURL = "http://localhost:9000/regions/update"
 
   def getRegionsPage(campaign: Option[String],
@@ -28,6 +32,41 @@ class RegionController @Inject()(
     regionRepository.get(campaign, name)
       .map(spells => Ok(views.html.regionsGet(spells.sortBy(_.name), updateRegionURL)))
   }
+
+  def getListPage(): Action[AnyContent] = ???
+  def createRegionPage(): Action[AnyContent] = ???
+  def createRegion(): Action[AnyContent] = ???
+  def updateRegionPage(id: String): Action[AnyContent] = ??? /*Action.async { implicit request: MessagesRequest[AnyContent] =>
+    val regionF: Future[Option[Region]] = regionRepository.findOne(id)
+    regionF.map((s: Option[Region]) => s match {
+      case Some(spell) => Ok(views.html.regionUpdate(regionForm.fill(spell), updateRegionCall))
+      case None => Ok(views.html.spellCreate(regionForm, createSpellCall))
+    })
+  }*/
+
+  def viewRegionPage(id: String): Action[AnyContent] = ???
+  def updateRegion(): Action[AnyContent] = ???
+    /* Action { implicit request: MessagesRequest[AnyContent] =>
+
+    val errorFunction = { formWithErrors: Form[Region] =>
+      // This is the bad case, where the form had validation errors.
+      // Let's show the user the form again, with the errors highlighted.
+      // Note how we pass the form with errors to the template.
+      println(formWithErrors.errors.mkString(";"))
+      BadRequest(views.html.regionUpdate(formWithErrors, createSpellCall))
+    }
+
+    val successFunction = { spell: Spell =>
+      spellRepository.update(spell)
+      Redirect(routes.SpellController.getSpellsPage(None, None, None, None, None, None, None))
+        .flashing("info" -> s"${spell.name} updated!")
+    }
+
+    val formValidationResult = spellForm.bindFromRequest()
+    formValidationResult.fold(errorFunction, successFunction)
+  } */
+
+
 
 
   // Region CRUD API

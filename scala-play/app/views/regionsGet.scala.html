@@ -16,6 +16,12 @@
             @r.name
         </div>
         <div style="float: left; width: 20%; border: 1px solid #000000">
+            Campaign:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @r.campaign
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000">
             Ruler:
         </div>
         <div style="float: left; width: 80%; border: 1px solid #000000;">
@@ -26,6 +32,44 @@
         </div>
         <div style="float: left; width: 80%; border: 1px solid #000000;">
             @r.capital
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000">
+            Population:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @r.population
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000">
+            Demi-Humans:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @r.demiHumans
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000">
+            Humanoids:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @r.humanoids
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000">
+            Resources:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @r.resources
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000">
+            Description:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @r.description
+        </div>
+        <div style="float: left; width: 20%; border: 1px solid #000000">
+            Demographics:
+        </div>
+        <div style="float: left; width: 80%; border: 1px solid #000000;">
+            @for(d <- r.demography) {
+                @d.race  (@d.lowRange - @d.highRange)
+            }
         </div>
         <div style="float: left; width: 100%; border: 1px solid #000000;">
             <a href="@updateUrl/@r._id.get.stringify">update</a>

@@ -93,7 +93,7 @@ class SpellController @Inject()(
       // Let's show the user the form again, with the errors highlighted.
       // Note how we pass the form with errors to the template.
       println(formWithErrors.errors.mkString(";"))
-      BadRequest(views.html.spellUpdate(formWithErrors, createSpellCall))
+      BadRequest(views.html.spellUpdate(formWithErrors, updateSpellCall))
     }
 
     val successFunction = { spell: Spell =>
