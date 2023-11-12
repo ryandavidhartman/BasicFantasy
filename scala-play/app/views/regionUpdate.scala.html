@@ -22,12 +22,21 @@
 @helper.inputText(form("capital"))
 @helper.inputText(form("population"))
 @helper.inputText(form("demiHumans"))
+@helper.inputText(form("humanoids"))
 @helper.textarea(form("resources"))
 @helper.inputText(form("description"))
 
+<h2>Demography</h2>
+@for(index <- 0 until form("demography").indexes.length) {
+<div>
+    @helper.inputText(form(s"demography[$index].race"))
+    @helper.inputText(form(s"demography[$index].lowRange"))
+    @helper.inputText(form(s"demography[$index].highRange"))
+    <!-- <a href="removeDemography(form("_id"), index)">Remove</a> -->
+</div>
+}
+<!-- <a href="addDemography(form("_id"))">Add Demography</a> -->
+
 <button>Update Region</button>
 }
-
-
-
 }

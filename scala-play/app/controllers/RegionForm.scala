@@ -1,6 +1,7 @@
 package controllers
 
-import models.Region
+import models.{Demography, Region}
+import play.api.data.Mapping
 import play.modules.reactivemongo.Formatters.bsonFormatter
 import reactivemongo.api.bson.BSONObjectID
 
@@ -8,6 +9,14 @@ object RegionForm {
 
   import play.api.data.Form
   import play.api.data.Forms._
+
+  val demographyMapping: Mapping[List[Demography]] = list(
+    mapping(
+      "race" -> nonEmptyText,
+      "lowRange" -> number,
+      "highRange" -> number
+    )(Demography.apply)(Demography.unapply)
+  )
 
   val regionForm = Form(
     mapping(
@@ -21,7 +30,7 @@ object RegionForm {
       "humanoids" -> nonEmptyText,
       "resources" -> nonEmptyText,
       "description" -> nonEmptyText,
-      "demography" -> ???
+      "demography" -> demographyMapping
     )(Region.apply)(Region.unapply)
   )
 

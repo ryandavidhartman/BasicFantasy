@@ -24,25 +24,29 @@ class RegionController @Inject()(
   // Region UI
 
   private val updateRegionCall = routes.RegionController.updateRegion()
+  private val createRegionCall = routes.RegionController.createRegion()
 
   private val updateRegionURL = "http://localhost:9000/regions/update"
 
   def getRegionsPage(campaign: Option[String],
                     name: Option[String]): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     regionRepository.get(campaign, name)
-      .map(spells => Ok(views.html.regionsGet(spells.sortBy(_.name), updateRegionURL)))
+      .map(regions => Ok(views.html.regionsGet(regions.sortBy(_.name), updateRegionURL)))
   }
 
-  def getListPage(): Action[AnyContent] = ???
+  def getListPage(campaign: Option[String]): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    regionRepository.get(campaign, None)
+      .map(regions => Ok(views.html.regionsList(regions.sortBy(_.name), updateRegionURL)))
+  }
   def createRegionPage(): Action[AnyContent] = ???
   def createRegion(): Action[AnyContent] = ???
-  def updateRegionPage(id: String): Action[AnyContent] = ??? /*Action.async { implicit request: MessagesRequest[AnyContent] =>
+  def updateRegionPage(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     val regionF: Future[Option[Region]] = regionRepository.findOne(id)
-    regionF.map((s: Option[Region]) => s match {
-      case Some(spell) => Ok(views.html.regionUpdate(regionForm.fill(spell), updateRegionCall))
-      case None => Ok(views.html.spellCreate(regionForm, createSpellCall))
+    regionF.map((r: Option[Region]) => r match {
+      case Some(region) => Ok(views.html.regionUpdate(regionForm.fill(region), updateRegionCall))
+      case None => Ok(views.html.regionCreate(regionForm, createRegionCall))
     })
-  }*/
+  }
 
   def viewRegionPage(id: String): Action[AnyContent] = ???
   def updateRegion(): Action[AnyContent] = ???

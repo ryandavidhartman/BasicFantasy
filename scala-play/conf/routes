@@ -47,7 +47,7 @@ GET /v1/api/backgrounds/random/:race/:intelligence controllers.BackgroundControl
 
 # region ui routing
 GET     /regions                controllers.RegionController.getRegionsPage(campaign: Option[String], name: Option[String])
-GET     /regions/list           controllers.RegionController.getListPage()
+GET     /regions/list           controllers.RegionController.getListPage(campaign: Option[String])
 GET     /regions/create         controllers.RegionController.createRegionPage()
 POST    /regions/create         controllers.RegionController.createRegion()
 GET     /regions/update/:id     controllers.RegionController.updateRegionPage(id: String)

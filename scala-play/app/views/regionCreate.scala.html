@@ -1,0 +1,33 @@
+@(form: Form[Region], postUrl: Call)(implicit request: MessagesRequestHeader)
+
+@main("Create a new Region") {
+<h1>Make a new region</h1>
+
+@* Global errors are not tied to any particular form field *@
+@if(form.hasGlobalErrors) {
+@form.globalErrors.map { error: FormError =>
+<div>
+    @error.key: @error.message
+</div>
+}
+}
+
+@helper.form(postUrl) {
+    @helper.CSRF.formField
+
+    @helper.inputText(form("campaign"))
+    @helper.inputText(form("name"))
+    @helper.inputText(form("ruler"))
+    @helper.inputText(form("capital"))
+    @helper.inputText(form("population"))
+    @helper.inputText(form("demiHumans"))
+    @helper.textarea(form("humanoids"))
+    @helper.inputText(form("resources"))
+    @helper.inputText(form("description"))
+
+    <button>Create Region</button>
+}
+
+
+
+}
