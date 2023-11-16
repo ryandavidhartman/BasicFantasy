@@ -49,26 +49,25 @@ class RegionController @Inject()(
   }
 
   def viewRegionPage(id: String): Action[AnyContent] = ???
-  def updateRegion(): Action[AnyContent] = ???
-    /* Action { implicit request: MessagesRequest[AnyContent] =>
+  def updateRegion(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
 
     val errorFunction = { formWithErrors: Form[Region] =>
       // This is the bad case, where the form had validation errors.
       // Let's show the user the form again, with the errors highlighted.
       // Note how we pass the form with errors to the template.
       println(formWithErrors.errors.mkString(";"))
-      BadRequest(views.html.regionUpdate(formWithErrors, createSpellCall))
+      BadRequest(views.html.regionUpdate(formWithErrors, updateRegionCall))
     }
 
-    val successFunction = { spell: Spell =>
-      spellRepository.update(spell)
-      Redirect(routes.SpellController.getSpellsPage(None, None, None, None, None, None, None))
-        .flashing("info" -> s"${spell.name} updated!")
+    val successFunction = { region: Region =>
+      regionRepository.update(region)
+      Redirect(routes.RegionController.getRegionsPage(None, None))
+        .flashing("info" -> s"${region.name} updated!")
     }
 
-    val formValidationResult = spellForm.bindFromRequest()
+    val formValidationResult = regionForm.bindFromRequest()
     formValidationResult.fold(errorFunction, successFunction)
-  } */
+  }
 
 
 

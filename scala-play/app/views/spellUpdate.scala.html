@@ -1,32 +1,29 @@
 @(form: Form[Spell], postUrl: Call)(implicit request: MessagesRequestHeader)
 
 @main("Update a Spell") {
-<h1>Edit spell</h1>
+    <h1>Edit spell</h1>
 
-@* Global errors are not tied to any particular form field *@
-@if(form.hasGlobalErrors) {
-@form.globalErrors.map { error: FormError =>
-<div>
-    @error.key: @error.message
-</div>
-}
-}
+    @* Global errors are not tied to any particular form field *@
+        @if(form.hasGlobalErrors) {
+            @form.globalErrors.map { error: FormError =>
+            <div>
+                @error.key: @error.message
+            </div>
+        }
+    }
 
-@helper.form(postUrl) {
-@helper.CSRF.formField
+    @helper.form(postUrl) {
+        @helper.CSRF.formField
 
-@helper.inputText(form("_id"))
-@helper.inputText(form("name"))
-@helper.inputText(form("range"))
-@helper.inputText(form("cleric"))
-@helper.inputText(form("magicUser"))
-@helper.inputText(form("duration"))
-@helper.textarea(form("description"))
-@helper.inputText(form("alignment"))
+        @helper.inputText(form("_id"))
+        @helper.inputText(form("name"))
+        @helper.inputText(form("range"))
+        @helper.inputText(form("cleric"))
+        @helper.inputText(form("magicUser"))
+        @helper.inputText(form("duration"))
+        @helper.textarea(form("description"))
+        @helper.inputText(form("alignment"))
 
-<button>Update Spell</button>
-}
-
-
-
+        <button>Update Spell</button>
+    }
 }

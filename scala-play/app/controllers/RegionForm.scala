@@ -26,7 +26,7 @@ object RegionForm {
       "ruler" -> nonEmptyText,
       "capital" -> nonEmptyText,
       "population" -> nonEmptyText,
-      "demiHuman" -> nonEmptyText,
+      "demiHumans" -> nonEmptyText,
       "humanoids" -> nonEmptyText,
       "resources" -> nonEmptyText,
       "description" -> nonEmptyText,

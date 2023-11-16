@@ -1,42 +1,42 @@
 @(form: Form[Region], postUrl: Call)(implicit request: MessagesRequestHeader)
 
 @main("Update a Region") {
-<h1>Edit region</h1>
+    <h1>Edit region</h1>
 
-@* Global errors are not tied to any particular form field *@
-@if(form.hasGlobalErrors) {
-@form.globalErrors.map { error: FormError =>
-<div>
-    @error.key: @error.message
-</div>
-}
-}
+    @* Global errors are not tied to any particular form field *@
+    @if(form.hasGlobalErrors) {
+        @form.globalErrors.map { error: FormError =>
+            <div>
+                @error.key: @error.message
+            </div>
+        }
+    }
 
-@helper.form(postUrl) {
-@helper.CSRF.formField
+    @helper.form(postUrl) {
+        @helper.CSRF.formField
 
-@helper.inputText(form("_id"))
-@helper.inputText(form("name"))
-@helper.inputText(form("campaign"))
-@helper.inputText(form("ruler"))
-@helper.inputText(form("capital"))
-@helper.inputText(form("population"))
-@helper.inputText(form("demiHumans"))
-@helper.inputText(form("humanoids"))
-@helper.textarea(form("resources"))
-@helper.inputText(form("description"))
+        @helper.inputText(form("_id"))
+        @helper.inputText(form("name"))
+        @helper.inputText(form("campaign"))
+        @helper.inputText(form("ruler"))
+        @helper.inputText(form("capital"))
+        @helper.inputText(form("population"))
+        @helper.inputText(form("demiHumans"))
+        @helper.inputText(form("humanoids"))
+        @helper.textarea(form("resources"))
+        @helper.inputText(form("description"))
 
-<h2>Demography</h2>
-@for(index <- 0 until form("demography").indexes.length) {
-<div>
-    @helper.inputText(form(s"demography[$index].race"))
-    @helper.inputText(form(s"demography[$index].lowRange"))
-    @helper.inputText(form(s"demography[$index].highRange"))
-    <!-- <a href="removeDemography(form("_id"), index)">Remove</a> -->
-</div>
-}
-<!-- <a href="addDemography(form("_id"))">Add Demography</a> -->
+        <h2>Demography</h2>
+        @for(index <- 0 until form("demography").indexes.length) {
+            <div>
+                @helper.inputText(form(s"demography[$index].race"))
+                @helper.inputText(form(s"demography[$index].lowRange"))
+                @helper.inputText(form(s"demography[$index].highRange"))
+                <!-- <a href="removeDemography(form("_id"), index)">Remove</a> -->
+            </div>
+        }
+        <!-- <a href="addDemography(form("_id"))">Add Demography</a> -->
 
-<button>Update Region</button>
-}
+        <button>Update Region</button>
+    }
 }
