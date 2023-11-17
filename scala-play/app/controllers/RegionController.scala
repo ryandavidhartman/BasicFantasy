@@ -38,8 +38,29 @@ class RegionController @Inject()(
     regionRepository.get(campaign, None)
       .map(regions => Ok(views.html.regionsList(regions.sortBy(_.name), updateRegionURL)))
   }
-  def createRegionPage(): Action[AnyContent] = ???
-  def createRegion(): Action[AnyContent] = ???
+  def createRegionPage(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
+    Ok(views.html.regionCreate(regionForm, createRegionCall))
+  }
+  def createRegion(): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
+
+    val errorFunction = { formWithErrors: Form[Region] =>
+      // This is the bad case, where the form had validation errors.
+      // Let's show the user the form again, with the errors highlighted.
+      // Note how we pass the form with errors to the template.
+      println(formWithErrors.errors.mkString(";"))
+      BadRequest(views.html.regionCreate(formWithErrors, createRegionCall))
+    }
+
+    val successFunction = { region: Region =>
+      // This is the good case, where the form was successfully parsed as a Data object.
+      regionRepository.create(region)
+      Redirect(routes.RegionController.getRegionsPage(None, None))
+        .flashing("info" -> s"${region.name} added!")
+    }
+
+    val formValidationResult = regionForm.bindFromRequest()
+    formValidationResult.fold(errorFunction, successFunction)
+  }
   def updateRegionPage(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     val regionF: Future[Option[Region]] = regionRepository.findOne(id)
     regionF.map((r: Option[Region]) => r match {

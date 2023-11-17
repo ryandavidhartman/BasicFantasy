@@ -23,8 +23,16 @@
         @helper.inputText(form("population"))
         @helper.inputText(form("demiHumans"))
         @helper.inputText(form("humanoids"))
-        @helper.textarea(form("resources"))
-        @helper.inputText(form("description"))
+        @helper.inputText(form("resources"))
+        <div class="form-group">
+            @helper.textarea(
+            field = form("description"),
+            args = '_label -> "Description",
+            'rows -> 20,  // Set the initial number of rows
+            'style -> "resize: vertical;",  // Set the resize style to vertical
+            'class -> "form-control"
+            )
+        </div>
 
         <h2>Demography</h2>
         @for(index <- 0 until form("demography").indexes.length) {
@@ -35,6 +43,7 @@
                 <!-- <a href="removeDemography(form("_id"), index)">Remove</a> -->
             </div>
         }
+
         <!-- <a href="addDemography(form("_id"))">Add Demography</a> -->
 
         <button>Update Region</button>
