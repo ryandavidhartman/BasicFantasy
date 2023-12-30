@@ -43,6 +43,7 @@ POST /v1/api/personalities/bulk controllers.PersonalityController.createBulk()
 
 # background
 GET /v1/api/backgrounds/random/:race/:intelligence controllers.BackgroundController.getRandom(race: String, intelligence: String)
+GET /v1/api/backgrounds/attributes controllers.BackgroundController.getAttributes(race: Option[String], characterClass: Option[String])
 
 
 # region ui routing

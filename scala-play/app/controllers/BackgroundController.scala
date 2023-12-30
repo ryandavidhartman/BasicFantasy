@@ -19,5 +19,7 @@ class BackgroundController @Inject()(
     Ok(Json.toJson(background))
   }
 
-
+  def getAttributes(race: Option[String], characterClass: Option[String]): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
+    ???
+  }
 }
