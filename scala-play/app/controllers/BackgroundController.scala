@@ -1,6 +1,7 @@
 package controllers
 
-import basic.fantasy.backgrounds.{BackgroundGenerator, Races}
+import basic.fantasy.backgrounds.{AttributeGenerator, BackgroundGenerator, Races}
+import basic.fantasy.characterclass.CharacterClasses
 import basic.fantasy.rules.BasicFantasy
 import play.api.libs.json.Json
 
@@ -19,7 +20,9 @@ class BackgroundController @Inject()(
     Ok(Json.toJson(background))
   }
 
-  def getAttributes(race: Option[String], characterClass: Option[String]): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
-    ???
+  def getAttributes(characterClass: Option[String], heroic: Boolean): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
+    val chrClass = characterClass.map(CharacterClasses.stringToCharacterClass)
+    val attributes = AttributeGenerator.getRandomAttributes(chrClass, heroic)
+    Ok(Json.toJson(attributes))
   }
 }

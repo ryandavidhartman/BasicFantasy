@@ -1,14 +1,33 @@
 package basic.fantasy
 
+import scala.annotation.tailrec
+
 
 object Roller {
 
   val r = scala.util.Random
-  def getRandomScoreIndex(): Int = {
-    r.nextInt(16)
+
+
+  def getRandomAttribute(heroic: Boolean = false): Int = {
+
+    @tailrec
+    def rollD6(heroic: Boolean = false): Int = {
+      val roll = rollDice(1, 6, 0)
+      if(roll == 1 && heroic)
+        rollD6(heroic)
+      else
+        roll
+    }
+
+    if( heroic) {
+      (1 to 4).map(_ => rollD6(false)).sortWith(_ < _).tail.sum
+    } else {
+      (1 to 3).map(_ => rollD6(false)).sum
+    }
+
   }
-  def getSixScores(): Seq[Int] = {
-    (1 to 6).map(_ => getRandomScoreIndex()).sortWith(_ > _)
+  def getSixScores(heroic: Boolean = false): Seq[Int] = {
+    (1 to 6).map(_ => getRandomAttribute(heroic))
   }
   def rollDice(numOfDice: Int, typeOfDice: Int, mod: Int): Int = {
     (1 to numOfDice).map(_ => r.nextInt(typeOfDice) + 1 + mod).sum
