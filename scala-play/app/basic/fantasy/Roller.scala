@@ -20,9 +20,13 @@ object Roller {
     }
 
     if( heroic) {
-      (1 to 4).map(_ => rollD6(false)).sortWith(_ < _).tail.sum
+      val rolls = (1 to 4).map(_ => rollD6(true)).sortWith(_ < _)
+      //println(s"rolls: $rolls")
+      rolls.tail.sum
     } else {
-      (1 to 3).map(_ => rollD6(false)).sum
+      val rolls = (1 to 3).map(_ => rollD6(false))
+      //println(s"rolls: $rolls")
+      rolls.sum
     }
 
   }
