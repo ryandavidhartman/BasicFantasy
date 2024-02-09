@@ -47,8 +47,7 @@ case class Region(
                    demiHumans: String,
                    humanoids: String,
                    resources: String,
-                   description: String,
-                   demography: List[Demography]
+                   description: String
                  )  extends Model
 
 object Region {
@@ -81,8 +80,7 @@ object Region {
         "demiHumans" -> BSONString(region.demiHumans),
         "humanoids" -> BSONString(region.humanoids),
         "resources" -> BSONString(region.resources),
-        "description" -> BSONString(region.description),
-        "demography" -> BSONArray(region.demography.map(Demography.DemographyBSONWriter.writeTry(_).get))
+        "description" -> BSONString(region.description)
       )
     }
   }
@@ -100,9 +98,8 @@ object Region {
       val humanoids = doc.getAsOpt[BSONString]("humanoids").get.value
       val resources = doc.getAsOpt[BSONString]("resources").get.value
       val description = doc.getAsOpt[BSONString]("description").get.value
-      val demography = doc.getAsOpt[List[Demography]]("demography").getOrElse(List.empty[Demography])
 
-      Region(id, campaign, name, ruler, capital, population, demiHumans, humanoids, resources, description, demography)
+      Region(id, campaign, name, ruler, capital, population, demiHumans, humanoids, resources, description)
     }
   }
 

@@ -3,7 +3,7 @@ package repositories
 import models.Region
 import play.modules.reactivemongo.ReactiveMongoApi
 import reactivemongo.api.Cursor
-import reactivemongo.api.bson.{BSONDocument, BSONObjectID, BSONValue}
+import reactivemongo.api.bson.{BSONArray, BSONDocument, BSONObjectID, BSONValue}
 import reactivemongo.api.bson.collection.BSONCollection
 import reactivemongo.api.commands.WriteResult
 
@@ -16,12 +16,14 @@ class RegionRepository@Inject() (reactiveMongoApi: ReactiveMongoApi,
   def collection: Future[BSONCollection] = reactiveMongoApi.database.map(db => db.collection("Regions"))
 
 
-  def get(campaign: Option[String], name: Option[String]): Future[Seq[Region]] = {
+  def get(campaignOpt: Option[String], nameOpt: Option[String]): Future[Seq[Region]] = {
 
+    println(campaignOpt)
+    val campaignQuery = campaignOpt.fold(BSONDocument.empty)(campaign => BSONDocument("campaign" -> campaign))
+    val nameQuery = nameOpt.fold(BSONDocument.empty)(name => BSONDocument("name" -> name))
 
     val query = BSONDocument(
-      "campaign" -> campaign,
-      "name" -> name
+      "$and" -> BSONArray(nameQuery,campaignQuery)
     )
 
     val projection = Some(BSONDocument.empty)

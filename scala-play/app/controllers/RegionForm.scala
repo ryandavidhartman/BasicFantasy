@@ -29,8 +29,7 @@ object RegionForm {
       "demiHumans" -> nonEmptyText,
       "humanoids" -> nonEmptyText,
       "resources" -> nonEmptyText,
-      "description" -> nonEmptyText,
-      "demography" -> demographyMapping
+      "description" -> nonEmptyText
     )(Region.apply)(Region.unapply)
   )
 

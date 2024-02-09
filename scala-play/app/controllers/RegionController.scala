@@ -131,8 +131,7 @@ class RegionController @Inject()(
               demiHumans = region.demiHumans,
               humanoids = region.humanoids,
               resources = region.resources,
-              description = region.description,
-              demography = region.demography
+              description = region.description
             )
             regionRepository.update(regionDto).map(result => Ok(Json.toJson(result.n)))
           case Failure(_) => Future.successful(BadRequest(s"Cannot update the region id: $id"))

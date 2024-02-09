@@ -63,14 +63,6 @@
         <div style="float: left; width: 80%; border: 1px solid #000000;">
             @r.description
         </div>
-        <div style="float: left; width: 20%; border: 1px solid #000000">
-            Demographics:
-        </div>
-        <div style="float: left; width: 80%; border: 1px solid #000000;">
-            @for(d <- r.demography) {
-                @d.race  (@d.lowRange - @d.highRange)
-            }
-        </div>
         <div style="float: left; width: 100%; border: 1px solid #000000;">
             <a href="@updateUrl/@r._id.get.stringify">update</a>
         </div>

@@ -120,7 +120,7 @@ object BackgroundGenerator {
       39 -> "Lothario",
       40 -> "Orator",
       41 -> "Dream Interpreter",
-      42 -> "Naturialist",
+      42 -> "Naturalist",
       43 -> "Vinter",
       44 -> "Gambler",
       45 -> "Astrologer",
