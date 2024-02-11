@@ -42,8 +42,8 @@ POST /v1/api/personalities      controllers.PersonalityController.create()
 POST /v1/api/personalities/bulk controllers.PersonalityController.createBulk()
 
 # background
-GET /v1/api/backgrounds/random/:race/:intelligence controllers.BackgroundController.getRandom(race: String, intelligence: String)
-GET /v1/api/backgrounds/attributes controllers.BackgroundController.getAttributes(characterClass: Option[String], heroic: Boolean)
+GET /v1/api/backgrounds/random     controllers.BackgroundController.getRandomBackground()
+GET /v1/api/backgrounds/attributes controllers.BackgroundController.getAttributes(characterClass: Option[String], heroic: Option[Boolean])
 
 
 # region ui routing

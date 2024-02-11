@@ -8,7 +8,7 @@ object BasicFantasy {
 
   def calcBaseAttackModifier(characterClass: CharacterClass, level: Int): String = {
     characterClass match {
-      case f if f.isFighter =>
+      case f if f.isFighter =>  // Fighter or Fighter Magic user
         if (level == 1)
           "+1"
         else if (level <= 3)
@@ -29,7 +29,7 @@ object BasicFantasy {
           "+9"
         else
           "+10"
-      case s if s.isThief || s.isCleric =>
+      case s if s.isThief || s.isCleric => // Cleric or Thief
         if (level <= 2)
           "+1"
         else if (level == 4)
@@ -59,8 +59,10 @@ object BasicFantasy {
           "+5"
         else if (level <= 18)
           "+6"
-        else
+        else {
           "+7"
+        }
+      case _ => throw new IllegalArgumentException(s"No match for $characterClass")
     }
   }
 
@@ -91,6 +93,7 @@ object BasicFantasy {
       case f if f.isFighter && !f.isMagicUser => 8
       case c if c.isCleric || (c.isFighter && c.isMagicUser) => 6
       case s if s.isThief || s.isMagicUser => 4
+      case _ => throw new IllegalArgumentException(s"invalid characterClass: $characterClass")
     }
 
     val modHitDice: Int = race match {

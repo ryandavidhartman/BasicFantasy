@@ -8,30 +8,24 @@ import play.api.libs.json.{Json, Writes}
 object BackgroundGenerator {
 
   case class Background(
-   parentsNationality: Nationality,
-   parentsOccupation: String,
    birthOrder: String,
+   parentsOccupation: String,
    childHoodEvents: Set[String],
-   adolescentEvents: Set[String],
-   languages: Set[String]
+   adolescentEvents: Set[String]
  )
 
-  def getBackground(race: Race, languageBonus: Int = 0): Background = {
+  def getBackground(): Background = {
     val numChildhoodEvents = Roller.randomInt(4)
     val numAdolescentEvents = Roller.randomInt(4)
 
     val childHoodEvents: Set[String] = (0 to numChildhoodEvents).map(_ => getChildhoodEvents()).toSet
     val adolescentEvents: Set[String] = (0 to numAdolescentEvents).map(_ => getYoungAdultEvents()).toSet
-    val nationality = getNationality(race)
-    val languages: Set[String] = getLanguages(nationality.nativeLanguage, race, languageBonus)
 
     Background(
-      nationality,
-      getOccupation(),
-      getBirthOrder(),
-      childHoodEvents,
-      adolescentEvents,
-      languages
+      birthOrder = getBirthOrder(),
+      parentsOccupation = getOccupation(),
+      childHoodEvents = childHoodEvents,
+      adolescentEvents = adolescentEvents
     )
   }
 
@@ -65,11 +59,13 @@ object BackgroundGenerator {
       7 -> "Second child",
       8 -> "Third child",
       9 -> "Third child",
-      10 -> "Fourth child",
-      11 -> "Fifth child",
-      12 -> "Sixth child",
-      13 -> "Seventh child",
-      14 -> "Eighth or more"
+      10 -> "Third child",
+      11 -> "Fourth child",
+      12 -> "Fourth child",
+      13 -> "Fifth child",
+      14 -> "Sixth child",
+      15 -> "Seventh child",
+      16 -> "Eighth or more"
     )
 
     getRandomData(birthOrders)
