@@ -14,42 +14,42 @@ object NameGenerator {
     case HalfOrc => if (Roller.coinFLip()) getOrcishName(gender) else getHumanName(gender)
   }
 
-  def getHumanName(gender: String): String = {
+  private def getHumanName(gender: String): String = {
     if (gender == "Male")
       s"$getHumanMaleFirstName $getHumanSurname"
     else
       s"$getHumanFemaleFirstName $getHumanSurname"
   }
 
-  def getElvenName(gender: String): String = {
+  private def getElvenName(gender: String): String = {
     if (gender == "Male")
       s"$getElvenMaleFirstName $getElvenSurname"
     else
       s"$getElvenFemaleFirstName $getElvenSurname"
   }
 
-  def getDwarvenName(gender: String): String = {
+  private def getDwarvenName(gender: String): String = {
     if (gender == "Male")
       s"$getDwarvenMaleFirstName $getDwarvenSurname"
     else
       s"$getDwarvenFemaleFirstName $getDwarvenSurname"
   }
 
-  def getHalflingName(gender: String): String = {
+  private def getHalflingName(gender: String): String = {
     if (gender == "Male")
       s"$getHalflingMaleFirstName $getHalflingSurname"
     else
       s"$getHalflingFemaleFirstName $getHalflingSurname"
   }
 
-  def getOrcishName(gender: String): String = {
+  private def getOrcishName(gender: String): String = {
     if (gender == "Male")
       getOrcishMaleName
     else
       getOrcishFemaleName
   }
 
-  def getOrcishMaleName(): String = {
+  private def getOrcishMaleName: String = {
     val names: Seq[String] = Seq("Komamash", "Aguburk", "Garadash", "Sigur", "Gask", "Nidash", "Gnaezur", "Aggorash",
       "Duriz", "Morubash", "Brod", "Kelurk", "Tharotir", "Zusorimm", "Mugunar", "Haridim", "Korumash", "Lumubar",
       "Gromarsh")
@@ -57,7 +57,7 @@ object NameGenerator {
     names(Roller.randomInt(count))
   }
 
-  def getOrcishFemaleName(): String = {
+  private def getOrcishFemaleName: String = {
     val names: Seq[String] = Seq("Karani", "Shayiri", "Rame", "Growar", "Fulozara", "Noshi", "Kutegum", "Rohkini",
       "Gynanir", "Gijesha", "Rashiz", "Sumimi", "Rohkuzura", "Sumarook", "Zonemira", "Kurogur", "Olanir", "Kurimi",
       "Kurid", "Sanani")
@@ -65,7 +65,7 @@ object NameGenerator {
     names(Roller.randomInt(count))
   }
 
-  def getHumanSurname: String = {
+  private def getHumanSurname: String = {
 
     val surNames: Seq[String] = Seq("Hill", "Morton", "Hutchinson", "Hutchinson", "Brooks", "Montgomery", "Jensen",
       "Rogers", "Mccarthy", "O'Quinn", "Gardner", "Booth", "Pham", "Austin", "Jackson", "Day", "Ayala", "Page",
@@ -91,7 +91,7 @@ object NameGenerator {
     surNames(Roller.randomInt(count))
   }
 
-  def getHumanMaleFirstName: String = {
+  private def getHumanMaleFirstName: String = {
 
     val firstName: Seq[String] = Seq("Arkandor", "Aeryk", "Aubir", "Birker", "Coro", "Charn", "Dunni", "Dhenor",
       "Enlo", "Ferdirk", "Golian", "Ghörn", "Hold", "Ivor", "Jarum", "Kolm", "Kherano", "Laef", "Mannur", "Nixor",
@@ -107,7 +107,7 @@ object NameGenerator {
     firstName(Roller.randomInt(count))
   }
 
-  def getHumanFemaleFirstName: String = {
+  private def getHumanFemaleFirstName: String = {
 
     val firstName: Seq[String] = Seq("Alonina", "Aena", "Aula", "Belea", "Celinda", "Chistri", "Dorah", "Dhunha",
       "Essai", "Flora", "Gunn", "Gharee", "Hejlaga", "Ingera", "Jess", "Kolmee", "Khira", "Lomma", "Moniské",
@@ -125,7 +125,7 @@ object NameGenerator {
     firstName(Roller.randomInt(count))
   }
 
-  def getElvenMaleFirstName: String = {
+  private def getElvenMaleFirstName: String = {
     val firstName = Seq("Abadda", "Abarat", "Adamar", "Adorellan", "Adresin", "Aduce", "Aelrindel", "Aerendyl",
       "Aermhar", "Aesar", "Aeson", "Afamrail", "Agis", "Aglanthol", "Ainésilver", "Aithlin", "Ajaar", "Akhelbhen",
       "Akkar", "Alabyran", "Albondiel", "Alinar", "Allain", "Alok", "Alosrin", "Althidon", "Amrynn", "Anarallath",
@@ -187,7 +187,7 @@ object NameGenerator {
     firstName(Roller.randomInt(count))
   }
 
-  def getElvenFemaleFirstName: String = {
+  private def getElvenFemaleFirstName: String = {
     val firstName: Seq[String] = Seq("Aelieyeeva", "Aelrue", "Aelynthi", "Aerilaya", "Ahrendaaria", "Ahrendue",
       "Ahskahala", "Ajhalanda", "Alaglossa", "Alais", "Alauthshaee", "Alavara", "Alea", "Alerathla", "Allannia",
       "Allisa", "Alloralla", "Allynna", "Almithara", "Aloevan", "Alvaerele", "Aluendalee", "Alyndra", "Amara",
@@ -230,7 +230,7 @@ object NameGenerator {
     firstName(Roller.randomInt(count))
   }
 
-  def getElvenSurname: String = {
+  private def getElvenSurname: String = {
     val surName = Seq("Aelasar", "Aelorothi", "Aendryr", "Aerasumé", "Aeravansel", "Agayous", "Agrivar", "Ahmaquissar",
       "Alaenree", "Alantar", "Alavara", "Alastrarra", "Alenuath", "Alerothi", "Alluth", "Aloevan", "Aluianti",
       "Aluviirsaan", "Amalith", "Amarallis", "Amaratharr", "Amarthen", "Ammath", "Amrallatha", "Anuaer", "Argentaamn",
@@ -271,7 +271,7 @@ object NameGenerator {
     surName(Roller.randomInt(count))
   }
 
-  def getDwarvenMaleFirstName(): String = {
+  private def getDwarvenMaleFirstName: String = {
 
     val firstName: Seq[String] = Seq("Addanc", "Ari", "Bhalkyl", "Aigror", "Dramoli", "Dorni", "Galvon", "Donar", "Brakan",
       "Duvur", "Bramdahr", "Colan", "Malgon", "Balthrasir", "Ballin", "Thovan", "Draupin", "Argos", "Thondin", "Brynjolvur",
@@ -287,7 +287,7 @@ object NameGenerator {
     firstName(Roller.randomInt(count))
   }
 
-  def getDwarvenFemaleFirstName(): String = {
+  private def getDwarvenFemaleFirstName: String = {
     val firstNames: Seq[String] = Seq("Dothura", "Dila", "Crystal", "Dunora", "Divira", "Gagon", "Dhara", "Dolana",
       "Agran", "Aden", "Bhelkam", "Esmeralda", "Calona", "Demeter", "Dradir", "Bes", "Erla", "Admina",
       "Giva", "Sienna", "Jade", "Chalia", "Dilgli", "Branmand", "Randonne", "Dovana", "Ebgranne", "Dora", "Lazula",
@@ -300,8 +300,7 @@ object NameGenerator {
     firstNames(Roller.randomInt(count))
   }
 
-
-  def getDwarvenSurname(): String = {
+  private def getDwarvenSurname: String = {
     val surnames: Seq[String] = Seq("Keghood", "Anvilmaster", "Anvilbender", "Runebreaker", "Flintcoat", "Deepgrip",
       "Minebrow", "Flaskview", "Ironforge", "Oreheart", "Stonejaw", "orcbane", "Cavebreaker", "Warrencloak",
       "Nightgranite", "Dorgin", "Morgus", "Austri", "Kalady", "Maur", "Dagni", "Geirfinnur", "MaurMaur", "Dagni",
@@ -321,7 +320,7 @@ object NameGenerator {
     surnames(Roller.randomInt(count))
   }
 
-  def getHalflingMaleFirstName(): String = {
+  private def getHalflingMaleFirstName: String = {
     val firstNames: Seq[String] = Seq("Wiltran", "Janfire", "Pimzor", "Xanvias", "Yenlan", "Ridon", "Danry", "Norpher",
       "Yarsire", "Osret", "Welkath", "Elikis", "Adran", "Amalis", "Bert", "Burrick", "Car", "Caridon", "Cyroen",
       "Davis", "Davon", "Eld", "Far", "Fel", "Huudus", "Imnard", "Jor", "Julk", "Kevon", "Lenson", "Lius", "Magnes",
@@ -335,7 +334,7 @@ object NameGenerator {
     firstNames(Roller.randomInt(count))
   }
 
-  def getHalflingFemaleFirstName: String = {
+  private def getHalflingFemaleFirstName: String = {
     val firstNames: Seq[String] = Seq("Prufice", "Yomita", "Fenprys", "Fromita", "Uviora", "Verhaly", "Quda",
       "Therprys", "Yoris", "Paesica", "Unaris", "Malwyn", "Zenlienne", "Saeni", "Uviola", "Lidtina", "Wimia",
       "Lidwyn", "Odivyre", "Adea", "Amonitza", "Arola", "Azasina", "Baita", "Bruderea", "Bruena", "Eloavela", "Elonia",
@@ -345,7 +344,7 @@ object NameGenerator {
     firstNames(Roller.randomInt(count))
   }
 
-  def getHalflingSurname: String = {
+  private def getHalflingSurname: String = {
     val surnames: Seq[String] = Seq("Truebeam", "Stoutheart", "Shadowbough", "Humblehare", "RidonHillhand", "Sunbarrel",
       "Freemantle", "Quickcrest", "Wisesun", "Deephare", "Stonewater", "Havenfellow", "Bramblemoon", "Keenwind",
       "Goldseeker", "Greatmeadow", "Fasteye", "Lunardance", "Hogflower", "Shadowshaker", "Slystoat", "Took", "Townsend",

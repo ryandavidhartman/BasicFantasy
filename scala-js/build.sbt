@@ -1,8 +1,8 @@
 enablePlugins(ScalaJSPlugin)
 
 name := "Basic Fantasy Character Generator"
-
-scalaVersion := "2.13.1" // or any other Scala version >= 2.11.12
+Compile / scalacOptions ++= Seq("-unchecked", "-deprecation", "-Xfatal-warnings")
+scalaVersion := "2.13.13" // Scala 2.12+ recommended for Scala.js 1.x
 
 // This is an application with a main method
 scalaJSUseMainModuleInitializer := true
@@ -13,4 +13,4 @@ libraryDependencies += "com.lihaoyi" %%% "utest" % "0.7.4" % "test"
 
 testFrameworks += new TestFramework("utest.runner.Framework")
 
-jsEnv := new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv()
+Compile / jsEnv := new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv()

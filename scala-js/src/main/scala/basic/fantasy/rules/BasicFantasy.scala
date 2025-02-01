@@ -61,6 +61,7 @@ object BasicFantasy {
           "+6"
         else
           "+7"
+      case _ => throw new InternalError(s"characterClass: $characterClass is invalid")
     }
   }
 
@@ -96,6 +97,7 @@ object BasicFantasy {
       case f if f.isFighter => 8
       case c if c.isCleric || c.isMonk => 6
       case s if s.isThief || s.isMagicUser => 4
+      case _ => throw new InternalError(s"characterClass: $characterClass is invalid")
     }
 
     val modHitDice: Int = race match {
@@ -111,7 +113,7 @@ object BasicFantasy {
     hpForFirst9 + hpFor9AndUp
   }
 
-  def attributeModifiers(attribute: Int): Int = attribute match {
+  private def attributeModifiers(attribute: Int): Int = attribute match {
     case 3 => -3
     case i if i >= 4 && i <= 5 => -2
     case i if i >= 6 && i <= 8 => -1
@@ -123,7 +125,7 @@ object BasicFantasy {
 
   def getLanguageBonus(int: Int): Int = Math.max(0, attributeModifiers(int))
 
-  def modifierBonusIntToString(mod: Int): String = {
+  private def modifierBonusIntToString(mod: Int): String = {
     if (mod > 0)
       s"+$mod"
     else
