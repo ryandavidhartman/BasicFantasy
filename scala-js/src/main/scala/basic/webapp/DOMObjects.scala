@@ -2,7 +2,6 @@ package basic.webapp
 
 import basic.fantasy.backgrounds.BackgroundGenerator.Background
 import basic.fantasy.backgrounds.{BackgroundGenerator, CharacterAlignments, Races}
-import basic.fantasy.characterclass.KiPowers.KiPower
 import basic.fantasy.characterclass.{CharacterClasses, SavingsThrows}
 import basic.fantasy.equipment.Armors.NoArmor
 import basic.fantasy.equipment.MeleeWeapons.ShortSword
@@ -77,18 +76,18 @@ object DOMObjects {
   val listenSpan: Span = document.getElementById("listen").asInstanceOf[html.Span]
 
   // Monk Skills
-  val monkSkillsDiv: Div = document.getElementById("monk_skills_div").asInstanceOf[html.Div]
-  monkSkillsDiv.style.display = "none"
-
-  val monkMoveSilentlySpan: Span = document.getElementById("monkMoveSilently").asInstanceOf[html.Span]
-  val monkClimbWallsSpan: Span = document.getElementById("monkClimbWalls").asInstanceOf[html.Span]
-  val monkHideSpan: Span = document.getElementById("monkHide").asInstanceOf[html.Span]
-  val monkListenSpan: Span = document.getElementById("monkListen").asInstanceOf[html.Span]
-
-  // Monk Powers
-  val monkPowersDiv: Div = document.getElementById("monk_powers_div").asInstanceOf[html.Div]
-  monkPowersDiv.style.display = "none"
-  val monkPowers: TextArea = document.getElementById("monk_powers").asInstanceOf[html.TextArea]
+//  val monkSkillsDiv: Div = document.getElementById("monk_skills_div").asInstanceOf[html.Div]
+//  monkSkillsDiv.style.display = "none"
+//
+//  val monkMoveSilentlySpan: Span = document.getElementById("monkMoveSilently").asInstanceOf[html.Span]
+//  val monkClimbWallsSpan: Span = document.getElementById("monkClimbWalls").asInstanceOf[html.Span]
+//  val monkHideSpan: Span = document.getElementById("monkHide").asInstanceOf[html.Span]
+//  val monkListenSpan: Span = document.getElementById("monkListen").asInstanceOf[html.Span]
+//
+//  // Monk Powers
+//  val monkPowersDiv: Div = document.getElementById("monk_powers_div").asInstanceOf[html.Div]
+//  monkPowersDiv.style.display = "none"
+//  val monkPowers: TextArea = document.getElementById("monk_powers").asInstanceOf[html.TextArea]
 
   // Spells
   val casterSpellsDiv: Div = document.getElementById("caster_spells_div").asInstanceOf[html.Div]
@@ -185,8 +184,8 @@ object DOMObjects {
     spells = Seq.empty[String],
     turnUndead = Seq.empty[String],
     thiefSkills = Seq.empty[String],
-    monkSkills = Seq.empty[String],
-    monkPowers = Set.empty[KiPower]
+    //monkSkills = Seq.empty[String],
+    //monkPowers = Set.empty[KiPower]
   )
 
 }

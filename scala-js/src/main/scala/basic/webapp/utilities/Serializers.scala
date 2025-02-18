@@ -5,8 +5,7 @@ import basic.fantasy.backgrounds.CharacterAlignments._
 import basic.fantasy.backgrounds.{BackgroundGenerator, CharacterAlignments, Races}
 import basic.fantasy.backgrounds.Races._
 import basic.fantasy.characterclass.CharacterClasses._
-import basic.fantasy.characterclass.KiPowers._
-import basic.fantasy.characterclass.{CharacterClasses, KiPowers, SavingsThrows}
+import basic.fantasy.characterclass.{CharacterClasses, SavingsThrows}
 import basic.fantasy.equipment.Armors._
 import basic.fantasy.equipment.{Armors, Equipment, EquipmentPacks, MagicalItems, Shields}
 import basic.fantasy.equipment.EquipmentPacks._
@@ -33,7 +32,7 @@ object Serializers {
   implicit val fighterMagicUserRW: default.ReadWriter[CharacterClasses.FighterMagicUser.type] = upickle.default.macroRW[FighterMagicUser.type]
   implicit val magicUserRW: default.ReadWriter[CharacterClasses.MagicUser.type] = upickle.default.macroRW[MagicUser.type]
   implicit val magicUserThiefRW: default.ReadWriter[CharacterClasses.MagicUserThief.type] = upickle.default.macroRW[MagicUserThief.type]
-  implicit val monkRW: default.ReadWriter[CharacterClasses.Monk.type] = upickle.default.macroRW[Monk.type]
+  //implicit val monkRW: default.ReadWriter[CharacterClasses.Monk.type] = upickle.default.macroRW[Monk.type]
   implicit val thiefRW: default.ReadWriter[CharacterClasses.Thief.type] = upickle.default.macroRW[Thief.type]
   implicit val classRW: default.ReadWriter[CharacterClass] = upickle.default.macroRW[CharacterClass]
 
@@ -258,27 +257,27 @@ object Serializers {
 
   implicit val equipmentRW: default.ReadWriter[Equipment] = upickle.default.macroRW[Equipment]
 
-  implicit val abundantStepRw: default.ReadWriter[KiPowers.AbundantStep.type] = upickle.default.macroRW[AbundantStep.type]
-  implicit val burstingFistRw: default.ReadWriter[KiPowers.BurstingFist.type] = upickle.default.macroRW[BurstingFist.type]
-  implicit val deflectArrowsRw: default.ReadWriter[KiPowers.DeflectArrows.type] = upickle.default.macroRW[DeflectArrows.type]
-  implicit val diamondBodyRw: default.ReadWriter[KiPowers.DiamondBody.type] = upickle.default.macroRW[DiamondBody.type]
-  implicit val diamondFistRw: default.ReadWriter[KiPowers.DiamondFist.type] = upickle.default.macroRW[DiamondFist.type]
-  implicit val evasionRw: default.ReadWriter[KiPowers.Evasion.type] = upickle.default.macroRW[Evasion.type]
-  implicit val featherBalanceRw: default.ReadWriter[KiPowers.FeatherBalance.type] = upickle.default.macroRW[FeatherBalance.type]
-  implicit val featherStepRw: default.ReadWriter[KiPowers.FeatherStep.type] = upickle.default.macroRW[FeatherStep.type]
-  implicit val flawlessMindRw: default.ReadWriter[KiPowers.FlawlessMind.type] = upickle.default.macroRW[FlawlessMind.type]
-  implicit val improvedEvasionRw: default.ReadWriter[KiPowers.ImprovedEvasion.type] = upickle.default.macroRW[ImprovedEvasion.type]
-  implicit val kiStrikeRw: default.ReadWriter[KiPowers.KiStrike.type] = upickle.default.macroRW[KiStrike.type]
-  implicit val punishingStrikeRw: default.ReadWriter[KiPowers.PunishingStrike.type] = upickle.default.macroRW[PunishingStrike.type]
-  implicit val purityOfBodyRw: default.ReadWriter[KiPowers.PurityOfBody.type] = upickle.default.macroRW[PurityOfBody.type]
-  implicit val quiveringPalmRw: default.ReadWriter[KiPowers.QuiveringPalm.type] = upickle.default.macroRW[QuiveringPalm.type]
-  implicit val silverFistRw: default.ReadWriter[KiPowers.SilverFist.type] = upickle.default.macroRW[SilverFist.type]
-  implicit val slowFallRw: default.ReadWriter[KiPowers.SlowFall.type] = upickle.default.macroRW[SlowFall.type]
-  implicit val stunningFistRw: default.ReadWriter[KiPowers.StunningFist.type] = upickle.default.macroRW[StunningFist.type]
-  implicit val timelessBodyRw: default.ReadWriter[KiPowers.TimelessBody.type] = upickle.default.macroRW[TimelessBody.type]
-  implicit val tongueOfTheStarsRw: default.ReadWriter[KiPowers.TongueOfTheStars.type] = upickle.default.macroRW[TongueOfTheStars.type]
-  implicit val wholenessOfBodyRw: default.ReadWriter[KiPowers.WholenessOfBody.type] = upickle.default.macroRW[WholenessOfBody.type]
-  implicit val kiPowerRW: default.ReadWriter[KiPower] = upickle.default.macroRW[KiPower]
+//  implicit val abundantStepRw: default.ReadWriter[KiPowers.AbundantStep.type] = upickle.default.macroRW[AbundantStep.type]
+//  implicit val burstingFistRw: default.ReadWriter[KiPowers.BurstingFist.type] = upickle.default.macroRW[BurstingFist.type]
+//  implicit val deflectArrowsRw: default.ReadWriter[KiPowers.DeflectArrows.type] = upickle.default.macroRW[DeflectArrows.type]
+//  implicit val diamondBodyRw: default.ReadWriter[KiPowers.DiamondBody.type] = upickle.default.macroRW[DiamondBody.type]
+//  implicit val diamondFistRw: default.ReadWriter[KiPowers.DiamondFist.type] = upickle.default.macroRW[DiamondFist.type]
+//  implicit val evasionRw: default.ReadWriter[KiPowers.Evasion.type] = upickle.default.macroRW[Evasion.type]
+//  implicit val featherBalanceRw: default.ReadWriter[KiPowers.FeatherBalance.type] = upickle.default.macroRW[FeatherBalance.type]
+//  implicit val featherStepRw: default.ReadWriter[KiPowers.FeatherStep.type] = upickle.default.macroRW[FeatherStep.type]
+//  implicit val flawlessMindRw: default.ReadWriter[KiPowers.FlawlessMind.type] = upickle.default.macroRW[FlawlessMind.type]
+//  implicit val improvedEvasionRw: default.ReadWriter[KiPowers.ImprovedEvasion.type] = upickle.default.macroRW[ImprovedEvasion.type]
+//  implicit val kiStrikeRw: default.ReadWriter[KiPowers.KiStrike.type] = upickle.default.macroRW[KiStrike.type]
+//  implicit val punishingStrikeRw: default.ReadWriter[KiPowers.PunishingStrike.type] = upickle.default.macroRW[PunishingStrike.type]
+//  implicit val purityOfBodyRw: default.ReadWriter[KiPowers.PurityOfBody.type] = upickle.default.macroRW[PurityOfBody.type]
+//  implicit val quiveringPalmRw: default.ReadWriter[KiPowers.QuiveringPalm.type] = upickle.default.macroRW[QuiveringPalm.type]
+//  implicit val silverFistRw: default.ReadWriter[KiPowers.SilverFist.type] = upickle.default.macroRW[SilverFist.type]
+//  implicit val slowFallRw: default.ReadWriter[KiPowers.SlowFall.type] = upickle.default.macroRW[SlowFall.type]
+//  implicit val stunningFistRw: default.ReadWriter[KiPowers.StunningFist.type] = upickle.default.macroRW[StunningFist.type]
+//  implicit val timelessBodyRw: default.ReadWriter[KiPowers.TimelessBody.type] = upickle.default.macroRW[TimelessBody.type]
+//  implicit val tongueOfTheStarsRw: default.ReadWriter[KiPowers.TongueOfTheStars.type] = upickle.default.macroRW[TongueOfTheStars.type]
+//  implicit val wholenessOfBodyRw: default.ReadWriter[KiPowers.WholenessOfBody.type] = upickle.default.macroRW[WholenessOfBody.type]
+//  implicit val kiPowerRW: default.ReadWriter[KiPower] = upickle.default.macroRW[KiPower]
 
   implicit val stateRW: default.ReadWriter[CharacterState] =  upickle.default.macroRW[CharacterState]
 

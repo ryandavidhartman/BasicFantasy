@@ -47,7 +47,7 @@ object Shields {
     val roll = Roller.randomInt(100)
 
     characterClass match {
-      case m if m.isMagicUser || m.isMonk => NoShield
+      case m if m.isMagicUser => NoShield //|| m.isMonk => NoShield
       case t if t.isThief => NoShield
       case _ =>
         if(roll < 40)

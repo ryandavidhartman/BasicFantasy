@@ -94,7 +94,7 @@ object SavingsThrows {
       case Fighter => addRacialBonuses(fighter(modLevel), race.savingsThrowBonuses)
       case MagicUser => addRacialBonuses(magicUser(modLevel), race.savingsThrowBonuses)
       case Thief => addRacialBonuses(thief(modLevel), race.savingsThrowBonuses)
-      case Monk => addRacialBonuses(thief(modLevel), race.savingsThrowBonuses)  //monks save as thieves
+      //case Monk => addRacialBonuses(thief(modLevel), race.savingsThrowBonuses)  //monks save as thieves
       case Cleric => addRacialBonuses(cleric(modLevel), race.savingsThrowBonuses)
       case FighterMagicUser =>
         val f = fighter(modLevel)

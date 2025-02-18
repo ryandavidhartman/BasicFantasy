@@ -98,7 +98,7 @@ object Armors {
     val roll = Roller.randomInt(100)
 
     characterClass match {
-      case m if m.isMagicUser || m.isMonk => NoArmor
+      case m if m.isMagicUser => NoArmor //|| m.isMonk => NoArmor
       case t if t.isThief =>
         if(roll < 10)
           Padded

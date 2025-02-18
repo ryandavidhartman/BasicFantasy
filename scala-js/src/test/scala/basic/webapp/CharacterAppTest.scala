@@ -13,7 +13,7 @@ object CharacterAppTest extends TestSuite {
 
     /*
     test("HelloWorld") {
-      assert(document.querySelectorAll("p").count(_.textContent == "Basic Fantasy Character Generator") == 1)
+      assert(document.querySelectorAll("p").count(_.textContent == "OnceWas RPG Character Generator") == 1)
     }
     */
 

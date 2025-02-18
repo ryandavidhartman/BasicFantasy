@@ -5,7 +5,6 @@ import basic.fantasy.backgrounds.PersonalityGenerator.getPersonality
 import basic.fantasy.backgrounds.Races._
 import basic.fantasy.backgrounds._
 import basic.fantasy.characterclass.CharacterClasses._
-import basic.fantasy.characterclass.KiPowers.KiPower
 import basic.fantasy.characterclass._
 import basic.fantasy.equipment.EquipmentGenerator
 import basic.fantasy.equipment.Shields.NoShield
@@ -186,7 +185,7 @@ object CharacterApp {
     setPersonality()
     setTurnUndead()
     setThiefSkills()
-    setMonkSkillsAndPowers()
+    //setMonkSkillsAndPowers()
     setEquipment()
   }
 
@@ -207,8 +206,9 @@ object CharacterApp {
       case FighterMagicUser =>  Seq(int_select, str_select, con_select, dex_select, wis_select, chr_select)
       case MagicUser => Seq(int_select, dex_select, con_select, wis_select, chr_select, str_select)
       case MagicUserThief => Seq(int_select, dex_select, con_select, wis_select, chr_select, str_select)
-      case Monk => Seq(wis_select, dex_select, str_select, con_select, int_select, chr_select)
+      //case Monk => Seq(wis_select, dex_select, str_select, con_select, int_select, chr_select)
       case Thief => Seq(dex_select, con_select, str_select, chr_select, int_select, wis_select)
+      case _ => throw new Exception("Invalid Class")
     }
 
     (0 to 5).foreach(i => attributes(i).selectedIndex = scores(i))
@@ -294,13 +294,13 @@ object CharacterApp {
     else
       casterSpellsDiv.style.display = "none"
 
-    if(state.characterClass.isMonk) {
-      monkSkillsDiv.style.display = "inline"
-      monkPowersDiv.style.display = "inline"
-    } else {
-      monkSkillsDiv.style.display = "none"
-      monkPowersDiv.style.display = "none"
-    }
+//    if(state.characterClass.isMonk) {
+//      monkSkillsDiv.style.display = "inline"
+//      monkPowersDiv.style.display = "inline"
+//    } else {
+//      monkSkillsDiv.style.display = "none"
+//      monkPowersDiv.style.display = "none"
+//    }
 
   }
 
@@ -309,8 +309,8 @@ object CharacterApp {
     if(state.race == Halfling && str_select.selectedIndex >= 15)
       str_select.selectedIndex = 14
 
-    if(state.characterClass == Monk && str_select.selectedIndex < 10)
-      str_select.selectedIndex = 10
+//    if(state.characterClass == Monk && str_select.selectedIndex < 10)
+//      str_select.selectedIndex = 10
 
     state = state.copy(strength = str_select.value.toInt)
   }
@@ -320,8 +320,8 @@ object CharacterApp {
     if(state.race == Halfling && dex_select.selectedIndex < 6)
       dex_select.selectedIndex = 6
 
-    if(state.characterClass == Monk && dex_select.selectedIndex < 10)
-      dex_select.selectedIndex = 10
+//    if(state.characterClass == Monk && dex_select.selectedIndex < 10)
+//      dex_select.selectedIndex = 10
 
     state = state.copy(dexterity = dex_select.value.toInt)
   }
@@ -334,8 +334,8 @@ object CharacterApp {
     if ((state.race == Dwarf || state.race == HalfOrc) && con_select.selectedIndex < 6)
       con_select.selectedIndex = 6
 
-    if (state.characterClass == Monk && con_select.selectedIndex < 6)
-      con_select.selectedIndex = 6
+//    if (state.characterClass == Monk && con_select.selectedIndex < 6)
+//      con_select.selectedIndex = 6
 
     state = state.copy(constitution = con_select.value.toInt)
   }
@@ -353,8 +353,8 @@ object CharacterApp {
 
   @JSExportTopLevel("checkMaxWis")
   def checkMaxWis(): Unit = {
-    if(state.characterClass == Monk && wis_select.selectedIndex < 10)
-      wis_select.selectedIndex = 10
+//    if(state.characterClass == Monk && wis_select.selectedIndex < 10)
+//      wis_select.selectedIndex = 10
 
     state = state.copy(wisdom = wis_select.value.toInt)
   }
@@ -454,23 +454,23 @@ object CharacterApp {
     state = state.copy(thiefSkills = newThiefSkills)
   }
 
-  @JSExportTopLevel("setMonkSkills")
-  def setMonkSkillsAndPowers(): Unit = {
-
-    if(state.characterClass.isMonk) {
-      val monkLevel = state.level
-      val newMonkSkills: Seq[String] = MonkSkills.skills(monkLevel)
-
-      monkMoveSilentlySpan.textContent = newMonkSkills.head
-      monkClimbWallsSpan.textContent = newMonkSkills(1)
-      monkHideSpan.textContent = newMonkSkills(2)
-      monkListenSpan.textContent = newMonkSkills(3)
-
-      val newMonkPowers: Set[KiPower] = KiPowers.getKiPowers(monkLevel)
-      monkPowers.value = newMonkPowers.map(power => power.name).mkString("\n")
-      state = state.copy(monkPowers = newMonkPowers)
-    }
-  }
+//  @JSExportTopLevel("setMonkSkills")
+//  def setMonkSkillsAndPowers(): Unit = {
+//
+//    if(state.characterClass.isMonk) {
+//      val monkLevel = state.level
+//      val newMonkSkills: Seq[String] = MonkSkills.skills(monkLevel)
+//
+//      monkMoveSilentlySpan.textContent = newMonkSkills.head
+//      monkClimbWallsSpan.textContent = newMonkSkills(1)
+//      monkHideSpan.textContent = newMonkSkills(2)
+//      monkListenSpan.textContent = newMonkSkills(3)
+//
+//      val newMonkPowers: Set[KiPower] = KiPowers.getKiPowers(monkLevel)
+//      monkPowers.value = newMonkPowers.map(power => power.name).mkString("\n")
+//      state = state.copy(monkPowers = newMonkPowers)
+//    }
+//  }
 
   @JSExportTopLevel("setBackground")
   def setBackground(): Unit = {

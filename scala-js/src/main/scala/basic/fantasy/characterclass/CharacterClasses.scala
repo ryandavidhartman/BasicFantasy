@@ -6,7 +6,7 @@ object CharacterClasses {
     val isCleric = false
     val isFighter = false
     val isMagicUser = false
-    val isMonk = false
+    //val isMonk = false
     val isThief = false
     val isMultiClass = false
     val isSpellCaster = false
@@ -67,14 +67,14 @@ object CharacterClasses {
     )
   }
 
-  case object Monk extends CharacterClass {
-    override val isMonk = true
-
-    override def getAbilities(): Seq[String] = Seq(
-      "No armor or shield",
-      "All weapon types",
-    )
-  }
+//  case object Monk extends CharacterClass {
+//    override val isMonk = true
+//
+//    override def getAbilities(): Seq[String] = Seq(
+//      "No armor or shield",
+//      "All weapon types",
+//    )
+//  }
 
   case object Thief extends CharacterClass {
     override val isThief = true
@@ -93,7 +93,7 @@ object CharacterClasses {
     case "Fighter/Magic-User" => FighterMagicUser
     case "Magic-User" => MagicUser
     case "Magic-User/Thief" => MagicUserThief
-    case "Monk" => Monk
+    // case "Monk" => Monk
     case "Thief" => Thief
     case _ => throw InvalidCharacterClassException(s"Invalid character class: $characterClass")
   }
@@ -103,6 +103,6 @@ object CharacterClasses {
     FighterMagicUser,
     MagicUser,
     MagicUserThief,
-    Monk,
+    // Monk,
     Thief)
 }

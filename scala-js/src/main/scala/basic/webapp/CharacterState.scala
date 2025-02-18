@@ -3,9 +3,7 @@ package basic.webapp
 import basic.fantasy.backgrounds.BackgroundGenerator.Background
 import basic.fantasy.backgrounds.CharacterAlignments.CharacterAlignment
 import basic.fantasy.backgrounds.Races.Race
-import basic.fantasy.backgrounds.Spells.Spell
 import basic.fantasy.characterclass.CharacterClasses.CharacterClass
-import basic.fantasy.characterclass.KiPowers.KiPower
 import basic.fantasy.characterclass.SavingsThrows
 import basic.fantasy.equipment.Equipment
 
@@ -42,6 +40,6 @@ case class CharacterState(
   spells: Seq[String],
   turnUndead: Seq[String],
   thiefSkills: Seq[String],
-  monkSkills: Seq[String],
-  monkPowers: Set[KiPower]
+  //monkSkills: Seq[String],
+  //monkPowers: Set[KiPower]
 )

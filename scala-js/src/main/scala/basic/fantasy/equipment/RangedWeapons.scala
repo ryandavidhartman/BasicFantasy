@@ -2,7 +2,7 @@ package basic.fantasy.equipment
 
 import basic.fantasy.Roller
 import basic.fantasy.backgrounds.Races.{Dwarf, Elf, HalfElf, HalfOrc, Halfling, Human, Race}
-import basic.fantasy.characterclass.CharacterClasses.{CharacterClass, Cleric, Fighter, FighterMagicUser, MagicUser, MagicUserThief, Monk, Thief}
+import basic.fantasy.characterclass.CharacterClasses._
 import basic.fantasy.equipment.Weapons.{Large, Medium, Small, WeaponSize}
 
 object RangedWeapons {
@@ -298,8 +298,9 @@ object RangedWeapons {
       case FighterMagicUser =>getFighterTypeRangedWeapon(level, maxSize)
       case MagicUser => getMagicUserRangedWeapon(level)
       case MagicUserThief => getFighterTypeRangedWeapon(level, maxSize)
-      case Monk => getFighterTypeRangedWeapon(level, maxSize)
+      //case Monk => getFighterTypeRangedWeapon(level, maxSize)
       case Thief => getFighterTypeRangedWeapon(level, maxSize)
+      case _ => throw new Exception("Invalid Class")
     }
 
   }

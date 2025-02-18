@@ -2,13 +2,13 @@ package basic.fantasy.rules
 
 import basic.fantasy.Roller
 import basic.fantasy.backgrounds.Races._
-import basic.fantasy.characterclass.CharacterClasses.{CharacterClass, MagicUser, Monk}
+import basic.fantasy.characterclass.CharacterClasses._
 
 object BasicFantasy {
 
   def calcBaseAttackModifier(characterClass: CharacterClass, level: Int): String = {
     characterClass match {
-      case f if f.isFighter || f.isMonk =>
+      case f if f.isFighter => //|| f.isMonk =>
         if (level == 1)
           "+1"
         else if (level <= 3)
@@ -80,12 +80,12 @@ object BasicFantasy {
 
   def calcACModifier(dexterity: Int, wisdom: Int, characterClass: CharacterClass, level: Int): String = {
     val dexMod = attributeModifiers(dexterity)
-    val wisMod = attributeModifiers(wisdom)
-    val levelMod = level/4
-    if(characterClass == Monk)
-      modifierBonusIntToString(dexMod + wisMod + levelMod)
-    else
-      modifierBonusIntToString(dexMod)
+//    val wisMod = attributeModifiers(wisdom)
+//    val levelMod = level/4
+//    if(characterClass == Monk)
+//      modifierBonusIntToString(dexMod + wisMod + levelMod)
+//    else
+    modifierBonusIntToString(dexMod)
   }
 
   def calcHitPoints(characterClass: CharacterClass, race: Race, level: Int, constitution: Int): Int = {
@@ -95,7 +95,7 @@ object BasicFantasy {
     val truncated_level = Math.min(level, cutOffLevel)
     val hitDice: Int = characterClass match {
       case f if f.isFighter => 8
-      case c if c.isCleric || c.isMonk => 6
+      case c if c.isCleric => 6 //|| c.isMonk => 6
       case s if s.isThief || s.isMagicUser => 4
       case _ => throw new InternalError(s"characterClass: $characterClass is invalid")
     }

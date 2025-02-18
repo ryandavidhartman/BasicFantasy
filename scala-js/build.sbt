@@ -1,6 +1,6 @@
 enablePlugins(ScalaJSPlugin)
 
-name := "Basic Fantasy Character Generator"
+name := "OnceWas RPG Character Generator"
 Compile / scalacOptions ++= Seq("-unchecked", "-deprecation", "-Xfatal-warnings")
 scalaVersion := "2.13.13" // Scala 2.12+ recommended for Scala.js 1.x
 
